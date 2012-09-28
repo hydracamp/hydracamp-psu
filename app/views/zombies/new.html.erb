@@ -1,0 +1,9 @@
+<h1>Create a new Zombie</h1>
+<%= form_for @zombie do |f| %>
+  <%=f.label :name %>
+  <%=f.text_field :name %>
+  <br>
+  <%=f.label :graveyard %>
+  <%=f.text_field :graveyard %>
+  <%=f.submit %>
+<%end%>

@@ -11,4 +11,8 @@ class ZombiesController < ApplicationController
   def index
     @zombies = Zombie.order(:name)
   end
+
+  def show
+    @zombie = Zombie.find(params[:id])
+  end
 end

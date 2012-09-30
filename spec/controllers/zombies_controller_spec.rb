@@ -45,4 +45,29 @@ describe ZombiesController do
     end
   end
 
+  describe "#edit" do
+    before do
+      @ash = Zombie.create(:name=>'Ash')
+    end
+    it "should be successful" do
+      get :edit, :id=>@ash
+      response.should be_successful
+      assigns[:zombie].should == @ash
+    end
+  end
+
+  describe "#update" do
+    before do
+      @ash = Zombie.create(:name=>"Ash")
+    end
+    it "should update the zombie" do
+      put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge"}
+      response.should redirect_to zombie_path(@ash)
+      @ash.reload.name.should == 'David'
+      @ash.graveyard.should == "River's Edge"
+      flash[:notice].should == "Zombie Updated"
+    end
+
+  end
+
 end

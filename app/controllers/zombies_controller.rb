@@ -15,4 +15,14 @@ class ZombiesController < ApplicationController
   def show
     @zombie = Zombie.find(params[:id])
   end
+
+  def edit
+    @zombie = Zombie.find(params[:id])
+  end
+
+  def update
+    @zombie = Zombie.find(params[:id])
+    @zombie.update_attributes(params[:zombie])
+    redirect_to zombie_path(@zombie), :notice=>"Zombie Updated"
+  end
 end

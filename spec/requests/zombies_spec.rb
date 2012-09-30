@@ -24,4 +24,24 @@ describe "Zombies" do
       page.should have_content "Cedarville Cemetary"
     end
   end
+
+  describe "editing" do
+    before do
+      @zombie = Zombie.create(:name=>"Ash")
+    end
+    it "should have a link to the edit form" do
+      visit zombie_path(@zombie)
+      page.should have_link "edit", :href=>edit_zombie_path(@zombie)
+      click_link "edit"
+
+      fill_in "Name", :with=>"David"
+      fill_in "Graveyard", :with=>"Cedarville Cemetary"
+      click_button "Update Zombie"
+
+      page.should have_content "Zombie Updated"
+      page.should have_content "David"
+
+
+    end
+  end
 end

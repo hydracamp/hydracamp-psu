@@ -73,5 +73,18 @@ describe "Zombies" do
       # And I should see the edit form again
       current_path.should == edit_zombie_path(@zombie)
     end
+    it "should have a link to view the zombie" do
+      #When I am editing a zombie
+      visit edit_zombie_path(@zombie)
+
+      #Then I should see a link to show the zombie
+      page.should have_link('View Zombie', href: zombie_path(@zombie))
+
+      #When I click on the link
+      click_link "View Zombie"
+
+      #Then I should see the show page for that zombie
+      current_path.should == zombie_path(@zombie)
+    end
   end
 end

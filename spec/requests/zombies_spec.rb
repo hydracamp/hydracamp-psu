@@ -26,6 +26,7 @@ describe "Zombies" do
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
+      page.should have_content "The zombie smells pretty bad"
     # page.should have_content "(level 1)"
     end
   end

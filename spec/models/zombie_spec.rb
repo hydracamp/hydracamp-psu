@@ -15,6 +15,17 @@ describe Zombie do
     subject.graveyard = "Creepy Hollow"
     subject.graveyard.should == "Creepy Hollow"
   end
+  
+  it "should have a description" do
+    subject.description = "The zombie smells bad"
+    subject.description.should == "The zombie smells bad"
+  end
+ 
+  # A new zombie should start with a default number of hit points
+  # when created
+  it "should have hit points" do
+    subject.hit_points.should == 100
+  end
 
   it "should validate that the name is present" do
     subject.should_not be_valid

@@ -83,6 +83,7 @@ describe "Zombies" do
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
+      fill_in "Description", :with=>"The zombie smells bad"
 
       # When I click "Update Zombie" 
       click_button "Update Zombie"
@@ -91,6 +92,7 @@ describe "Zombies" do
       page.should have_selector "input[value='David']"
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
+      page.should have_selector "input[value='The zombie smells bad']"
 
       # And I should see a message that says "page saved at <current time>" 
       page.body.should match /Zombie saved at \d\d:\d\d/

@@ -41,6 +41,7 @@ describe "Zombies" do
       within "#zombie_details" do
         page.should have_content "Ash"
         page.should have_content "Cedarville Cemetary"
+        page.should have_content "Number of Tweets:"
       end
     end
     
@@ -51,6 +52,19 @@ describe "Zombies" do
       page.should have_link "home", :href=>zombies_path
       visit edit_zombie_path(@ash)
       page.should have_link "home", :href=>zombies_path
+    end
+  end
+  
+  describe "showing" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
+    end
+    
+    it "should display a description of a zombie" do
+      visit zombie_path(@ash)
+      page.should have_content "The zombie smells bad"
+      page.should have_content "description"
+      
     end
   end
 
@@ -85,6 +99,19 @@ describe "Zombies" do
 
       # And I should see the edit form again
       current_path.should == edit_zombie_path(@zombie)
+    end
+    it "should have a link to view the zombie" do
+      #When I am editing a zombie
+      visit edit_zombie_path(@zombie)
+
+      #Then I should see a link to show the zombie
+      page.should have_link('View Zombie', href: zombie_path(@zombie))
+
+      #When I click on the link
+      click_link "View Zombie"
+
+      #Then I should see the show page for that zombie
+      current_path.should == zombie_path(@zombie)
     end
   end
 end

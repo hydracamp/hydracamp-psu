@@ -8,6 +8,10 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'devise'
 
+gem 'execjs'
+
+gem 'therubyracer'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'

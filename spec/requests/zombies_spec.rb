@@ -172,13 +172,8 @@ describe "Zombies" do
          #Given that I am on the edit page for a zombie named "Ash"
          visit edit_zombie_path(@zombie)
 
-<<<<<<< HEAD
          # Then I should be able to edit the zombies creator
          select 'Sarah', :from => 'creator'
-=======
-         # Then I should be able to edit the zombies creator
-         select 'Sarah', :from => 'Creator'
->>>>>>> aa95bb4e531521140de639ff415d1ad5fcdf8356
          click_button "Update Zombie"
 page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
 #         page.should have_css  'div.creator :option, :value => 'Sarah'

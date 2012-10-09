@@ -14,6 +14,13 @@ class ZombiesController < ApplicationController
 
   def show
     @zombie = Zombie.find(params[:id])
+    @tweet = Tweet.new
+    @tweet.zombie = @zombie
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @zombie }
+      format.xml  { render xml: @zombie }
+    end
   end
 
   def edit

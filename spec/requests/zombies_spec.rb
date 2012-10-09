@@ -2,9 +2,17 @@ require 'spec_helper'
 
 describe "Zombies" do
   describe "indexing" do
+     before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
+    end
+
     it "should have a create new zombie link" do
       visit zombies_path
+      page.should have_content("Ash")
+      page.should have_content("Hruuungh")
+      page.should have_link('Edit', href: edit_zombie_path(@ash))
       page.should have_link('Create New Zombie', href: new_zombie_path)
+
     end
   end
 

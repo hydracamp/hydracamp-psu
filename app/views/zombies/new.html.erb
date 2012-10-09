@@ -2,15 +2,42 @@
 <%= form_for @zombie do |f| %>
   <%=f.label :name %>
   <%=f.text_field :name %>
-  <br>
+  <br />
   <%=f.label :graveyard %>
   <%=f.text_field :graveyard %>
 
-  <br>
+  <br />
   <%=f.label :nickname %>
   <%=f.text_field :nickname %>
   
   
+  <br />
+  <%=f.label :description %>
+  <%=f.text_field :description %>
+  <br />
+
+    <div class="zombieCreateRow">
+      <%= f.label :avatar %>
+      <div class="field">
+        <%= f.file_field :avatar %>
+        <span class="label label-important">JPG, GIF, or PNG (less than 2MB)</span>
+      </div>
+    </div>
+
+  <br>
+  <%=f.label :nickname %>
+  <%=f.text_field :nickname %>
+  <span id="nickname_error" class="error">Nicknames can only contain these characters: a g h n r o u !</span>
+  <br>
+  <br>
+  <%=f.label :date_of_birth %>
+  <%=f.date_select :date_of_birth, :start_year => 1500 %>
+  <br>
+  <%=f.label :date_of_death %>
+  <%=f.date_select :date_of_death %>
+  <br>
+  <%=f.label :date_of_undeath %>
+  <%=f.date_select :date_of_undeath %>
   <br>
   <%=f.label :description %>
   <%=f.text_field :description %>

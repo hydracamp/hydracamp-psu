@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.zombieCreateRow {
+    padding-top:10px;
+    padding-bottom:10px;
+}

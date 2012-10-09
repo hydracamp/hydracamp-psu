@@ -26,7 +26,7 @@ describe "Archivists" do
     end
     it "should log you out" do
       visit zombies_path
-      click_button 'logout'
+      click_button 'Log out'
       page.should have_content "Welcome stranger"
       page.should have_content "Signed out successfully"
     end

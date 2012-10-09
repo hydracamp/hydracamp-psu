@@ -38,39 +38,17 @@ describe "Zombies" do
       page.should have_link "Ash", :href=>zombie_path(@ash)
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
-      page.should have_content "Hruuungh"
-    end
   
-    it "should show the details for a specific zombie" do
-      visit zombies_path
-      click_link @ash.name
-      
-      current_path.should == zombie_path(@ash)
-      within "#zombie_details" do
-        page.should have_content "Ash"
-        page.should have_content "Cedarville Cemetary"
-        page.should have_content "Number of Tweets:"
-      end
-    end
-    
-    it "should display a link to the homepage" do
-      #Given I am on any page
-      visit zombie_path(@ash)
-      #I should see a link to homepage
-      page.should have_link "home", :href=>zombies_path
-      visit edit_zombie_path(@ash)
-      page.should have_link "home", :href=>zombies_path
-    end
 
     it "should display the zombie's level on the index page" do
       @sarah.level = 2
       @sarah.save
 
       visit zombies_path
-      page.should have_selector "tr[data-zombie='#{@sarah.id}']"
+      page.should have_selector "tr[data-zombie=#{@sarah.id}]"
       
-      within "tr[data-zombie='#{@sarah.id}'] td.zombie_level" do
-        page.should have_content 2
+      within "tr[data-zombie=#{@sarah.id}] td.zombie_level" do
+        page.should have_content '2'
       end
     end
   end

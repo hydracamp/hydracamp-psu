@@ -1,5 +1,5 @@
 class Zombie < ActiveRecord::Base
-<<<<<<< HEAD
+
   attr_accessible :graveyard, :name, :nickname, :level, :nickname, :hit_points
 
   validates :name, :presence=>true, :uniqueness=>true
@@ -10,7 +10,7 @@ class Zombie < ActiveRecord::Base
 
   def default_values
     self.level ||= 1
-
+  end
   # Set some defaults for values that may be nil
   after_initialize :init
 

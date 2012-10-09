@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009184122) do
+ActiveRecord::Schema.define(:version => 20121009201115) do
 
   create_table "archivists", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,17 +26,40 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "points"
   end
 
   add_index "archivists", ["email"], :name => "index_users_on_email", :unique => true
   add_index "archivists", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "audits", :force => true do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         :default => 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
+  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
+  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
+  add_index "audits", ["user_id", "user_type"], :name => "user_index"
+
   create_table "tweets", :force => true do |t|
     t.integer  "zombie_id"
     t.string   "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.datetime "deleted_at"
+    t.integer  "rating",     :default => 0
   end
 
   add_index "tweets", ["zombie_id"], :name => "index_tweets_on_zombie_id"
@@ -44,17 +67,24 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "nickname"
     t.string   "description"
     t.integer  "hit_points"
     t.integer  "creator_id"
     t.integer  "level"
-    t.boolean  "active",      :default => true, :null => false
-    t.integer  "wins",        :default => 0,    :null => false
-    t.integer  "losses",      :default => 0,    :null => false
+    t.boolean  "active",              :default => true, :null => false
+    t.integer  "wins",                :default => 0,    :null => false
+    t.integer  "losses",              :default => 0,    :null => false
     t.string   "weapon"
+    t.date     "date_of_death"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "date_of_birth"
+    t.datetime "date_of_undeath"
   end
 
 end

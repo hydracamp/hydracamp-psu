@@ -1,5 +1,6 @@
 <ul class="nav nav-pills">
   <li><%= link_to 'Home', zombies_path %>
+	  <li><%= link_to 'Tweets', tweets_path %>
   <li><%= link_to 'Instructional Video', 'http://www.youtube.com/watch?v=0UqEhUm2B_8', {:target => "_blank" } %>
   <li class="pull-right">
     <%= form_tag(search_zombies_path, :method => "get", :class => 'form-inline') do %>

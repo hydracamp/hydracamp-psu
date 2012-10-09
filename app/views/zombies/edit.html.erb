@@ -12,16 +12,39 @@
   <p>
     <%=f.label :nickname %>
     <%=f.text_field :nickname %>
+    <span id="nickname_error" class="error">Nicknames can only contain these letters: a g h n r o u</span>
   </p>
   <p>
     <%=f.label :description %>
     <%=f.text_field :description %>
   </p>
+<p>
+  <%=f.label :date_of_birth %>
+  <%=f.date_select :date_of_birth, :start_year => 1500 %>
+</p>
+<p>
+  <%=f.label :date_of_death %>
+  <%=f.date_select :date_of_death %>
+</p>
+<p>
+  <%=f.label :date_of_undeath %>
+  <%=f.date_select :date_of_death %>
+</p>
+
+<p>  
+  <%=f.label :creator %>
+  <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>
+</p>
   <p>
     <%=f.label :creator_id %>
     <%=f.select(:creator_id, options_for_select(["",""]+ Zombie.order(:name).reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}, @zombie.creator_id)) %>
   </p>
+  <br>
+
+  <%=f.label :weapon %>
+  <%=f.text_field :weapon %>
   <p><%=f.submit %></p>
+
 <% end %>
 
 <p><%=link_to "View Zombie", zombie_path(@zombie)%></p>

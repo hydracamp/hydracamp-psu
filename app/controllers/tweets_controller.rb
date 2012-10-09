@@ -14,4 +14,8 @@ class TweetsController < ApplicationController
     tweet.save!
     redirect_to zombie_path(tweet.zombie), :notice=>"Tweet Liked"
   end
+
+  def index
+    @tweets = Tweet.all
+  end
 end

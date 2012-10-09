@@ -33,4 +33,23 @@ class ZombiesController < ApplicationController
     @zombie.update_attributes(params[:zombie])
     redirect_to edit_zombie_path(@zombie), :notice=>"Zombie saved at #{Time.now.strftime("%H:%M")}"
   end
+
+  def search
+    @q = params[:q]
+
+    q_delimited_by_space = @q.split(' ')
+
+    generated_like_clause = []
+    args = []
+    q_delimited_by_space.each do |word|
+      generated_like_clause << "name LIKE ? OR nickname LIKE ? OR description LIKE ? OR graveyard LIKE ?"
+      args << "%#{word}%" << "%#{word}%" << "%#{word}%" << "%#{word}%"
+    end
+
+    #Convert generated_like_clause from array to string, using ' OR ' delimiter
+    generated_like_clause = generated_like_clause.join(' OR ')
+
+    @zombies = Zombie.where(generated_like_clause, *args )
+  end
+
 end

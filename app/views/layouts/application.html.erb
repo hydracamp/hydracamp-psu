@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Hydracamp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <title>Archivists v. Zombies beta</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <% if current_user %>
-    <div>
-      Welcome <%= current_user.email %> | 
-      <%= button_to 'logout', destroy_user_session_path, method: :delete %>
-    </div>
-  <% else %>
-    <div>
-      Welcome stranger | 
-      <%= link_to 'login', new_user_session_path %>
-    </div>
-  <% end %>
-  <div></div>
-<%- if flash[:notice] %>
-  <div class="msg notice"><%=flash[:notice]%></div>
-<%end %>
-<%= yield %>
 
+<body>
+
+<!-- HEADER -->
+<div class="row span12">
+  <h1>Twitter ... for Zombie Archivists</h1>
+</div>
+<!-- MAIN BODY -->
+<div class="row span12">
+  <%= render partial: 'globals/navigation' %>
+  <!-- User navigation -->
+  <%= render partial: 'globals/user_management' %>
+
+  <!-- Page heading -->
+  <div class="span12">
+    <h2><%= yield :title || 'Twitter ... for Zombie Archivists' %></h2>
+  </div>
+
+  <!-- Content container -->
+  <div class="span12" id="content_body">
+    <%= render partial: 'globals/flash_messages' %>
+    <%= yield %>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="span12" id="footer">
+  &copy; ZombieCo 2012
+</div>
 </body>
 </html>

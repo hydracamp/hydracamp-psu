@@ -1,24 +1,27 @@
-<h1>Zombies</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <td>Zombie</td>
       <td>Nickname</td>
       <td>Level</td>
-      <td>-</td>
+      <td>Description</td>
+      <td>&nbsp;</td>
     </tr>
   </thead>
 
   <tbody>
-    <%= @zombies.each do |zombie| %>
-    <tr data-zombie="<%= zombie.id %>">
-      <td class="zombie_name"><%= link_to zombie.name, zombie_path(zombie) %></td>
-      <td class="zombie_nicknae"><%= zombie.nickname%></td>
-      <td class="zombie_level"><%= zombie.level.to_s %></td>
-      <td class="zombie_edit"><%= link_to "Edit", edit_zombie_path(zombie) %>)</td>
-    </tr>
-  <% end %>
+    <% @zombies.each do |zombie| %>
+
+      <tr data-zombie="<%= zombie.id %>">
+        <td class="zombie_name"><%= link_to zombie.name, zombie_path(zombie) %></td>
+        <td class="zombie_nickname"><%= zombie.nickname%></td>
+        <td class="zombie_level"><%= zombie.level.to_s %></td>
+        <td class="zombie_description"><%= zombie.description %></td>
+        <td class="zombie_edit"><%= link_to "Edit", edit_zombie_path(zombie) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
 </table>
 
-<%=link_to "Create New Zombie", new_zombie_path%>
+<%= link_to "Create New Zombie", new_zombie_path, class: 'btn' %>

@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <%= @zombies.each do |zombie| %>
+    <% @zombies.each do |zombie| %>
     <tr data-zombie="<%= zombie.id %>">
       <td class="zombie_name"><%= link_to zombie.name, zombie_path(zombie) %></td>
       <td class="zombie_nicknae"><%= zombie.nickname%></td>

@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(:version => 20121009150338) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "nickname"
-    t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
     t.integer  "creator_id"
+    t.integer  "level"
   end
 
 end

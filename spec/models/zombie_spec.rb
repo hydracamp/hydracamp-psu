@@ -27,6 +27,10 @@ describe Zombie do
     subject.hit_points.should == 100
   end
 
+  it "should have a default level of 1" do
+    subject.level.should == 1
+  end
+
   it "should have a creator" do
     another_zombie = Zombie.create(:name=>"Sarah")
     subject.creator = another_zombie

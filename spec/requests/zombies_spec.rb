@@ -43,11 +43,11 @@ describe "Zombies" do
       page.should have_content "Cedarville Cemetary"
       page.should have_content "Hruuungh"
     end
-  
+
     it "should show the details for a specific zombie" do
       visit zombies_path
       click_link @ash.name
-      
+
       current_path.should == zombie_path(@ash)
       within "#zombie_details" do
         page.should have_content "Ash"
@@ -55,7 +55,7 @@ describe "Zombies" do
         page.should have_content "Number of Tweets:"
       end
     end
-    
+
     it "should display a link to the homepage" do
       #Given I am on any page
       visit zombie_path(@ash)
@@ -71,24 +71,24 @@ describe "Zombies" do
 
       visit zombies_path
       page.should have_selector "tr[data-zombie='#{@sarah.id}']"
-      
+
       within "tr[data-zombie='#{@sarah.id}'] td.zombie_level" do
         page.should have_content 2
       end
     end
   end
-  
+
   describe "showing" do
     before do
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
       @ash.tweets.new(:message=>'test tweet 1')
     end
-    
+
     it "should display a description of a zombie" do
       visit zombie_path(@ash)
       page.should have_content "The zombie smells bad"
       page.should have_content "Description"
-      
+
     end
 
     it "should respond to a request for an XML or JSON response" do
@@ -107,29 +107,29 @@ describe "Zombies" do
       @zombie = Zombie.create(:name=>"Ash")
     end
     it "should edit the zombie" do
-      # Given that I'm on the show page for a zombie named "Ash" 
+      # Given that I'm on the show page for a zombie named "Ash"
       visit zombie_path(@zombie)
-      
-      # When I click the "edit" button 
+
+      # When I click the "edit" button
       page.should have_link "edit", :href=>edit_zombie_path(@zombie)
       click_link "edit"
 
-      # Then I should be able to edit the zombies name and graveyard 
+      # Then I should be able to edit the zombies name and graveyard
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
 
-      # When I click "Update Zombie" 
+      # When I click "Update Zombie"
       click_button "Update Zombie"
 
-      # Then it should save the changes 
+      # Then it should save the changes
       page.should have_selector "input[value='David']"
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
       page.should have_selector "input[value='The zombie smells bad']"
 
-      # And I should see a message that says "page saved at <current time>" 
+      # And I should see a message that says "page saved at <current time>"
       page.body.should match /Zombie saved at \d\d:\d\d/
       #page.should have_content "page saved at "
 
@@ -158,22 +158,22 @@ describe "Zombies" do
          #Given that I am on the edit page for a zombie named "Ash"
          visit edit_zombie_path(@zombie)
 
-         # Then I should be able to edit the zombies creator 
+         # Then I should be able to edit the zombies creator
          select 'Sarah', :from => 'creator'
          click_button "Update Zombie"
        end
     end
-    
+
   end
-  
+
   describe "adding tweet for zombie" do
     before do
       @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial")
     end
     it "should add a tweet for a zombie" do
-      #Given I'm on the show page for a zombie 
+      #Given I'm on the show page for a zombie
       visit zombie_path(@zombie)
-      #When I fill in the tweet and click save 
+      #When I fill in the tweet and click save
       fill_in "Message", :with=>"Hello, World!"
       click_button "Add Tweet"
       #Then it should save the tweet
@@ -186,4 +186,32 @@ describe "Zombies" do
       #page.should have_content "Hello, World!"
     end
   end
+
+  describe "searching for a zombie" do
+    before do
+      @zombie = Zombie.create(:name => 'Rob Zombie', :nickname => 'Robbie Z', :graveyard => "Some graveyard", :description => 'A musical zombie.')
+    end
+    it "should find results for the search 'Rob'" do
+      visit zombies_path
+      fill_in "q", :with=>"Rob"
+      click_button "Search Zombies"
+      page.should have_content "Rob Zombie"
+    end
+
+    it "should find results for the search 'musical'" do
+      visit zombies_path
+      fill_in "q", :with=>"Rob"
+      click_button "Search Zombies"
+      page.should have_content "A musical zombie"
+    end
+
+    it "should find NO results for the search 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'" do
+      visit zombies_path
+      fill_in "q", :with=>"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
+      click_button "Search Zombies"
+      page.should have_content "No zombies found"
+    end
+
+  end
+
 end

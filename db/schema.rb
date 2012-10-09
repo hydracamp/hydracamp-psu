@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(:version => 20121009153611) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.string   "nickname"
-    t.boolean  "active",      :default => true, :null => false
-    t.integer  "wins",        :default => 0,    :null => false
-    t.integer  "losses",      :default => 0,    :null => false
     t.integer  "creator_id"
     t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
+    t.boolean  "active",      :default => true, :null => false
+    t.integer  "wins",        :default => 0,    :null => false
+    t.integer  "losses",      :default => 0,    :null => false
   end
 
 end

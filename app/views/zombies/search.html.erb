@@ -1,0 +1,30 @@
+<h1>Zombie Search Deluxe</h1>
+
+<div><strong>Searching names, nicknames, descriptions and graveyards for:</strong> <%= @q %></div>
+<br />
+<% if @zombies.nil? || @zombies.empty? %>
+  No zombies found.
+<% else %>
+
+  <table>
+    <thead>
+      <tr>
+        <td>Zombie</td>
+        <td>Nickname</td>
+        <td>Description</td>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @zombies.each do |zombie| %>
+      <tr data-zombie="<%= zombie.id %>">
+        <td class="zombie_name"><%= link_to zombie.name, zombie_path(zombie) %></td>
+        <td class="zombie_nickname"><%= zombie.nickname%></td>
+        <td class="zombie_description"><%= zombie.description %></td>
+        <td class="zombie_edit">(<%= link_to "Edit", edit_zombie_path(zombie) %>)</td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

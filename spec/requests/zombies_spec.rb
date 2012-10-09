@@ -25,6 +25,22 @@ describe "Zombies" do
     end
   end
 
+  describe "showing" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary')
+      @ash.tweets.new(:message=>'test tweet 1')
+    end
+    it "should respond to a request for an XML or JSON response" do
+      get zombie_path(@ash), {:format=>'xml'}
+      assert_response :success
+      response.body.should == @ash.to_xml
+
+      get zombie_path(@ash), {:format=>'json'}
+      assert_response :success
+      response.body.should == @ash.to_json
+    end
+  end
+
   describe "editing" do
     before do
       @zombie = Zombie.create(:name=>"Ash")

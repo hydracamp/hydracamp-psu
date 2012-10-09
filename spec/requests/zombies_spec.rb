@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe "Zombies" do
+  describe "indexing" do
+    it "should have a create new zombie link" do
+      visit zombies_path
+      page.should have_link('Create New Zombie', href: new_zombie_path)
+    end
+  end
+
   describe "creating" do
     it "should create a zombie" do
       visit new_zombie_path

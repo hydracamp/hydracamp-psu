@@ -55,10 +55,11 @@ describe "Zombies" do
       click_link @ash.name
       
       current_path.should == zombie_path(@ash)
+      within "#zombie_name" do
+        page.should have_content "Ash" 
+      end
       within "#zombie_details" do
-        page.should have_content "Ash"
         page.should have_content "Cedarville Cemetary"
-        page.should have_content "Number of Tweets:"
       end
     end
     
@@ -66,9 +67,9 @@ describe "Zombies" do
       #Given I am on any page
       visit zombie_path(@ash)
       #I should see a link to homepage
-      page.should have_link "home", :href=>zombies_path
+      page.should have_link "Home", href: zombies_path
       visit edit_zombie_path(@ash)
-      page.should have_link "home", :href=>zombies_path
+      page.should have_link "Home", href: zombies_path
     end
 
     it "should display the zombie's level on the index page" do
@@ -117,8 +118,8 @@ describe "Zombies" do
       visit zombie_path(@zombie)
       
       # When I click the "edit" button 
-      page.should have_link "edit", :href=>edit_zombie_path(@zombie)
-      click_link "edit"
+      page.should have_link "Edit", href: edit_zombie_path(@zombie)
+      click_link "Edit"
 
       # Then I should be able to edit the zombies name, graveyard, and weapon
       fill_in "Name", :with=>"David"
@@ -185,7 +186,7 @@ page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
       #Given I'm on the show page for a zombie 
       visit zombie_path(@zombie)
       #When I fill in the tweet and click save 
-      fill_in "Message", :with=>"Hello, World!"
+      fill_in "tweet_message", with: "Hello, World!"
       click_button "Add Tweet"
       #Then it should save the tweet
       #And I should see the zombie show page

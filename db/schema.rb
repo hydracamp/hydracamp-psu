@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20121009153611) do
     t.string   "graveyard"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.string   "weapon"
     t.string   "nickname"
     t.integer  "creator_id"
     t.integer  "level"

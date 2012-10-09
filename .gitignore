@@ -26,5 +26,5 @@
 # Ignore komodo project files
 *.komodoproject
 
-# Ignore RVM .rvmrc files
+# Ignore rvmrc files
 .rvmrc

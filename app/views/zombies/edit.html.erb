@@ -20,7 +20,12 @@
   <%=f.label :creator %>
   <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>
   <br>
-  <p><%=f.submit %></p>
+  <%=f.label :graveyard %>
+  <%=f.text_field :graveyard %>
+<br>
+  <%=f.label :weapon %>
+  <%=f.text_field :weapon %>
+  <%=f.submit %>
 <% end %>
 
 <p><%=link_to "View Zombie", zombie_path(@zombie)%></p>

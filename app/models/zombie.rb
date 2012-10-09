@@ -1,6 +1,6 @@
 class NicknameValidator < ActiveModel::Validator
   def validate(record)
-    if (record.nickname =~ /[^hrungoaHRUNGOA]/i )
+    if (record.nickname =~ /[^hrungoa]/i )
       record.errors[:nickname] << "Nickname contains invalid characters"
     end
   end
@@ -9,6 +9,7 @@ end
 class Zombie < ActiveRecord::Base
   attr_accessible :graveyard, :name, :nickname, :level, :date_of_birth, :date_of_death, :date_of_undeath,
   		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon
+  audited
 
   validates :name, :presence=>true, :uniqueness=>true
   validates_with NicknameValidator

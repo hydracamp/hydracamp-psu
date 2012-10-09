@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe Archivist do
   it "should have an email" do
     subject.email = "Reaper"
     subject.email.should == "Reaper"
@@ -24,7 +24,7 @@ describe User do
     subject.password = 'reapaz'
     subject.save!
 
-    another_user = User.new(:email=>'Reaper@graveyard.edu')
+    another_user = Archivist.new(:email=>'Reaper@graveyard.edu')
     another_user.should_not be_valid
     another_user.errors[:email].first.should == "has already been taken"
 

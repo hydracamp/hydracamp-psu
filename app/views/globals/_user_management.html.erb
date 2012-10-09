@@ -1,0 +1,8 @@
+<div id="user_management" class="pull-right">
+  Welcome <%= current_archivist ? current_archivist.email : 'stranger' %> |
+  <% if current_archivist %>
+    <%= button_to 'Log out', destroy_archivist_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Log in', new_archivist_session_path %>
+  <% end %>
+</div>

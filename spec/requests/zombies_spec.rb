@@ -203,7 +203,7 @@ describe "Zombies" do
 
   describe "searching for a zombie" do
     before do
-      @zombie = Zombie.create(:name => 'Rob Zombie', :nickname => 'Robbie Z', :graveyard => "Some graveyard", :description => 'A musical zombie.')
+      @zombie = Zombie.create!(:name => 'Rob Zombie', :weapon => 'rubber chicken', :nickname => 'Hrr', :graveyard => "Some graveyard", :description => 'A musical zombie.')
     end
     it "should find results for the search 'Rob'" do
       visit zombies_path

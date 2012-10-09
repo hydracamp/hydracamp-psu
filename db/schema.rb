@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20121009150338) do
     t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
+    t.integer  "creator_id"
   end
 
 end

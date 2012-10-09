@@ -2,13 +2,14 @@
 
 <table>
 	<tr>
-	<th id="zombie_name">Zombie</th>
-	<th id="zombie_tweet">Said ...</th>
+	<td id="zombie_name">Zombie</td>
+	<td id="zombie_tweet">Said ...</td>
     </tr>
 	<%- @tweets.each do |tweet| %>
 	<tr>
 	  <td class="tweet"><%= tweet.zombie.name %></td>
       <td class="tweet"><%= tweet.message %></td>
+	  <td class="tweet"><%= link_to "delete", tweet_path(tweet), :method => :delete %>
     </tr>
   <% end %>
 

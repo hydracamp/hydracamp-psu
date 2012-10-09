@@ -62,4 +62,8 @@ class ZombiesController < ApplicationController
     @zombies = Zombie.where(generated_like_clause, *args )
   end
 
+  def history
+    @zombie = Zombie.find(params[:id])
+  end
+
 end

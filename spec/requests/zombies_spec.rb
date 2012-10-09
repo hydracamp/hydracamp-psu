@@ -279,4 +279,18 @@ describe "Zombies" do
 
   end
 
+  describe "history" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe')
+    end
+
+    it "should display a description of a zombie" do
+      visit zombie_history_path(@ash)
+
+      page.should have_content "History for Zombie Ash"
+      page.should have_content "create"
+    end
+  end
+
+
 end

@@ -3,7 +3,7 @@ class Zombie < ActiveRecord::Base
   
   validates :name, :presence=>true, :uniqueness=>true
   has_many :tweets, :dependent => :destroy
-<<<<<<< HEAD
+  belongs_to :creator, :class_name=>'Zombie'
 
   # Set some defaults for values that may be nil
   after_initialize :init
@@ -11,7 +11,4 @@ class Zombie < ActiveRecord::Base
   def init
     self.hit_points ||= 100
   end
-=======
-  belongs_to :creator, :class_name=>'Zombie'
->>>>>>> HCAMPPSU-8: Added creator to zombie to allow a zombie to identify the creator
 end

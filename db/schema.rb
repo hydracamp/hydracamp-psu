@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121009145953) do
-=======
-ActiveRecord::Schema.define(:version => 20121009142627) do
->>>>>>> HCAMPPSU-8: Added creator to zombie to allow a zombie to identify the creator
 
   create_table "tweets", :force => true do |t|
     t.integer  "zombie_id"
@@ -47,17 +43,12 @@ ActiveRecord::Schema.define(:version => 20121009142627) do
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
-<<<<<<< HEAD
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "description"
-    t.string   "nickname"
-    t.integer  "hit_points"
-=======
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
     t.integer  "creator_id"
->>>>>>> HCAMPPSU-8: Added creator to zombie to allow a zombie to identify the creator
+    t.string   "nickname"
+    t.string   "description"
+    t.integer  "hit_points"
   end
 
 end

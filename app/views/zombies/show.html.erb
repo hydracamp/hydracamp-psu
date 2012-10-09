@@ -32,3 +32,11 @@
 </ul>
 
 <%= link_to "home", zombies_path %>
+
+<h2>Tweets</h2>
+<ul>
+  <% @zombie.tweets.each do |tweet| %>
+    <li><span class="message"><%= tweet.message %></span><br/>
+        <span class="timestamp"><%= tweet.created_at.to_s %></span></li>
+  <% end %>
+</ul>

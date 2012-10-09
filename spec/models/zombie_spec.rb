@@ -15,6 +15,11 @@ describe Zombie do
     subject.graveyard = "Creepy Hollow"
     subject.graveyard.should == "Creepy Hollow"
   end
+  
+  it "should have a description" do
+    subject.description = "The zombie smells bad"
+    subject.description.should == "The zombie smells bad"
+  end
 
   it "should validate that the name is present" do
     subject.should_not be_valid

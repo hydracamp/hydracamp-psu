@@ -24,6 +24,19 @@ describe "Zombies" do
       page.should have_content "Cedarville Cemetary"
     end
   end
+  
+  describe "showing" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
+    end
+    
+    it "should display a description of a zombie" do
+      visit zombie_path(@ash)
+      page.should have_content "The zombie smells bad"
+      page.should have_content "description"
+      
+    end
+  end
 
   describe "editing" do
     before do
@@ -54,10 +67,6 @@ describe "Zombies" do
 
       # And I should see the edit form again
       current_path.should == edit_zombie_path(@zombie)
-
-
-
-
     end
   end
 end

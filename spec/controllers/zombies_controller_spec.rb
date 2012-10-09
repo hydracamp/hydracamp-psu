@@ -35,13 +35,18 @@ describe ZombiesController do
 
   describe "#show" do
     before do
-      @ash = Zombie.create(:name=>'Ash')
+      @ash = Zombie.create(:name=>'Ash');
     end
 
     it "should be successful" do
       get :show, :id=>@ash
       response.should be_successful
       assigns[:zombie].should == @ash
+    end
+    
+    it "should be successful" do
+      get :show, :id=>@ash
+      
     end
   end
 

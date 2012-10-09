@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009141327) do
+ActiveRecord::Schema.define(:version => 20121009141520) do
+
+  create_table "tweets", :force => true do |t|
+    t.integer  "zombie_id"
+    t.string   "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tweets", ["zombie_id"], :name => "index_tweets_on_zombie_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

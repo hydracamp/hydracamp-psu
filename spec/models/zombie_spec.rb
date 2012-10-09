@@ -37,6 +37,11 @@ describe Zombie do
     subject.creator.should == another_zombie
   end
 
+  it "should have a date of death" do
+    subject.date_of_death = "10/05/2012"
+    subject.date_of_death.should == Date.parse("10/05/2012")
+  end
+
   it "should have a weapon" do
     subject.weapon = "hatchet"
     subject.weapon.should == "hatchet"

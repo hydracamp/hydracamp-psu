@@ -41,6 +41,7 @@ describe "Zombies" do
       within "#zombie_details" do
         page.should have_content "Ash"
         page.should have_content "Cedarville Cemetary"
+        page.should have_content "Number of Tweets:"
       end
     end
     

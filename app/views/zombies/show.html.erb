@@ -8,6 +8,8 @@
   <dd><%= @zombie.description %></dd>
   <dt>Nickname:</dt>
   <dd><%= @zombie.nickname %></dd>
+  <dt>Number of Tweets:</dt>
+  <dd><%= @zombie.tweets.count %></dd>
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>

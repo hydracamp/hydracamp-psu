@@ -23,6 +23,17 @@ describe "Zombies" do
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
     end
+  
+    it "should show the details for a specific zombie" do
+      visit zombies_path
+      click_link @ash.name
+      
+      current_path.should == zombie_path(@ash)
+      within "#zombie_details" do
+        page.should have_content "Ash"
+        page.should have_content "Cedarville Cemetary"
+      end
+    end
   end
 
   describe "editing" do
@@ -54,10 +65,6 @@ describe "Zombies" do
 
       # And I should see the edit form again
       current_path.should == edit_zombie_path(@zombie)
-
-
-
-
     end
   end
 end

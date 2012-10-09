@@ -28,3 +28,9 @@
 
 # Ignore RVM .rvmrc files
 .rvmrc
+
+# Ignore Rubymine files
+/.idea
+
+# Ignore file upload directory
+/public/system/

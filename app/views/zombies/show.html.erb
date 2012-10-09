@@ -1,5 +1,7 @@
 <h1>Show Zombie</h1>
 <dl id="zombie_details">
+  <dt>Avatar:</dt>
+  <dd><%= image_tag @zombie.avatar.url(:medium) %></dd>
   <dt>Name:</dt>
   <dd><%= @zombie.name %></dd>
   <dt>Level:</dd>

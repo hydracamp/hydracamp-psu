@@ -2,18 +2,26 @@
 <%= form_for @zombie do |f| %>
   <%=f.label :name %>
   <%=f.text_field :name %>
-  <br>
+  <br />
   <%=f.label :graveyard %>
   <%=f.text_field :graveyard %>
 
-  <br>
+  <br />
   <%=f.label :nickname %>
   <%=f.text_field :nickname %>
   
   
-  <br>
+  <br />
   <%=f.label :description %>
   <%=f.text_field :description %>
-  <br>
+  <br />
+
+    <div class="zombieCreateRow">
+      <%= f.label :avatar %>
+      <div class="field">
+        <%= f.file_field :avatar %>
+        <span class="label label-important">JPG, GIF, or PNG (less than 2MB)</span>
+      </div>
+    </div>
   <%=f.submit %>
 <%end%>

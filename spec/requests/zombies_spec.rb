@@ -4,7 +4,7 @@ describe "Zombies" do
   describe "indexing" do
      before do
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
-    end
+     end
 
     it "should have a create new zombie link" do
       visit zombies_path
@@ -23,10 +23,12 @@ describe "Zombies" do
       fill_in "Graveyard", :with => 'Creepy Hollow'
       fill_in "Nickname", :with => 'Hruuungh'
       fill_in "Description", :with => 'The zombie smells pretty bad'
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
       page.should have_content "The zombie smells pretty bad"
+      page.should have_content "zombie.jpg"
     # page.should have_content "(level 1)"
     end
   end
@@ -119,6 +121,7 @@ describe "Zombies" do
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
 
       # When I click "Update Zombie" 
       click_button "Update Zombie"
@@ -128,6 +131,7 @@ describe "Zombies" do
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
       page.should have_selector "input[value='The zombie smells bad']"
+      page.should have_selector "img[alt='Zombie']"
 
       # And I should see a message that says "page saved at <current time>" 
       page.body.should match /Zombie saved at \d\d:\d\d/

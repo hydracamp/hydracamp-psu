@@ -21,6 +21,17 @@
     <%=f.label :creator_id %>
     <%=f.select(:creator_id, options_for_select(["",""]+ Zombie.order(:name).reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}, @zombie.creator_id)) %>
   </p>
+
+    <div class="zombieCreateRow">
+      <%= f.label :avatar %>
+      <div class="field">
+        <% if @zombie.avatar? %>
+            <%= image_tag @zombie.avatar.url(:thumb) %>
+        <% end %>
+        <%= f.file_field :avatar %>
+        <span class="label label-important">JPG, GIF, or PNG (less than 2MB)</span>
+      </div>
+    </div>
   <p><%=f.submit %></p>
 <% end %>
 

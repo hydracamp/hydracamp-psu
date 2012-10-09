@@ -2,10 +2,17 @@ class ZombiesController < ApplicationController
   def new
     @zombie = Zombie.new
   end
+  
+  def destroy    
+    Zombie.destroy(params[:id])
+    redirect_to zombies_path
+  end
 
   def create
     @zombie = Zombie.create(params[:zombie])
     current_archivist.inc_points 50
+    @zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
+    @zombie.save!
     redirect_to zombies_path, :notice=>"Added Zombie"
   end
 
@@ -32,6 +39,8 @@ class ZombiesController < ApplicationController
   def update
     @zombie = Zombie.find(params[:id])
     @zombie.update_attributes(params[:zombie])
+    @zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
+    @zombie.save!
     redirect_to edit_zombie_path(@zombie), :notice=>"Zombie saved at #{Time.now.strftime("%H:%M")}"
   end
 

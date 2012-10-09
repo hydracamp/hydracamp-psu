@@ -112,6 +112,34 @@ describe "Zombies" do
       assert_response :success
       response.body.should == @ash.to_json
     end
+    
+    describe "with tweets" do
+      before do
+        @t = Tweet.new(:message=>'Test tweet')
+        @t.zombie = @ash
+        @t.save!
+      end
+      
+      it "should display a like tweet button for each tweet" do
+        visit zombie_path(@ash)
+        page.should have_selector "input[type='submit'][value='Like']"
+      end
+      
+      it "should display the tweet rating for each tweet" do
+        visit zombie_path(@ash)
+        page.body.should match /Rating: \d/
+      end
+      
+      it "should increment the rating after clicking like button" do
+        @t.rating.should == 0
+        t_id = @t.id
+        visit zombie_path(@ash)
+        click_button "Like"
+        page.current_path.should == zombie_path(@ash)
+        t = Tweet.find(t_id)
+        t.rating.should == 1
+      end
+    end
   end
 
   describe "editing" do

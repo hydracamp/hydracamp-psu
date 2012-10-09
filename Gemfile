@@ -11,7 +11,7 @@ gem 'therubyracer'
 
 gem 'execjs'
 
-gem 'therubyracer'
+gem 'paperclip', '3.3.0'
 gem "audited-activerecord", "~> 3.0"
 
 group :development, :test do

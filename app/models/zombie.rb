@@ -8,7 +8,7 @@ end
 
 class Zombie < ActiveRecord::Base
   attr_accessible :graveyard, :name, :nickname, :level, :date_of_birth, :date_of_death, :date_of_undeath,
-  		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon
+  		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon, :avatar
   audited
 
   validates :name, :presence=>true, :uniqueness=>true
@@ -22,6 +22,9 @@ class Zombie < ActiveRecord::Base
   belongs_to :creator, :class_name=>'Zombie'
 
   after_initialize :init
+
+  # Add zombie avatar (via paperclip library)
+  has_attached_file :avatar, :styles => { medium: "300x300>", thumb: "100x100>" }, :default_url => '/assets/missing_:style.png'
 
   def init
     self.hit_points ||= 100

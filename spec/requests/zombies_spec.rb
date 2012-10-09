@@ -27,12 +27,15 @@ describe "Zombies" do
       select('October', :from => 'zombie_date_of_death_2i')
       select('9', :from => 'zombie_date_of_death_3i')
       fill_in "Description", :with => 'The zombie smells pretty bad'
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
 
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
       page.should have_content "The zombie smells pretty bad"
+      page.should have_content "zombie.jpg"
+    # page.should have_content "(level 1)"
     end
   end
 
@@ -55,10 +58,11 @@ describe "Zombies" do
       click_link @ash.name
 
       current_path.should == zombie_path(@ash)
+      within "#zombie_name" do
+        page.should have_content "Ash" 
+      end
       within "#zombie_details" do
-        page.should have_content "Ash"
         page.should have_content "Cedarville Cemetary"
-        page.should have_content "Number of Tweets:"
       end
     end
 
@@ -66,9 +70,9 @@ describe "Zombies" do
       #Given I am on any page
       visit zombie_path(@ash)
       #I should see a link to homepage
-      page.should have_link "home", :href=>zombies_path
+      page.should have_link "Home", href: zombies_path
       visit edit_zombie_path(@ash)
-      page.should have_link "home", :href=>zombies_path
+      page.should have_link "Home", href: zombies_path
     end
 
     it "should display a link to an instructional video" do
@@ -111,6 +115,34 @@ describe "Zombies" do
       assert_response :success
       response.body.should == @ash.to_json
     end
+    
+    describe "with tweets" do
+      before do
+        @t = Tweet.new(:message=>'Test tweet')
+        @t.zombie = @ash
+        @t.save!
+      end
+      
+      it "should display a like tweet button for each tweet" do
+        visit zombie_path(@ash)
+        page.should have_selector "input[type='submit'][value='Like']"
+      end
+      
+      it "should display the tweet rating for each tweet" do
+        visit zombie_path(@ash)
+        page.body.should match /Rating: \d/
+      end
+      
+      it "should increment the rating after clicking like button" do
+        @t.rating.should == 0
+        t_id = @t.id
+        visit zombie_path(@ash)
+        click_button "Like"
+        page.current_path.should == zombie_path(@ash)
+        t = Tweet.find(t_id)
+        t.rating.should == 1
+      end
+    end
   end
 
   describe "editing" do
@@ -120,18 +152,18 @@ describe "Zombies" do
     it "should edit the zombie" do
       # Given that I'm on the show page for a zombie named "Ash"
       visit zombie_path(@zombie)
-
-      # When I click the "edit" button
-      page.should have_link "edit", :href=>edit_zombie_path(@zombie)
-      click_link "edit"
+      
+      # When I click the "edit" button 
+      page.should have_link "Edit", href: edit_zombie_path(@zombie)
+      click_link "Edit"
 
       # Then I should be able to edit the zombies name, graveyard, and weapon
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
-
 
       # When I click "Update Zombie"
       click_button "Update Zombie"
@@ -141,6 +173,7 @@ describe "Zombies" do
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
       page.should have_selector "input[value='The zombie smells bad']"
+      page.should have_selector "img[alt='Zombie']"
 
       # And I should see a message that says "page saved at <current time>"
       page.body.should match /Zombie saved at \d\d:\d\d/
@@ -188,9 +221,14 @@ describe "Zombies" do
     it "should add a tweet for a zombie" do
       #Given I'm on the show page for a zombie
       visit zombie_path(@zombie)
+
+      #When I fill in the tweet and click save 
+      fill_in "tweet_message", with: "Hello, World!"
+
       #When I fill in the tweet and click save
-      fill_in "Message", :with=>"Hello, World!"
+      fill_in "tweet_message", :with=>"Hello, World!"
       click_button "Add Tweet"
+
       #Then it should save the tweet
       #And I should see the zombie show page
       current_path.should == zombie_path(@zombie)

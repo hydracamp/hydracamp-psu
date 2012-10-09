@@ -11,18 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009145953) do
+ActiveRecord::Schema.define(:version => 20121009184122) do
 
-  create_table "tweets", :force => true do |t|
-    t.integer  "zombie_id"
-    t.string   "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "tweets", ["zombie_id"], :name => "index_tweets_on_zombie_id"
-
-  create_table "users", :force => true do |t|
+  create_table "archivists", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
@@ -37,16 +28,25 @@ ActiveRecord::Schema.define(:version => 20121009145953) do
     t.datetime "updated_at",                             :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "archivists", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "archivists", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "tweets", :force => true do |t|
+    t.integer  "zombie_id"
+    t.string   "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tweets", ["zombie_id"], :name => "index_tweets_on_zombie_id"
 
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "description"
     t.string   "nickname"
+    t.string   "description"
     t.integer  "hit_points"
   end
 

@@ -152,6 +152,7 @@ describe "Zombies" do
 
     describe "creator" do
     before do
+       @roy = Zombie.create(:name=>'Roy')
        @sarah = Zombie.create(:name=>'Sarah')
     end
       it "should edit the zombie creator" do
@@ -159,8 +160,10 @@ describe "Zombies" do
          visit edit_zombie_path(@zombie)
 
          # Then I should be able to edit the zombies creator 
-         select 'Sarah', :from => 'creator'
+         select 'Sarah', :from => 'Creator'
          click_button "Update Zombie"
+page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
+#         page.should have_css  'div.creator :option, :value => 'Sarah'
        end
     end
     
@@ -182,8 +185,7 @@ describe "Zombies" do
       #And I should see the message "Tweet Added"
       page.should have_content "Tweet Added"
       #And I should see the new tweet in the list of tweets
-      # Test pending creation of tweet list on zombie page
-      #page.should have_content "Hello, World!"
+      page.should have_content "Hello, World!"
     end
   end
 end

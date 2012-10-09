@@ -9,6 +9,7 @@ describe "Zombies" do
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
+      page.should have_content "(level 1)"
     end
   end
 
@@ -22,6 +23,7 @@ describe "Zombies" do
       page.should have_link "Ash", :href=>zombie_path(@ash)
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
+      page.should have_content "level 1"
     end
   end
 

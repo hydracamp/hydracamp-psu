@@ -2,9 +2,17 @@ require 'spec_helper'
 
 describe "Zombies" do
   describe "indexing" do
+     before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
+    end
+
     it "should have a create new zombie link" do
       visit zombies_path
+      page.should have_content("Ash")
+      page.should have_content("Hruuungh")
+      page.should have_link('Edit', href: edit_zombie_path(@ash))
       page.should have_link('Create New Zombie', href: new_zombie_path)
+
     end
   end
 
@@ -17,6 +25,7 @@ describe "Zombies" do
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
+      page.should have_content "(level 1)"
     end
   end
 
@@ -30,6 +39,7 @@ describe "Zombies" do
       page.should have_link "Ash", :href=>zombie_path(@ash)
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
+      page.should have_content "level 1"
       page.should have_content "Hruuungh"
     end
   
@@ -41,6 +51,7 @@ describe "Zombies" do
       within "#zombie_details" do
         page.should have_content "Ash"
         page.should have_content "Cedarville Cemetary"
+        page.should have_content "Number of Tweets:"
       end
     end
     
@@ -64,6 +75,30 @@ describe "Zombies" do
       #  page.should have_content '2'
       #end
     #end
+  end
+  
+  describe "showing" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
+      @ash.tweets.new(:message=>'test tweet 1')
+    end
+    
+    it "should display a description of a zombie" do
+      visit zombie_path(@ash)
+      page.should have_content "The zombie smells bad"
+      page.should have_content "description"
+      
+    end
+
+    it "should respond to a request for an XML or JSON response" do
+      get zombie_path(@ash), {:format=>'xml'}
+      assert_response :success
+      response.body.should == @ash.to_xml
+
+      get zombie_path(@ash), {:format=>'json'}
+      assert_response :success
+      response.body.should == @ash.to_json
+    end
   end
 
   describe "editing" do

@@ -1,6 +1,6 @@
 Hydracamp::Application.routes.draw do
 
-  devise_for :users
+  devise_for :archivists
 
   resources :zombies
   resources :tweets

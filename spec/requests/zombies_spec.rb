@@ -63,6 +63,18 @@ describe "Zombies" do
       visit edit_zombie_path(@ash)
       page.should have_link "home", :href=>zombies_path
     end
+
+    it "should display the zombie's level on the index page"
+      #@sarah.level = 2
+      #@sarah.save
+
+      #visit zombies_path
+      #page.should have_selector "tr[data-zombie=#{@sarah.id}]"
+      
+      #within "tr[data-zombie=#{@sarah.id}] td.zombie_level" do
+      #  page.should have_content '2'
+      #end
+    #end
   end
   
   describe "showing" do

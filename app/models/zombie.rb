@@ -1,6 +1,6 @@
 class NicknameValidator < ActiveModel::Validator
   def validate(record)
-    if (record.nickname =~ /[^hrungoaHRUNGOA]/i )
+    if (record.nickname =~ /[^hrungoa]/i )
       record.errors[:nickname] << "Nickname contains invalid characters"
     end
   end

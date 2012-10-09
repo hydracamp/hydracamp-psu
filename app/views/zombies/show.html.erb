@@ -1,56 +1,52 @@
-<h1>Show Zombie</h1>
-<dl id="zombie_details">
-  <dt>Avatar:</dt>
-  <dd><%= image_tag @zombie.avatar.url(:medium) %></dd>
-  <dt>Name:</dt>
-  <dd><%= @zombie.name %></dd>
-  <dt>Level:</dd>
-  <dd>level <%= @zombie.level %></dd>
-  <dt>Graveyard:</dt>
-  <dd><%= @zombie.graveyard %></dd>
-  <dt>Description:</dt>
-  <dd><%= @zombie.description %></dd>
-  <dt>Nickname:</dt>
-  <dd><%= @zombie.nickname %></dd>
-  <% if @zombie.date_of_birth != nil%>
-  <dt>Date of Birth:</dt>
-  <dd><%= @zombie.date_of_birth.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <% if @zombie.date_of_death != nil%>
-  <dt>Date of Death:</dt>
-  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <% if @zombie.date_of_undeath != nil%>
-  <dt>Date of Death:</dt>
-  <dd><%= @zombie.date_of_undeath.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <dt>Active:</dt>
-  <dd><%= @zombie.active.to_s %></dd>
-  <dt>Number of Tweets:</dt>
-  <dd><%= @zombie.tweets.count %></dd>
-</dl>
 
-<%= link_to "edit", edit_zombie_path(@zombie) %>
+<h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
+<table class="table table-striped" id="zombie_details">
+  <tbody>
+    <tr>
+      <td>Avatar</td>
+      <td><%= image_tag @zombie.avatar.url(:medium) %></td>
+    </tr>
+    <tr>
+      <td>Level</td>
+      <td><%= @zombie.level %></td>
+    </tr>
+    <tr>
+      <td>Graveyard</td>
+      <td><%= @zombie.graveyard %></td>
+    </tr>
+    <tr>
+      <td>Nickname</td>
+      <td><%= @zombie.nickname %></td>
+    </tr>
+    <tr>
+      <td>Date of death</td>
+      <td><%= @zombie.date_of_death.blank? ? '-' : @zombie.date_of_death.strftime("%B %e, %Y") %></td>
+    </tr>
+    <tr>
+      <td>Active</td>
+      <td><%= @zombie.active? ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><%= @zombie.description %></td>
+    </tr>
+  </tbody>
+</table>
 
+
+<h2 id="tweets">Tweets (<%= @zombie.tweets.count %>)</h2>
 <%= form_for @tweet do |f| %>
   <%= f.hidden_field :zombie_id %>
-  <%= f.label :message %>
   <%= f.text_field :message %>
   <%= f.submit "Add Tweet" %>
 <% end %>
 
-<ul>
-<% @zombie.tweets.each do |tweet| %>
-  <li><%= tweet.message %></li>
-<% end %>
-</ul>
-
-<%= link_to "home", zombies_path %>
-
-<h2>Tweets</h2>
-<ul>
+<table class="table table-striped">
   <% @zombie.tweets.each do |tweet| %>
-    <li><span class="message"><%= tweet.message %></span><br/>
-        <span class="timestamp"><%= tweet.created_at.to_s %></span></li>
+    <tr>
+      <td><%= tweet.message %> (<%= tweet.date_created_at.strftime("%B %e, %Y") %>)</td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+

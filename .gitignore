@@ -38,3 +38,6 @@
 # on the same codebase in one hour
 db/schema.rb
 Gemfile.lock
+
+# Test coverage
+coverage

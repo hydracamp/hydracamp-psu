@@ -67,6 +67,11 @@ describe "Zombies" do
       visit edit_zombie_path(@ash)
       page.should have_link "home", :href=>zombies_path
     end
+    
+    it "should display a link to an instructional video" do
+      visit zombie_path(@ash)
+      page.should have_link "Instructional Video", :href=>"http://www.youtube.com/watch?v=0UqEhUm2B_8"
+    end
 
     it "should display the zombie's level on the index page" do
       @sarah.level = 2

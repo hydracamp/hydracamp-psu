@@ -7,18 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if current_archivist %>
     <div>
+  <% if current_archivist %>
       Welcome <%= current_archivist.email %> | 
       <%= button_to 'logout', destroy_archivist_session_path, method: :delete %>
-    </div>
   <% else %>
-    <div>
       Welcome stranger | 
       <%= link_to 'login', new_archivist_session_path %>
-    </div>
   <% end %>
-  <div></div>
+	| <%= link_to 'Instructional Video', 'http://www.youtube.com/watch?v=0UqEhUm2B_8', {:target => "_blank" } %>
+  </div>
 <%- if flash[:notice] %>
   <div class="msg notice"><%=flash[:notice]%></div>
 <%end %>

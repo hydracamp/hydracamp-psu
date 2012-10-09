@@ -14,6 +14,8 @@ class ZombiesController < ApplicationController
 
   def show
     @zombie = Zombie.find(params[:id])
+    @tweet = Tweet.new
+    @tweet.zombie = @zombie
   end
 
   def edit

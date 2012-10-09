@@ -7,3 +7,10 @@
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>
+
+<%= form_for @tweet do |f| %>
+  <%= f.hidden_field :zombie_id %>
+  <%= f.label :message %>
+  <%= f.text_field :message %>
+  <%= f.submit "Add Tweet" %>
+<% end %>

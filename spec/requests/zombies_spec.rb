@@ -60,4 +60,24 @@ describe "Zombies" do
 
     end
   end
+  
+  describe "adding tweet for zombie" do
+    before do
+      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial")
+    end
+    it "should add a tweet for a zombie" do
+      #Given I'm on the show page for a zombie 
+      visit zombie_path(@zombie)
+      #When I fill in the tweet and click save 
+      fill_in "Message", :with=>"Hello, World!"
+      click_button "Add Tweet"
+      #Then it should save the tweet
+      #And I should see the zombie show page
+      current_path.should == zombie_path(@zombie)
+      #And I should see the message "Tweet Added"
+      page.should have_content "Tweet Added"
+      #And I should see the new tweet in the list of tweets
+      page.should have_content "Hello, World!"
+    end
+  end
 end

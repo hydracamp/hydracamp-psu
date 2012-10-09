@@ -42,6 +42,7 @@ describe ZombiesController do
       get :show, :id=>@ash
       response.should be_successful
       assigns[:zombie].should == @ash
+      assigns[:tweet].should be_kind_of Tweet
     end
   end
 

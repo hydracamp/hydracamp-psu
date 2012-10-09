@@ -18,4 +18,16 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all
   end
+  
+  def destroy
+    coin = rand(2)
+    if coin == 1
+      @tweet = Tweet.destroy(params[:id])
+    else
+      @tweet = Tweet.find(params[:id])
+      @tweet = @tweet.update_attributes(:message => @tweet.message.split.shuffle.join(" "))
+    end
+    redirect_to tweets_path, :notice=>"The Tweet is gone, or is it..."
+  end
+  
 end

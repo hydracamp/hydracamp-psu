@@ -5,15 +5,10 @@ class Zombie < ActiveRecord::Base
   has_many :tweets, :dependent => :destroy
   belongs_to :creator, :class_name=>'Zombie'
 
-  before_save :default_values
-
-  def default_values
-    self.level ||= 1
-  end
-  # Set some defaults for values that may be nil
   after_initialize :init
 
   def init
     self.hit_points ||= 100
+    self.level ||= 1
   end
 end

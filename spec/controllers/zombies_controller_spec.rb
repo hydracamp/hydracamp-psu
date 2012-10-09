@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe ZombiesController do
+  
+  render_views
+  
   describe "#new" do
     it "should set a template zombie" do
       get :new
@@ -36,13 +39,33 @@ describe ZombiesController do
   describe "#show" do
     before do
       @ash = Zombie.create(:name=>'Ash')
+      @tweet1 = @ash.tweets.create(:message => "blah blah blah")
+      @tweet2 = @ash.tweets.create(:message => "I brake for brains!")
     end
 
     it "should be successful" do
       get :show, :id=>@ash
       response.should be_successful
       assigns[:zombie].should == @ash
+      assigns[:tweet].should be_kind_of Tweet
     end
+    
+    it "should be successful" do
+      get :show, :id=>@ash
+      
+    end
+    
+    it "should display a list of the zombie's tweets" do
+      get :show, :id=>@ash
+      response.body.should have_selector("span.message", :content => @tweet1.message)
+      response.body.should have_selector("span.message", :content => @tweet2.message)
+    end
+    
+    it "should display the timestamp with the tweet message" do
+      get :show, :id => @ash
+      response.body.should have_selector("span.timestamp", :content => @tweet1.created_at.to_s)
+    end
+    
   end
 
   describe "#edit" do

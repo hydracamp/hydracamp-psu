@@ -27,12 +27,15 @@ describe "Zombies" do
       select('October', :from => 'zombie_date_of_death_2i')
       select('9', :from => 'zombie_date_of_death_3i')
       fill_in "Description", :with => 'The zombie smells pretty bad'
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
 
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
       page.should have_content "The zombie smells pretty bad"
+      page.should have_content "zombie.jpg"
+    # page.should have_content "(level 1)"
     end
   end
 
@@ -166,8 +169,8 @@ describe "Zombies" do
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
+      attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
-
 
       # When I click "Update Zombie"
       click_button "Update Zombie"
@@ -177,6 +180,7 @@ describe "Zombies" do
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
       page.should have_selector "input[value='The zombie smells bad']"
+      page.should have_selector "img[alt='Zombie']"
 
       # And I should see a message that says "page saved at <current time>"
       page.body.should match /Zombie saved at \d\d:\d\d/
@@ -268,5 +272,19 @@ describe "Zombies" do
     end
 
   end
+
+  describe "history" do
+    before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe')
+    end
+
+    it "should display a description of a zombie" do
+      visit zombie_history_path(@ash)
+
+      page.should have_content "History for Zombie Ash"
+      page.should have_content "create"
+    end
+  end
+
 
 end

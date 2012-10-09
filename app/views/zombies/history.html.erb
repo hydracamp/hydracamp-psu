@@ -1,0 +1,15 @@
+<h1>History for Zombie <%= @zombie.name %></h1>
+
+
+<table>
+  <tr>
+    <th>Action</th>
+    <th>Changes</th>
+  </tr>
+<%- @zombie.audits.each do |audit| %>
+  <tr>
+    <td><%= audit.action %></td>
+    <td><%= audit.audited_changes %></td>
+  </tr>
+<%- end %>
+</table>

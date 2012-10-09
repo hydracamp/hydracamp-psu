@@ -3,6 +3,7 @@ Hydracamp::Application.routes.draw do
   devise_for :archivists
 
   match "zombies/search" => "zombies#search", :as => 'search_zombies'
+  match 'zombies/:id/history' => "zombies#history", :as => 'zombie_history'
   resources :zombies
 
   resources :tweets

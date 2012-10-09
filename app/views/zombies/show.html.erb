@@ -1,6 +1,11 @@
+
 <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
 <table class="table table-striped" id="zombie_details">
   <tbody>
+    <tr>
+      <td>Avatar</td>
+      <td><%= image_tag @zombie.avatar.url(:medium) %></td>
+    </tr>
     <tr>
       <td>Level</td>
       <td><%= @zombie.level %></td>
@@ -27,6 +32,9 @@
     </tr>
   </tbody>
 </table>
+<%= link_to "edit", edit_zombie_path(@zombie) %>
+<%= link_to "history", zombie_history_path(@zombie) %>
+
 
 <h2 id="tweets">Tweets (<%= @zombie.tweets.count %>)</h2>
 <%= form_for @tweet do |f| %>

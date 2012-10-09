@@ -62,10 +62,10 @@ describe ZombiesController do
     end
     it "should update the zombie" do
       put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge"}
-      response.should redirect_to zombie_path(@ash)
+      response.should redirect_to edit_zombie_path(@ash)
       @ash.reload.name.should == 'David'
       @ash.graveyard.should == "River's Edge"
-      flash[:notice].should == "Zombie Updated"
+      flash[:notice].should match /Zombie saved at \d\d:\d\d/
     end
 
   end

@@ -23,6 +23,6 @@ class ZombiesController < ApplicationController
   def update
     @zombie = Zombie.find(params[:id])
     @zombie.update_attributes(params[:zombie])
-    redirect_to zombie_path(@zombie), :notice=>"Zombie Updated"
+    redirect_to edit_zombie_path(@zombie), :notice=>"Zombie saved at #{Time.now.strftime("%H:%M")}"
   end
 end

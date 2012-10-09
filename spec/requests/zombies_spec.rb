@@ -29,17 +29,33 @@ describe "Zombies" do
     before do
       @zombie = Zombie.create(:name=>"Ash")
     end
-    it "should have a link to the edit form" do
+    it "should edit the zombie" do
+      # Given that I'm on the show page for a zombie named "Ash" 
       visit zombie_path(@zombie)
+
+      # When I click the "edit" button 
       page.should have_link "edit", :href=>edit_zombie_path(@zombie)
       click_link "edit"
 
+      # Then I should be able to edit the zombies name and graveyard 
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
+
+      # When I click "Update Zombie" 
       click_button "Update Zombie"
 
-      page.should have_content "Zombie Updated"
-      page.should have_content "David"
+      # Then it should save the changes 
+      page.should have_selector "input[value='David']"
+      page.should have_selector "input[value='Cedarville Cemetary']"
+
+      # And I should see a message that says "page saved at <current time>" 
+      page.body.should match /Zombie saved at \d\d:\d\d/
+      #page.should have_content "page saved at "
+
+      # And I should see the edit form again
+      current_path.should == edit_zombie_path(@zombie)
+
+
 
 
     end

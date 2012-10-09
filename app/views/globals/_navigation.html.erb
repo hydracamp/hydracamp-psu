@@ -1,0 +1,9 @@
+<ul class="nav nav-pills">
+  <li><%= link_to 'Home', zombies_path %>
+  <li class="pull-right">
+    <%= form_tag(search_zombies_path, :method => "get", :class => 'form-inline') do %>
+    <%= text_field_tag(:q, nil, :placeholder => 'Find a zombie...') %>
+    <%= submit_tag("Search Zombies", :class => 'btn') %>
+  </li>
+  <% end %>
+</ul>

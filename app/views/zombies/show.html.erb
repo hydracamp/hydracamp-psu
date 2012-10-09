@@ -10,6 +10,10 @@
   <dd><%= @zombie.description %></dd>
   <dt>Nickname:</dt>
   <dd><%= @zombie.nickname %></dd>
+  <% if @zombie.date_of_death != nil%>
+  <dt>Date of Death:</dt>
+  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
+  <% end %>
   <dt>Active:</dt>
   <dd><%= @zombie.active.to_s %></dd>
   <dt>Number of Tweets:</dt>
@@ -24,4 +28,19 @@
   <%= f.text_field :message %>
   <%= f.submit "Add Tweet" %>
 <% end %>
+
+<ul>
+<% @zombie.tweets.each do |tweet| %>
+  <li><%= tweet.message %></li>
+<% end %>
+</ul>
+
 <%= link_to "home", zombies_path %>
+
+<h2>Tweets</h2>
+<ul>
+  <% @zombie.tweets.each do |tweet| %>
+    <li><span class="message"><%= tweet.message %></span><br/>
+        <span class="timestamp"><%= tweet.created_at.to_s %></span></li>
+  <% end %>
+</ul>

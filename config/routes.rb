@@ -1,6 +1,6 @@
 Hydracamp::Application.routes.draw do
 
-  devise_for :users
+  devise_for :archivists
 
   match "zombies/search" => "zombies#search", :as => 'search_zombies'
   resources :zombies

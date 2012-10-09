@@ -25,18 +25,19 @@
   <%= f.submit "Add Tweet" %>
 <% end %>
 
-<ul>
-<% @zombie.tweets.each do |tweet| %>
-  <li><%= tweet.message %></li>
-<% end %>
-</ul>
-
 <%= link_to "home", zombies_path %>
 
 <h2>Tweets</h2>
 <ul>
   <% @zombie.tweets.each do |tweet| %>
-    <li><span class="message"><%= tweet.message %></span><br/>
-        <span class="timestamp"><%= tweet.created_at.to_s %></span></li>
+    <li>
+      <span class="message"><%= tweet.message %></span>
+      <%= form_for tweet do |f| %>
+        <span class="rating">Rating: <%= tweet.rating %></span>
+        <%= f.submit "Like" %>
+      <% end %>
+      <br/>
+      <span class="timestamp"><%= tweet.created_at.to_s %></span>        
+    </li>
   <% end %>
 </ul>

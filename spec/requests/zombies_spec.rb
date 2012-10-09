@@ -182,8 +182,7 @@ describe "Zombies" do
       #And I should see the message "Tweet Added"
       page.should have_content "Tweet Added"
       #And I should see the new tweet in the list of tweets
-      # Test pending creation of tweet list on zombie page
-      #page.should have_content "Hello, World!"
+      page.should have_content "Hello, World!"
     end
   end
 end

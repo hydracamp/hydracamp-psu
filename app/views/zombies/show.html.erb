@@ -24,4 +24,11 @@
   <%= f.text_field :message %>
   <%= f.submit "Add Tweet" %>
 <% end %>
+
+<ul>
+<% @zombie.tweets.each do |tweet| %>
+  <li><%= tweet.message %></li>
+<% end %>
+</ul>
+
 <%= link_to "home", zombies_path %>

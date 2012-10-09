@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Zombie do
+
+  it 'should have many tweets' do
+    subject.tweets.build.should be_instance_of Tweet
+  end
+
   it "should have a name" do
     subject.name = "Ash"
     subject.name.should == "Ash"

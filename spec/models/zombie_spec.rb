@@ -16,6 +16,11 @@ describe Zombie do
     subject.graveyard.should == "Creepy Hollow"
   end
 
+  it "should have a date of death" do
+    subject.date_of_death = "10/05/2012"
+    subject.date_of_death.should == Date.parse("10/05/2012")
+  end
+
   it "should validate that the name is present" do
     subject.should_not be_valid
     subject.errors[:name].first.should == "can't be blank"

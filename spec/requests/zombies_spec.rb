@@ -14,6 +14,9 @@ describe "Zombies" do
       fill_in "Name", :with =>'Ash'
       fill_in "Graveyard", :with => 'Creepy Hollow'
       fill_in "Nickname", :with => 'Hruuungh'
+      select('2012', :from => 'zombie_date_of_death_1i')
+      select('October', :from => 'zombie_date_of_death_2i')
+      select('9', :from => 'zombie_date_of_death_3i')            
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
@@ -22,7 +25,7 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :date_of_death=>Date.parse('August 9, 2012'))
       @sarah = Zombie.create(:name=>"Sarah")
     end
     it "should display a list of zombies with links to the show page" do
@@ -31,6 +34,7 @@ describe "Zombies" do
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
       page.should have_content "Hruuungh"
+      page.should have_content "August 9, 2012"
     end
   
     it "should show the details for a specific zombie" do

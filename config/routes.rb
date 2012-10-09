@@ -3,6 +3,7 @@ Hydracamp::Application.routes.draw do
   devise_for :archivists
 
   resources :zombies
+  resources :tweets
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

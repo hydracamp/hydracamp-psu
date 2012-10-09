@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
     t.string   "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "deleted_at"
   end
 
   add_index "tweets", ["zombie_id"], :name => "index_tweets_on_zombie_id"
@@ -43,11 +44,17 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "nickname"
     t.string   "description"
     t.integer  "hit_points"
+    t.string   "weapon"
+    t.integer  "creator_id"
+    t.integer  "level"
+    t.boolean  "active",      :default => true, :null => false
+    t.integer  "wins",        :default => 0,    :null => false
+    t.integer  "losses",      :default => 0,    :null => false
   end
 
 end

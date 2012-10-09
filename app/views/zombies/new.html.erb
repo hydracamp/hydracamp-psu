@@ -8,9 +8,17 @@
   <br>
   <%=f.label :nickname %>
   <%=f.text_field :nickname %>
+  <span id="nickname_error" class="error">Nicknames can only contain these letters: a g h n r o u</span>
+  <br>
+  <br>
+  <%=f.label :date_of_birth %>
+  <%=f.date_select :date_of_birth %>
   <br>
   <%=f.label :date_of_death %>
   <%=f.date_select :date_of_death %>
+  <br>
+  <%=f.label :date_of_undeath %>
+  <%=f.date_select :date_of_undeath %>
   <br>
   <%=f.label :description %>
   <%=f.text_field :description %>

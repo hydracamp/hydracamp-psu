@@ -1,13 +1,11 @@
-<h1>Zombies</h1>
-
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <td>Zombie</td>
       <td>Nickname</td>
       <td>Level</td>
       <td>Description</td>
-      <td>-</td>
+      <td>&nbsp;</td>
     </tr>
   </thead>
 
@@ -26,4 +24,4 @@
 
 </table>
 
-<%=link_to "Create New Zombie", new_zombie_path%>
+<%= link_to "Create New Zombie", new_zombie_path, class: 'btn' %>

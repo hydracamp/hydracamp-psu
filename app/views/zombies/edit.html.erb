@@ -1,6 +1,7 @@
 <h1>Edit Zombie</h1>
 
 <%= form_for @zombie do |f| %>
+<<<<<<< HEAD
   <p>
     <%=f.label :name %>
     <%=f.text_field :name %>
@@ -14,6 +15,18 @@
     <%=f.text_field :nickname %>
   </p>
   <p><%=f.submit %></p>
+=======
+  <%=f.label :name %>
+  <%=f.text_field :name %>
+  <br>
+  <%=f.label :graveyard %>
+  <%=f.text_field :graveyard %>
+  <br>
+  <%=f.label :creator %>
+  <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>
+  <br>
+  <%=f.submit %>
+>>>>>>> HCAMPPSU-8: Added creator to zombie to allow a zombie to identify the creator
 <% end %>
 
 <p><%=link_to "View Zombie", zombie_path(@zombie)%></p>

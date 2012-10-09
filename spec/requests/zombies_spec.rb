@@ -100,6 +100,7 @@ describe "Zombies" do
       # And I should see the edit form again
       current_path.should == edit_zombie_path(@zombie)
     end
+<<<<<<< HEAD
     it "should have a link to view the zombie" do
       #When I am editing a zombie
       visit edit_zombie_path(@zombie)
@@ -112,6 +113,22 @@ describe "Zombies" do
 
       #Then I should see the show page for that zombie
       current_path.should == zombie_path(@zombie)
+=======
+
+    describe "creator" do
+    before do
+       @sarah = Zombie.create(:name=>'Sarah')
     end
+      it "should edit the zombie creator" do
+         #Given that I am on the edit page for a zombie named "Ash"
+         visit edit_zombie_path(@zombie)
+
+         # Then I should be able to edit the zombies creator 
+         select 'Sarah', :from => 'creator'
+         click_button "Update Zombie"
+       end
+>>>>>>> HCAMPPSU-8: Added creator to zombie to allow a zombie to identify the creator
+    end
+    
   end
 end

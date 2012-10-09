@@ -125,19 +125,26 @@ describe "Zombies" do
       
       it "should display a like tweet button for each tweet" do
         visit zombie_path(@ash)
-        page.should have_selector "input[type='submit'][value='Like']"
+        within "#zombie_tweets .like_update" do
+          page.should have_selector "input[type='submit'][value='Like']"
+        end
       end
       
       it "should display the tweet rating for each tweet" do
         visit zombie_path(@ash)
-        page.body.should match /Rating: \d/
+        within "#zombie_tweets thead" do
+          page.should have_content 'Rating'
+        end
       end
       
       it "should increment the rating after clicking like button" do
         @t.rating.should == 0
         t_id = @t.id
         visit zombie_path(@ash)
-        click_button "Like"
+        within "#tweet_#{@t.id}" do
+          click_button "Like"
+        end
+        
         page.current_path.should == zombie_path(@ash)
         t = Tweet.find(t_id)
         t.rating.should == 1

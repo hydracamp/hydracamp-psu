@@ -157,6 +157,7 @@ describe "Zombies" do
 
     describe "creator" do
     before do
+       @roy = Zombie.create(:name=>'Roy')
        @sarah = Zombie.create(:name=>'Sarah')
     end
       it "should edit the zombie creator" do
@@ -164,8 +165,10 @@ describe "Zombies" do
          visit edit_zombie_path(@zombie)
 
          # Then I should be able to edit the zombies creator 
-         select 'Sarah', :from => 'creator'
+         select 'Sarah', :from => 'Creator'
          click_button "Update Zombie"
+page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
+#         page.should have_css  'div.creator :option, :value => 'Sarah'
        end
     end
     

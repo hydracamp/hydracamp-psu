@@ -4,6 +4,9 @@
   <dd><%= @zombie.name %></dd>
   <dt>Graveyard:</dt>
   <dd><%= @zombie.graveyard %></dd>
+  <dt>Nickname:</dt>
+  <dd><%= @zombie.nickname %></dd>
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>
+<%= link_to "home", zombies_path %>

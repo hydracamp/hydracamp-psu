@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009144359) do
+ActiveRecord::Schema.define(:version => 20121009145953) do
 
   create_table "tweets", :force => true do |t|
     t.integer  "zombie_id"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20121009144359) do
     t.datetime "updated_at",  :null => false
     t.string   "description"
     t.string   "nickname"
+    t.integer  "hit_points"
   end
 
 end

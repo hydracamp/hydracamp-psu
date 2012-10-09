@@ -1,12 +1,12 @@
 class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :nickname
   attr_accessible :graveyard, :name, :nickname, :level, :nickname,
-  		:hit_points, :description, :active, :wins, :losses
+  		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon
 
   validates :name, :presence=>true, :uniqueness=>true
   validates :active, :presence=>true
   validates :wins, :presence=>true
   validates :losses, :presence=>true
+  validates :weapon, :presence=>true
 
   has_many :tweets, :dependent => :destroy
   belongs_to :creator, :class_name=>'Zombie'

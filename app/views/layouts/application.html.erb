@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hydracamp</title>
+  <title>Archivists v. Zombies</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if current_user %>
+  <% if current_archivist %>
     <div>
-      Welcome <%= current_user.email %> | 
-      <%= button_to 'logout', destroy_user_session_path, method: :delete %>
+      Welcome <%= current_archivist.email %> | 
+      <%= button_to 'logout', destroy_archivist_session_path, method: :delete %>
     </div>
   <% else %>
     <div>
       Welcome stranger | 
-      <%= link_to 'login', new_user_session_path %>
+      <%= link_to 'login', new_archivist_session_path %>
     </div>
   <% end %>
   <div></div>

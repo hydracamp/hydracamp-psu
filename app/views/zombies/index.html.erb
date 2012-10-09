@@ -2,7 +2,7 @@
 
 <ul>
   <%- @zombies.each do |zombie| %>
-    <li><%= link_to zombie.name, zombie_path(zombie) %></li>
+    <li><%= link_to zombie.name, zombie_path(zombie) %> (level <%= zombie.level.to_s %>)</li>
   <% end %>
 </ul>
 <%=link_to "Create New Zombie", new_zombie_path%>

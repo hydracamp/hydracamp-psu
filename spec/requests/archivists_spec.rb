@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe "Users" do
+describe "Archivists" do
 
   describe "login" do
     before do
-      @ash = User.create(:email=>'Ash@grave.edu', :password=>'ashinthewind')
+      @ash = Archivist.create(:email=>'Ash@grave.edu', :password=>'ashinthewind')
     end
     it "should log you in" do
-      visit new_user_session_path
+      visit new_archivist_session_path
       fill_in "Email", with: @ash.email
       fill_in "Password", with: "ashinthewind"
       click_button 'Sign in'
@@ -18,8 +18,8 @@ describe "Users" do
 
   describe "logout" do
     before do
-      @ash = User.create(:email=>'Ash@grave.edu', :password=>'ashinthewind')
-      visit new_user_session_path
+      @ash = Archivist.create(:email=>'Ash@grave.edu', :password=>'ashinthewind')
+      visit new_archivist_session_path
       fill_in "Email", with: @ash.email
       fill_in "Password", with: "ashinthewind"
       click_button 'Sign in'
@@ -34,7 +34,7 @@ describe "Users" do
 
   describe "signup" do
     it "should log you out" do
-      visit new_user_session_path
+      visit new_archivist_session_path
       click_link 'Sign up'
       fill_in "Email", with: 'Ash@grave.edu'
       fill_in "Password", with: "ashinthewind"

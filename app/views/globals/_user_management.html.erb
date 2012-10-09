@@ -1,8 +1,8 @@
 <div id="user_management">
-  Welcome <%= current_user ? current_user.email : 'stranger' %> |
+  Welcome <%= current_archivist ? current_archivist.email : 'stranger' %> |
   <% if current_user %>
-    <%= button_to 'Log out', destroy_user_session_path, method: delete %>
+    <%= button_to 'Log out', destroy_archivist_session_path, method: :delete %>
   <% else %>
-    <%= link_to 'Log in', new_user_session_path %>
+    <%= link_to 'Log in', new_archivist_session_path %>
   <% end %>
 </div>

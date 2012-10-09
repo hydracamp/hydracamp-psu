@@ -26,5 +26,10 @@
 # Ignore komodo project files
 *.komodoproject
 
-# Ignore RVM .rvmrc files
+# Ignore rvmrc files
 .rvmrc
+
+# Removing generated files as this is THE PATH OF MADNESS for 50 devs grinding
+# on the same codebase in one hour
+db/schema.rb
+Gemfile.lock

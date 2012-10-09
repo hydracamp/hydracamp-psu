@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009184122) do
+ActiveRecord::Schema.define(:version => 20121009192805) do
 
   create_table "archivists", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "weapon"
     t.string   "nickname"
     t.integer  "creator_id"
@@ -53,9 +53,11 @@ ActiveRecord::Schema.define(:version => 20121009184122) do
     t.string   "description"
     t.integer  "hit_points"
     t.date     "date_of_death"
-    t.boolean  "active",        :default => true, :null => false
-    t.integer  "wins",          :default => 0,    :null => false
-    t.integer  "losses",        :default => 0,    :null => false
+    t.boolean  "active",          :default => true, :null => false
+    t.integer  "wins",            :default => 0,    :null => false
+    t.integer  "losses",          :default => 0,    :null => false
+    t.datetime "date_of_birth"
+    t.datetime "date_of_undeath"
   end
 
 end

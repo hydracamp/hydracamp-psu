@@ -32,4 +32,22 @@ describe Archivist do
     another_user.password = 'reapaz'
     another_user.should be_valid
   end
+  
+  it "should have 100 points by default" do
+    subject.email = 'Reaper@graveyard.edu'
+    subject.password = 'reapaz'
+    subject.save!
+    
+    subject.points.should == 100
+  end
+  
+  it "should have a level" do
+    subject.email = 'Reaper@graveyard.edu'
+    subject.password = 'reapaz'
+    subject.save!
+    
+    subject.level.should == "Flesh Apprentice"
+  end
+  
+  
 end

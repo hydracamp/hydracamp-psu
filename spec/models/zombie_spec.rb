@@ -32,4 +32,16 @@ describe Zombie do
     another_zombie.name = "Sarah"
     another_zombie.should be_valid
   end
+
+  it "should have a active field with a default value of true" do
+    subject.active.should == true
+  end
+
+  it "should have a wins field with a defaul value of 0" do
+    subject.wins.should == 0
+  end
+  
+  it "should have a losses field with a defaul value of 0" do
+    subject.losses.should == 0
+  end
 end

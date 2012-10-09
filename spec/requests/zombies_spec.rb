@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Zombies" do
   describe "indexing" do
      before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon => 'axe')
     end
 
     it "should have a create new zombie link" do
@@ -23,6 +23,9 @@ describe "Zombies" do
       fill_in "Graveyard", :with => 'Creepy Hollow'
 
       fill_in "Nickname", :with => 'Hruuungh'
+      select('2012', :from => 'zombie_date_of_death_1i')
+      select('October', :from => 'zombie_date_of_death_2i')
+      select('9', :from => 'zombie_date_of_death_3i')            
       fill_in "Description", :with => 'The zombie smells pretty bad'
       fill_in "Weapon", :with => 'Axe'
 
@@ -30,13 +33,12 @@ describe "Zombies" do
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
       page.should have_content "The zombie smells pretty bad"
-    # page.should have_content "(level 1)"
     end
   end
 
   describe "viewing" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet')
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'))
       @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
     end
     it "should display a list of zombies with links to the show page" do
@@ -45,6 +47,7 @@ describe "Zombies" do
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
       page.should have_content "Hruuungh"
+      page.should have_content "August 9, 2012"
     end
   
     it "should show the details for a specific zombie" do
@@ -83,7 +86,7 @@ describe "Zombies" do
   
   describe "showing" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe')
       @ash.tweets.new(:message=>'test tweet 1')
     end
     
@@ -157,8 +160,8 @@ describe "Zombies" do
 
     describe "creator" do
     before do
-       @roy = Zombie.create(:name=>'Roy')
-       @sarah = Zombie.create(:name=>'Sarah')
+       @roy = Zombie.create(:name=>'Roy', :weapon => 'axe')
+       @sarah = Zombie.create(:name=>'Sarah', :weapon => 'axe')
     end
       it "should edit the zombie creator" do
          #Given that I am on the edit page for a zombie named "Ash"
@@ -176,7 +179,7 @@ page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
   
   describe "adding tweet for zombie" do
     before do
-      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial")
+      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe' )
     end
     it "should add a tweet for a zombie" do
       #Given I'm on the show page for a zombie 

@@ -79,6 +79,14 @@ describe Zombie do
     another_zombie.weapon = "hatchet"
     another_zombie.should be_valid
   end
+  it "should validate for invalid nickname characters" do
+    subject.name = 'Ash'
+    subject.graveyard = 'Creepy Hollow'
+    subject.nickname = 'Ashford Wallace The 3rd'
+    subject.should_not be_valid
+    subject.errors[:nickname].first.should == "Nickname contains invalid characters"
+    subject.nickname = "Hruuungh"
+    subject.should be_valid
 
   it "should have a active field with a default value of true" do
     subject.active.should == true

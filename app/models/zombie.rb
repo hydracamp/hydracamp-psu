@@ -1,5 +1,4 @@
 class Zombie < ActiveRecord::Base
-<<<<<<< HEAD
   attr_accessible :graveyard, :name, :nickname, :level, :date_of_death,
   		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon
 

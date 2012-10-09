@@ -27,6 +27,10 @@ describe Zombie do
     subject.hit_points.should == 100
   end
 
+  it "should have a default level of 1" do
+    subject.level.should == 1
+  end
+
   it "should have a creator" do
     another_zombie = Zombie.create(:name=>"Sarah")
     subject.creator = another_zombie
@@ -52,5 +56,17 @@ describe Zombie do
     another_zombie.errors[:name].first.should == "has already been taken"
     another_zombie.name = "Sarah"
     another_zombie.should be_valid
+  end
+
+  it "should have a active field with a default value of true" do
+    subject.active.should == true
+  end
+
+  it "should have a wins field with a defaul value of 0" do
+    subject.wins.should == 0
+  end
+  
+  it "should have a losses field with a defaul value of 0" do
+    subject.losses.should == 0
   end
 end

@@ -22,12 +22,9 @@ describe "Zombies" do
       fill_in "Name", :with =>'Ash'
       fill_in "Graveyard", :with => 'Creepy Hollow'
       fill_in "Nickname", :with => 'Hruuungh'
-      fill_in "Description", :with => 'The zombie smells pretty bad'
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
-      page.should have_content "The zombie smells pretty bad"
-    # page.should have_content "(level 1)"
     end
   end
 
@@ -41,39 +38,17 @@ describe "Zombies" do
       page.should have_link "Ash", :href=>zombie_path(@ash)
       click_link 'Ash'
       page.should have_content "Cedarville Cemetary"
-      page.should have_content "Hruuungh"
-    end
   
-    it "should show the details for a specific zombie" do
-      visit zombies_path
-      click_link @ash.name
-      
-      current_path.should == zombie_path(@ash)
-      within "#zombie_details" do
-        page.should have_content "Ash"
-        page.should have_content "Cedarville Cemetary"
-        page.should have_content "Number of Tweets:"
-      end
-    end
-    
-    it "should display a link to the homepage" do
-      #Given I am on any page
-      visit zombie_path(@ash)
-      #I should see a link to homepage
-      page.should have_link "home", :href=>zombies_path
-      visit edit_zombie_path(@ash)
-      page.should have_link "home", :href=>zombies_path
-    end
 
     it "should display the zombie's level on the index page" do
       @sarah.level = 2
       @sarah.save
 
       visit zombies_path
-      page.should have_selector "tr[data-zombie='#{@sarah.id}']"
+      page.should have_selector "tr[data-zombie=#{@sarah.id}]"
       
-      within "tr[data-zombie='#{@sarah.id}'] td.zombie_level" do
-        page.should have_content 2
+      within "tr[data-zombie=#{@sarah.id}] td.zombie_level" do
+        page.should have_content '2'
       end
     end
   end
@@ -118,7 +93,6 @@ describe "Zombies" do
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
-      fill_in "Description", :with=>"The zombie smells bad"
 
       # When I click "Update Zombie" 
       click_button "Update Zombie"
@@ -127,7 +101,6 @@ describe "Zombies" do
       page.should have_selector "input[value='David']"
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
-      page.should have_selector "input[value='The zombie smells bad']"
 
       # And I should see a message that says "page saved at <current time>" 
       page.body.should match /Zombie saved at \d\d:\d\d/
@@ -164,26 +137,5 @@ describe "Zombies" do
        end
     end
     
-  end
-  
-  describe "adding tweet for zombie" do
-    before do
-      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial")
-    end
-    it "should add a tweet for a zombie" do
-      #Given I'm on the show page for a zombie 
-      visit zombie_path(@zombie)
-      #When I fill in the tweet and click save 
-      fill_in "Message", :with=>"Hello, World!"
-      click_button "Add Tweet"
-      #Then it should save the tweet
-      #And I should see the zombie show page
-      current_path.should == zombie_path(@zombie)
-      #And I should see the message "Tweet Added"
-      page.should have_content "Tweet Added"
-      #And I should see the new tweet in the list of tweets
-      # Test pending creation of tweet list on zombie page
-      #page.should have_content "Hello, World!"
-    end
   end
 end

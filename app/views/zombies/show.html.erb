@@ -6,13 +6,22 @@
   <dd>level <%= @zombie.level %></dd>
   <dt>Graveyard:</dt>
   <dd><%= @zombie.graveyard %></dd>
-  <dt>description:</dt>
+  <dt>Description:</dt>
   <dd><%= @zombie.description %></dd>
   <dt>Nickname:</dt>
   <dd><%= @zombie.nickname %></dd>
+  <dt>Active:</dt>
+  <dd><%= @zombie.active.to_s %></dd>
   <dt>Number of Tweets:</dt>
   <dd><%= @zombie.tweets.count %></dd>
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>
+
+<%= form_for @tweet do |f| %>
+  <%= f.hidden_field :zombie_id %>
+  <%= f.label :message %>
+  <%= f.text_field :message %>
+  <%= f.submit "Add Tweet" %>
+<% end %>
 <%= link_to "home", zombies_path %>

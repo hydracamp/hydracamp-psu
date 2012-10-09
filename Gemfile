@@ -9,6 +9,10 @@ gem 'sqlite3'
 gem 'devise'
 gem 'therubyracer'
 
+gem 'execjs'
+
+gem 'therubyracer'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
@@ -43,3 +47,5 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+
+gem 'paranoia'

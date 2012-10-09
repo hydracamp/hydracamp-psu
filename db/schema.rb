@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009150338) do
+ActiveRecord::Schema.define(:version => 20121009153611) do
 
   create_table "tweets", :force => true do |t|
     t.integer  "zombie_id"
@@ -44,13 +44,16 @@ ActiveRecord::Schema.define(:version => 20121009150338) do
   create_table "zombies", :force => true do |t|
     t.string   "name"
     t.string   "graveyard"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "nickname"
-    t.string   "description"
-    t.integer  "hit_points"
+    t.boolean  "active",      :default => true, :null => false
+    t.integer  "wins",        :default => 0,    :null => false
+    t.integer  "losses",      :default => 0,    :null => false
     t.integer  "creator_id"
     t.integer  "level"
+    t.string   "description"
+    t.integer  "hit_points"
   end
 
 end

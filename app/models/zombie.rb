@@ -1,6 +1,6 @@
 class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :nickname, :level, :nickname, :date_of_death,
-  		:hit_points, :description, :active, :wins, :losses
+  attr_accessible :graveyard, :name, :nickname, :level, :date_of_death,
+  		:hit_points, :description, :active, :wins, :losses, :creator_id
 
   validates :name, :presence=>true, :uniqueness=>true
   validates :active, :presence=>true

@@ -43,6 +43,15 @@ describe "Zombies" do
         page.should have_content "Cedarville Cemetary"
       end
     end
+    
+    it "should display a link to the homepage" do
+      #Given I am on any page
+      visit zombie_path(@ash)
+      #I should see a link to homepage
+      page.should have_link "home", :href=>zombies_path
+      visit edit_zombie_path(@ash)
+      page.should have_link "home", :href=>zombies_path
+    end
   end
 
   describe "editing" do
@@ -52,7 +61,7 @@ describe "Zombies" do
     it "should edit the zombie" do
       # Given that I'm on the show page for a zombie named "Ash" 
       visit zombie_path(@zombie)
-
+      
       # When I click the "edit" button 
       page.should have_link "edit", :href=>edit_zombie_path(@zombie)
       click_link "edit"

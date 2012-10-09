@@ -18,9 +18,18 @@
     <%=f.text_field :description %>
   </p>
 <p>
+  <%=f.label :date_of_birth %>
+  <%=f.date_select :date_of_birth %>
+</p>
+<p>
   <%=f.label :date_of_death %>
   <%=f.date_select :date_of_death %>
 </p>
+<p>
+  <%=f.label :date_of_undeath %>
+  <%=f.date_select :date_of_death %>
+</p>
+
 <p>  
   <%=f.label :creator %>
   <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>

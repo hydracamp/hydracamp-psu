@@ -22,9 +22,12 @@ describe "Zombies" do
       fill_in "Name", :with =>'Ash'
       fill_in "Graveyard", :with => 'Creepy Hollow'
       fill_in "Nickname", :with => 'Hruuungh'
+      fill_in "Description", :with => 'The zombie smells pretty bad'
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
+      page.should have_content "The zombie smells pretty bad"
+    # page.should have_content "(level 1)"
     end
   end
 

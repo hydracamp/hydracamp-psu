@@ -14,6 +14,7 @@ class ZombiesController < ApplicationController
 
   def show
     @zombie = Zombie.find(params[:id])
+    @tweets = @zombie.tweets
     @tweet = Tweet.new
     @tweet.zombie = @zombie
     respond_to do |format|

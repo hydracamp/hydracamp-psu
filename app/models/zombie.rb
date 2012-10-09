@@ -7,23 +7,24 @@ class NicknameValidator < ActiveModel::Validator
 end
 
 class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :nickname, :level, :nickname, :hit_points, :description
+  attr_accessible :graveyard, :name, :nickname, :level, :date_of_death,
+  		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon
 
   validates :name, :presence=>true, :uniqueness=>true
   validates_with NicknameValidator
+  validates :active, :presence=>true
+  validates :wins, :presence=>true
+  validates :losses, :presence=>true
+  validates :weapon, :presence=>true
+
   has_many :tweets, :dependent => :destroy
   belongs_to :creator, :class_name=>'Zombie'
 
-  before_save :default_values
-
-  def default_values
-    self.level ||= 1
-  end
-  # Set some defaults for values that may be nil
   after_initialize :init
 
   def init
     self.hit_points ||= 100
+    self.level ||= 1
   end
 end
 

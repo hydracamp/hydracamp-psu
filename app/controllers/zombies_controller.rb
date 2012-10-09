@@ -2,6 +2,11 @@ class ZombiesController < ApplicationController
   def new
     @zombie = Zombie.new
   end
+  
+  def destroy    
+    Zombie.destroy(params[:id])
+    redirect_to zombies_path
+  end
 
   def create
     @zombie = Zombie.create(params[:zombie])

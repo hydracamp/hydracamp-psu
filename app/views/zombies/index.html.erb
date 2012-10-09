@@ -18,6 +18,9 @@
         <td class="zombie_level"><%= zombie.level.to_s %></td>
         <td class="zombie_description"><%= zombie.description %></td>
         <td class="zombie_edit"><%= link_to "Edit", edit_zombie_path(zombie) %></td>
+        <td>
+          <%= link_to "Delete", zombie_path(zombie), :method => "delete" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

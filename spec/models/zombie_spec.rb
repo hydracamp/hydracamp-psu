@@ -59,6 +59,7 @@ describe Zombie do
   end
   it "should be level 1" do
     subject.name = 'Ash'
+    subject.weapon = 'axe'
     subject.save!
     subject.level.should == 1
   end

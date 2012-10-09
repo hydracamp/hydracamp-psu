@@ -22,9 +22,7 @@
     <%=f.select(:creator_id, options_for_select(["",""]+ Zombie.order(:name).reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}, @zombie.creator_id)) %>
   </p>
   <br>
-  <%=f.label :graveyard %>
-  <%=f.text_field :graveyard %>
-<br>
+
   <%=f.label :weapon %>
   <%=f.text_field :weapon %>
   <p><%=f.submit %></p>

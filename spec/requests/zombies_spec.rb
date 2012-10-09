@@ -21,8 +21,11 @@ describe "Zombies" do
       visit new_zombie_path
       fill_in "Name", :with =>'Ash'
       fill_in "Graveyard", :with => 'Creepy Hollow'
+
       fill_in "Nickname", :with => 'Hruuungh'
       fill_in "Description", :with => 'The zombie smells pretty bad'
+      fill_in "Weapon", :with => 'Axe'
+
       click_button "Create"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
@@ -33,8 +36,8 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
-      @sarah = Zombie.create(:name=>"Sarah")
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet')
+      @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
     end
     it "should display a list of zombies with links to the show page" do
       visit zombies_path
@@ -104,7 +107,7 @@ describe "Zombies" do
 
   describe "editing" do
     before do
-      @zombie = Zombie.create(:name=>"Ash")
+      @zombie = Zombie.create(:name=>"Ash", :weapon=>'axe')
     end
     it "should edit the zombie" do
       # Given that I'm on the show page for a zombie named "Ash" 
@@ -114,11 +117,13 @@ describe "Zombies" do
       page.should have_link "edit", :href=>edit_zombie_path(@zombie)
       click_link "edit"
 
-      # Then I should be able to edit the zombies name and graveyard 
+      # Then I should be able to edit the zombies name, graveyard, and weapon
       fill_in "Name", :with=>"David"
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
+      fill_in "Weapon", :with => 'Axe'
+
 
       # When I click "Update Zombie" 
       click_button "Update Zombie"

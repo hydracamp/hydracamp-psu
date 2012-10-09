@@ -46,11 +46,20 @@ ActiveRecord::Schema.define(:version => 20121009153611) do
     t.string   "graveyard"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+<<<<<<< HEAD
     t.string   "nickname"
     t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
     t.integer  "creator_id"
+=======
+    t.string   "weapon"
+    t.string   "nickname"
+    t.integer  "creator_id"
+    t.integer  "level"
+    t.string   "description"
+    t.integer  "hit_points"
+>>>>>>> 726f85c1e6128d538674372e94d2f94ceefdba2f
     t.boolean  "active",      :default => true, :null => false
     t.integer  "wins",        :default => 0,    :null => false
     t.integer  "losses",      :default => 0,    :null => false

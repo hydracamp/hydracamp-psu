@@ -13,9 +13,10 @@
     <%=f.label :nickname %>
     <%=f.text_field :nickname %>
   </p>
-  <%=f.label :creator %>
-  <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>
-  <br>
+  <p>
+  <%=f.label :creator_id %>
+  <%=f.select(:creator_id, options_for_select(["",""]+ Zombie.order(:name).reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}, @zombie.creator_id)) %>
+  </p>
   <p><%=f.submit %></p>
 <% end %>
 

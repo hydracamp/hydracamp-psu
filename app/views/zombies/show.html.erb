@@ -44,7 +44,7 @@
 <table class="table table-striped">
   <% @zombie.tweets.each do |tweet| %>
     <tr>
-      <td><%= tweet.message %> (<%= tweet.date_created_at.strftime("%B %e, %Y") %>)</td>
+      <td><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
     </tr>
   <% end %>
 </table>

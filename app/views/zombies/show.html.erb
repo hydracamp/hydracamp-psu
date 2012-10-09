@@ -1,9 +1,17 @@
 <h1>Show Zombie</h1>
-<dl>
+<dl id="zombie_details">
   <dt>Name:</dt>
   <dd><%= @zombie.name %></dd>
+  <dt>Level:</dd>
+  <dd>level <%= @zombie.level %></dd>
   <dt>Graveyard:</dt>
   <dd><%= @zombie.graveyard %></dd>
+  <dt>description:</dt>
+  <dd><%= @zombie.description %></dd>
+  <dt>Nickname:</dt>
+  <dd><%= @zombie.nickname %></dd>
+  <dt>Number of Tweets:</dt>
+  <dd><%= @zombie.tweets.count %></dd>
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>
@@ -14,3 +22,4 @@
   <%= f.text_field :message %>
   <%= f.submit "Add Tweet" %>
 <% end %>
+<%= link_to "home", zombies_path %>

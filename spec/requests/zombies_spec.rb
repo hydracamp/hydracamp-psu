@@ -214,7 +214,7 @@ describe "Zombies" do
 
     it "should find results for the search 'musical'" do
       visit zombies_path
-      fill_in "q", :with=>"Rob"
+      fill_in "q", :with=>"musical"
       click_button "Search Zombies"
       page.should have_content "A musical zombie"
     end

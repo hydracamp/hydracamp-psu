@@ -70,7 +70,7 @@ describe "Zombies" do
       visit edit_zombie_path(@ash)
       page.should have_link "home", :href=>zombies_path
     end
-    
+
     it "should display a link to an instructional video" do
       visit zombie_path(@ash)
       page.should have_link "Instructional Video", :href=>"http://www.youtube.com/watch?v=0UqEhUm2B_8"
@@ -169,19 +169,13 @@ describe "Zombies" do
        @sarah = Zombie.create(:name=>'Sarah', :weapon => 'axe')
     end
       it "should edit the zombie creator" do
-         #Given that I am on the edit page for a zombie named "Ash"
-         visit edit_zombie_path(@zombie)
-
-<<<<<<< HEAD
-         # Then I should be able to edit the zombies creator
-         select 'Sarah', :from => 'creator'
-=======
-         # Then I should be able to edit the zombies creator
-         select 'Sarah', :from => 'Creator'
->>>>>>> aa95bb4e531521140de639ff415d1ad5fcdf8356
-         click_button "Update Zombie"
-page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
-#         page.should have_css  'div.creator :option, :value => 'Sarah'
+        #Given that I am on the edit page for a zombie named "Ash"
+        visit edit_zombie_path(@zombie)
+        # Then I should be able to edit the zombies creator
+        select 'Sarah', :from => 'Creator'
+        click_button "Update Zombie"
+        page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
+        #page.should have_css  'div.creator :option, :value => 'Sarah'
        end
     end
 

@@ -9,7 +9,7 @@ class Zombie < ActiveRecord::Base
 
   def default_values
     self.level ||= 1
-
+  end
   # Set some defaults for values that may be nil
   after_initialize :init
 

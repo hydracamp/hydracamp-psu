@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ZombiesController do
+  before do
+    @archivist = Archivist.create!(email: "ar@eu.edu", password: "123456")
+    sign_in @archivist
+  end
   
   render_views
   

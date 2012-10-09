@@ -4,7 +4,7 @@ describe "Archivists" do
 
   describe "login" do
     before do
-      @ash = Archivist.create(:email=>'Ash@grave.edu', :password=>'ashinthewind')
+      @ash = Archivist.create!(:email=>'Ash@grave.edu', :password=>'ashinthewind')
     end
     it "should log you in" do
       visit new_archivist_session_path

@@ -1,5 +1,5 @@
 <div id="user_management" class="pull-right">
-  Welcome <%= current_archivist ? current_archivist.email : 'stranger' %> |
+  Welcome <%= current_archivist ? current_archivist.email : 'stranger' %> ( <%= current_archivist.level %> | <%= current_archivist.points %> )
   <% if current_archivist %>
     <%= button_to 'Log out', destroy_archivist_session_path, method: :delete %>
   <% else %>

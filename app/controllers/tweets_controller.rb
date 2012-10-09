@@ -5,6 +5,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(params[:tweet])
     @tweet.zombie_id = zombie_id
     @tweet.save!
+    current_archivist.inc_points 25
     redirect_to zombie_path(@tweet.zombie), :notice=>"Tweet Added"
   end
   

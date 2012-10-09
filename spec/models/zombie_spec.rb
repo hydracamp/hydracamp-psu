@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+  
 describe Zombie do
 
   it 'should have many tweets' do

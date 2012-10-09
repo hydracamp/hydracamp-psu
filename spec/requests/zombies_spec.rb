@@ -1,5 +1,13 @@
 require 'spec_helper'
 
+def logmein
+  visit new_archivist_session_path
+  @ash = Archivist.create!(:email=>'Ash@grave.edu', :password=>'ashinthewind')
+  fill_in "Email", with: @ash.email
+  fill_in "Password", with: "ashinthewind"
+  click_button 'Sign in'
+end
+
 describe "Zombies" do
   describe "indexing" do
      before do
@@ -17,6 +25,10 @@ describe "Zombies" do
   end
 
   describe "creating" do
+    before do
+      logmein
+    end
+    
     it "should create a zombie" do
       visit new_zombie_path
       fill_in "Name", :with =>'Ash'
@@ -183,6 +195,7 @@ describe "Zombies" do
 
   describe "adding tweet for zombie" do
     before do
+      logmein
       @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe' )
     end
     it "should add a tweet for a zombie" do

@@ -5,6 +5,7 @@ class ZombiesController < ApplicationController
 
   def create
     @zombie = Zombie.create(params[:zombie])
+    current_archivist.inc_points 50
     redirect_to zombies_path, :notice=>"Added Zombie"
   end
 

@@ -8,24 +8,33 @@ class Archivist < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :points
 
-  before_save :set_defaults
+  after_initialize :init
 
   def level
     case points 
-      when 100
+      when nil
+        self.points = 100
+        self.save!
         "Flesh Apprentice"
-      when 200
+      when 0..150
+        "Flesh Apprentice"
+      when 151..250
         "Cadaver Expert"
-      when 200
+      when 251..1000
         "Cranium Master"
       end
+  end
+  
+  def inc_points(num)
+    self.points += num
+    self.save!
   end
     
 protected
         
-  def set_defaults
-    self.points = 100
+  def init
+    self.points ||= 100
   end
-  
+
   # attr_accessible :title, :body
 end

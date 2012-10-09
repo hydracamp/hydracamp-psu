@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009192805) do
+ActiveRecord::Schema.define(:version => 20121009201115) do
 
   create_table "archivists", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,10 +26,32 @@ ActiveRecord::Schema.define(:version => 20121009192805) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "points"
   end
 
   add_index "archivists", ["email"], :name => "index_users_on_email", :unique => true
   add_index "archivists", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "audits", :force => true do |t|
+    t.integer  "auditable_id"
+    t.string   "auditable_type"
+    t.integer  "associated_id"
+    t.string   "associated_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "username"
+    t.string   "action"
+    t.text     "audited_changes"
+    t.integer  "version",         :default => 0
+    t.string   "comment"
+    t.string   "remote_address"
+    t.datetime "created_at"
+  end
+
+  add_index "audits", ["associated_id", "associated_type"], :name => "associated_index"
+  add_index "audits", ["auditable_id", "auditable_type"], :name => "auditable_index"
+  add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
+  add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
   create_table "tweets", :force => true do |t|
     t.integer  "zombie_id"
@@ -46,16 +68,16 @@ ActiveRecord::Schema.define(:version => 20121009192805) do
     t.string   "graveyard"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.string   "weapon"
     t.string   "nickname"
-    t.integer  "creator_id"
-    t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
-    t.date     "date_of_death"
+    t.string   "weapon"
+    t.integer  "creator_id"
+    t.integer  "level"
     t.boolean  "active",          :default => true, :null => false
     t.integer  "wins",            :default => 0,    :null => false
     t.integer  "losses",          :default => 0,    :null => false
+    t.date     "date_of_death"
     t.datetime "date_of_birth"
     t.datetime "date_of_undeath"
   end

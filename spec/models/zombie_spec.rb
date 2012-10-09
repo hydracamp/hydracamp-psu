@@ -93,6 +93,7 @@ describe Zombie do
     subject.name = 'Ash'
     subject.graveyard = 'Creepy Hollow'
     subject.nickname = 'Ashford Wallace The 3rd'
+    subject.weapon = "hatchet"
     subject.should_not be_valid
     subject.errors[:nickname].first.should == "Nickname contains invalid characters"
     subject.nickname = "Hruuungh"

@@ -78,9 +78,9 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     nokogiri (1.5.4)
+    orm_adapter (0.4.0)
     paranoia (1.1.0)
       activerecord (>= 3.0.0)
-    orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -163,11 +163,8 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
-<<<<<<< HEAD
-  execjs
-=======
   devise
->>>>>>> 0e50ca12bf23ac08f441926b7a0415ba2fae8217
+  execjs
   jquery-rails
   launchy
   paranoia

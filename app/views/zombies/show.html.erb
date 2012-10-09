@@ -35,12 +35,27 @@
   <%= f.submit "Add Tweet" %>
 <% end %>
 
-<table class="table table-striped">
-  <% @zombie.tweets.each do |tweet| %>
+<table class="table table-striped" id="zombie_tweets">
+  <thead>
     <tr>
-      <td><%= tweet.message %> (<%= tweet.date_created_at.strftime("%B %e, %Y") %>)</td>
+      <td>&nbsp;</td>
+      <td>Rating</td>
+      <td>&nbsp;</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @zombie.tweets.each do |tweet| %>
+    <tr id="tweet_<%= tweet.id %>">
+      <td class="message"><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
+      <td class="like_count"><%= tweet.rating %></td>
+      <td class="like_update">
+        <%= form_for tweet do |f| %>
+          <%= hidden_field_tag 'id', tweet.id %>
+          <%= f.submit 'Like' %>
+        <% end %>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 

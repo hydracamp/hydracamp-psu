@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20121009150338) do
     t.string   "graveyard"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "level"
     t.string   "nickname"
+    t.integer  "level"
     t.string   "description"
     t.integer  "hit_points"
   end

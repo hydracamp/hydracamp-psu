@@ -58,6 +58,7 @@ describe "Zombies" do
   describe "showing" do
     before do
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad")
+      @ash.tweets.new(:message=>'test tweet 1')
     end
     
     it "should display a description of a zombie" do
@@ -66,13 +67,7 @@ describe "Zombies" do
       page.should have_content "description"
       
     end
-  end
 
-  describe "showing" do
-    before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary')
-      @ash.tweets.new(:message=>'test tweet 1')
-    end
     it "should respond to a request for an XML or JSON response" do
       get zombie_path(@ash), {:format=>'xml'}
       assert_response :success

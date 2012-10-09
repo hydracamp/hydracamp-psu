@@ -22,6 +22,10 @@ describe Zombie do
     subject.hit_points.should == 100
   end
 
+  it "should have a default level of 1" do
+    subject.level.should == 1
+  end
+
   it "should validate that the name is present" do
     subject.should_not be_valid
     subject.errors[:name].first.should == "can't be blank"

@@ -146,5 +146,20 @@ describe "Zombies" do
       #Then I should see the show page for that zombie
       current_path.should == zombie_path(@zombie)
     end
+
+    describe "creator" do
+    before do
+       @sarah = Zombie.create(:name=>'Sarah')
+    end
+      it "should edit the zombie creator" do
+         #Given that I am on the edit page for a zombie named "Ash"
+         visit edit_zombie_path(@zombie)
+
+         # Then I should be able to edit the zombies creator 
+         select 'Sarah', :from => 'creator'
+         click_button "Update Zombie"
+       end
+    end
+    
   end
 end

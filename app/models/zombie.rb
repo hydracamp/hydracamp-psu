@@ -1,11 +1,10 @@
 class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :nickname, :level, :nickname, :hit_points
+  attr_accessible :graveyard, :name, :nickname, :level, :nickname, :hit_points, :description
 
   validates :name, :presence=>true, :uniqueness=>true
-
   has_many :tweets, :dependent => :destroy
+  belongs_to :creator, :class_name=>'Zombie'
 
-  before_save :default_values
   after_initialize :init
 
   def init

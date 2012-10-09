@@ -31,6 +31,12 @@ describe Zombie do
     subject.level.should == 1
   end
 
+  it "should have a creator" do
+    another_zombie = Zombie.create(:name=>"Sarah")
+    subject.creator = another_zombie
+    subject.creator.should == another_zombie
+  end
+
   it "should validate that the name is present" do
     subject.should_not be_valid
     subject.errors[:name].first.should == "can't be blank"

@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20121009144359) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "description"
+    t.string   "nickname"
   end
 
 end

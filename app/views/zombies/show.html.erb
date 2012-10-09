@@ -1,11 +1,14 @@
 <h1>Show Zombie</h1>
-<dl>
+<dl id="zombie_details">
   <dt>Name:</dt>
   <dd><%= @zombie.name %></dd>
   <dt>Graveyard:</dt>
   <dd><%= @zombie.graveyard %></dd>
   <dt>description:</dt>
   <dd><%= @zombie.description %></dd>
+  <dt>Nickname:</dt>
+  <dd><%= @zombie.nickname %></dd>
 </dl>
 
 <%= link_to "edit", edit_zombie_path(@zombie) %>
+<%= link_to "home", zombies_path %>

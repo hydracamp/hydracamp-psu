@@ -32,6 +32,8 @@
     </tr>
   </tbody>
 </table>
+<%= link_to "edit", edit_zombie_path(@zombie) %>
+<%= link_to "history", zombie_history_path(@zombie) %>
 
 
 <h2 id="tweets">Tweets (<%= @zombie.tweets.count %>)</h2>

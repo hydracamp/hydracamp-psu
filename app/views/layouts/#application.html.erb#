@@ -2,18 +2,19 @@
 <html>
 
 <head>
-  <title>Archivists v. Zombies beta</title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
+
+>>>>>>> c0bc9b56c53186d9b7465fb391585e7963e04b2b
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-
+<<<<<<< HEAD
 <!-- HEADER -->
 <div class="row span12">
   <h1>Twitter ... for Zombie Archivists</h1>
 </div>
+
 <!-- MAIN BODY -->
 <div class="row span12">
   <%= render partial: 'globals/navigation' %>
@@ -36,5 +37,24 @@
 <div class="span12" id="footer">
   &copy; ZombieCo 2012
 </div>
+=======
+  <% if current_archivist %>
+    <div>
+      Welcome <%= current_archivist.email %> | 
+      <%= button_to 'logout', destroy_archivist_session_path, method: :delete %>
+    </div>
+  <% else %>
+    <div>
+      Welcome stranger | 
+      <%= link_to 'login', new_archivist_session_path %>
+    </div>
+  <% end %>
+  <div></div>
+<%- if flash[:notice] %>
+  <div class="msg notice"><%=flash[:notice]%></div>
+<%end %>
+<%= yield %>
+>>>>>>> c0bc9b56c53186d9b7465fb391585e7963e04b2b
+
 </body>
 </html>

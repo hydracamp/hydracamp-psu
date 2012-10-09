@@ -12,6 +12,7 @@
   <p>
     <%=f.label :nickname %>
     <%=f.text_field :nickname %>
+    <span id="nickname_error" class="error">Nicknames can only contain these letters: a g h n r o u</span>
   </p>
   <%=f.label :creator %>
   <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>

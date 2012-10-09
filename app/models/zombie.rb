@@ -1,5 +1,5 @@
 class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :level
+  attr_accessible :graveyard, :name, :nickname, :level
 
   validates :name, :presence=>true, :uniqueness=>true
 

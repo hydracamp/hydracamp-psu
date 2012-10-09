@@ -2,9 +2,17 @@ require 'spec_helper'
 
 describe "Zombies" do
   describe "indexing" do
+     before do
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh')
+    end
+
     it "should have a create new zombie link" do
       visit zombies_path
+      page.should have_content("Ash")
+      page.should have_content("Hruuungh")
+      page.should have_link('Edit', href: edit_zombie_path(@ash))
       page.should have_link('Create New Zombie', href: new_zombie_path)
+
     end
   end
 
@@ -66,7 +74,7 @@ describe "Zombies" do
     it "should display a description of a zombie" do
       visit zombie_path(@ash)
       page.should have_content "The zombie smells bad"
-      page.should have_content "description"
+      page.should have_content "Description"
       
     end
 
@@ -126,6 +134,21 @@ describe "Zombies" do
       #Then I should see the show page for that zombie
       current_path.should == zombie_path(@zombie)
     end
+
+    describe "creator" do
+    before do
+       @sarah = Zombie.create(:name=>'Sarah')
+    end
+      it "should edit the zombie creator" do
+         #Given that I am on the edit page for a zombie named "Ash"
+         visit edit_zombie_path(@zombie)
+
+         # Then I should be able to edit the zombies creator 
+         select 'Sarah', :from => 'creator'
+         click_button "Update Zombie"
+       end
+    end
+    
   end
   
   describe "adding tweet for zombie" do

@@ -112,4 +112,29 @@ describe Zombie do
   it "should have a losses field with a defaul value of 0" do
     subject.losses.should == 0
   end
+
+  describe "Audit" do
+     before(:all) do
+       @roy = Zombie.create(:name=>'Roy', :weapon=>'ax')
+     end
+     before(:each) do
+        @count = subject.audits.count
+        @countr = @roy.audits.count
+     end
+     after(:all) do
+       @roy.delete
+     end
+     it "should create an audit on new zombie change" do
+        subject.name = "other"
+        subject.weapon = 'ax'
+        subject.level = 5
+        subject.save
+        subject.audits.count.should == @count+1
+     end
+     it "should create an audit on an existing zombie change name" do
+        @roy.level = 5 
+        @roy.save
+        @roy.audits.count.should == @countr+1
+     end
+  end
 end

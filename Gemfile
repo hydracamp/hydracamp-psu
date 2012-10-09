@@ -12,6 +12,7 @@ gem 'therubyracer'
 gem 'execjs'
 
 gem 'therubyracer'
+gem "audited-activerecord", "~> 3.0"
 
 group :development, :test do
   gem 'rspec-rails'

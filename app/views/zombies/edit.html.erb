@@ -1,10 +1,27 @@
 <h1>Edit Zombie</h1>
 
 <%= form_for @zombie do |f| %>
-  <%=f.label :name %>
-  <%=f.text_field :name %>
+  <p>
+    <%=f.label :name %>
+    <%=f.text_field :name %>
+  </p>
+  <p>
+    <%=f.label :graveyard %>
+    <%=f.text_field :graveyard %>
+  </p>
+  <p>
+    <%=f.label :nickname %>
+    <%=f.text_field :nickname %>
+  </p>
+  <p>
+    <%=f.label :description %>
+    <%=f.text_field :description %>
+  </p>
+  <%=f.label :creator %>
+  <%= select_tag(:creator, options_for_select([""]+Zombie.order(:name).reject{|z| z==@zombie}.map{|z| z.name})) %>
   <br>
-  <%=f.label :graveyard %>
-  <%=f.text_field :graveyard %>
-  <%=f.submit %>
+  <p><%=f.submit %></p>
 <% end %>
+
+<p><%=link_to "View Zombie", zombie_path(@zombie)%></p>
+<p><%= link_to "home", zombies_path %></p>

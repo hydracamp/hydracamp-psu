@@ -17,7 +17,7 @@ describe ZombiesController do
       @count = Zombie.count
     end
     it "should create a zombie" do
-      post :create, :zombie=>{:name=>"Ash", :graveyard=>"Sleepy Hollow"}
+      post :create, :zombie=>{:name=>"Ash", :graveyard=>"Sleepy Hollow", :nickname=>"Hruuungh"}
       response.should redirect_to zombies_path
       Zombie.count.should == @count + 1
       flash[:notice].should == "Added Zombie"
@@ -47,6 +47,12 @@ describe ZombiesController do
       get :show, :id=>@ash
       response.should be_successful
       assigns[:zombie].should == @ash
+      assigns[:tweet].should be_kind_of Tweet
+    end
+    
+    it "should be successful" do
+      get :show, :id=>@ash
+      
     end
     
     it "should display a list of the zombie's tweets" do
@@ -78,10 +84,11 @@ describe ZombiesController do
       @ash = Zombie.create(:name=>"Ash")
     end
     it "should update the zombie" do
-      put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge"}
+      put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge", :nickname=>"Hruuungh"}
       response.should redirect_to edit_zombie_path(@ash)
       @ash.reload.name.should == 'David'
       @ash.graveyard.should == "River's Edge"
+      @ash.nickname.should == "Hruuungh"
       flash[:notice].should match /Zombie saved at \d\d:\d\d/
     end
 

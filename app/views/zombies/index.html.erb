@@ -1,7 +1,8 @@
 <h1>Zombies</h1>
 
 <ul>
-  <%- @zombies.each do |zombie| %>
-    <li><%= link_to zombie.name, zombie_path(zombie) %></li>
+<%- @zombies.each do |zombie| %>
+    <li><%= link_to zombie.name, zombie_path(zombie) %> "<%= zombie.nickname%>" (level <%= zombie.level.to_s %>) (<%= link_to "Edit", edit_zombie_path(zombie) %>)</li>
   <% end %>
 </ul>
+<%=link_to "Create New Zombie", new_zombie_path%>

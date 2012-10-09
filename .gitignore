@@ -22,3 +22,6 @@
 
 # Ignore Emacs tilde files
 *~
+
+# Ignore RVM .rvmrc files
+.rvmrc

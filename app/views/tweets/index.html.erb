@@ -5,7 +5,7 @@
     </tr>
 	<%- @tweets.each do |tweet| %>
 	<tr>
-	  <td class="tweet"><%= link_to tweet.zombie.name, zombies_path %></td>
+	  <td class="tweet"><%= link_to tweet.zombie.name, zombie_path(tweet.zombie) %></td>
       <td class="tweet"><%= tweet.message %></td>
 	  <td class="tweet"><%= link_to "delete", tweet_path(tweet), :method => :delete %>
     </tr>

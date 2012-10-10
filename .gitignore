@@ -41,3 +41,5 @@ Gemfile.lock
 
 # Test coverage
 coverage
+
+jetty

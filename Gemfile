@@ -21,6 +21,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem "equivalent-xml"
 end
 
 # Visual design tools

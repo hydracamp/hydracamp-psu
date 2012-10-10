@@ -3,26 +3,26 @@ require 'spec_helper'
 describe ZombieEacCpf do
    describe "with new datastream" do
      before do
-       @datastream = EacCpfDatastream.new
+       @datastream = ZombieEacCpf.new
      end
      it "should have name" do
-       test_attribute_xpath(@datastream, 'name', '/eac-cpf/cpfDescription/name')
+       test_attribute_xpath(@datastream, 'name', 'cpfDescription/oxns:identity/oxns:nameEntry/oxns:part')
      end
      it "should have graveyard" do
-       test_attribute_xpath(@datastream, 'graveyard', '/eac-cpf/cpfDescription/location')
+       test_attribute_xpath(@datastream, 'graveyard', 'cpfDescription/places/place[localType='graveyard']/placeEntry')
      end
      it "should have nickname" do
-       test_attribute_xpath(@datastream, 'nickname', '/eac-cpf/cpfDescription/nickname')
+       test_attribute_xpath(@datastream, 'nickname', 'cpfDescription/identity/nameEntryParallel')
      end
      it "should have active" do
        test_attribute_xpath(@datastream, 'active', '/eac-cpf/cpfDescription/active')
      end
-     it "should have wins" do
-       test_attribute_xpath(@datastream, 'wins', '/eac-cpf/cpfDescription/wins')
-     end
-     it "should have losses" do
-       test_attribute_xpath(@datastream, 'losses', '/eac-cpf/cpfDescription/losses')
-     end
+     #it "should have wins" do
+     #  test_attribute_xpath(@datastream, 'wins', '/eac-cpf/cpfDescription/wins')
+     #end
+     #it "should have losses" do
+     #  test_attribute_xpath(@datastream, 'losses', '/eac-cpf/cpfDescription/losses')
+     #end
      it "should have weapon" do
        test_attribute_xpath(@datastream, 'losses', '/eac-cpf/cpfDescription/weapon')
      end
@@ -38,37 +38,35 @@ describe ZombieEacCpf do
    end
    describe "with existing datastream" do
      before do
-       @datastream = EacCpfDatastream.from_xml("<do later>")
+       @datastream = ZombieEacCpf.from_xml(File.new(File.join(File.dirname(__FILE__),'..'
+, 'spec','fixtures', "zombie_eac-cpf_authorized.xml")))
      end
      it "should have name" do
-       test_existing_attribute(@datastream, 'name', 'Zombie')
+       test_existing_attribute(@datastream, 'name', 'Cadell, Thomas')
      end
      it "should have graveyard" do
-       test_existing_attribute(@datastream, 'graveyard', 'Graveyard')
+       test_existing_attribute(@datastream, 'graveyard', 'Cadell, Thomas')
      end
      it "should have nickname" do
-       test_existing_attribute(@datastream, 'nickname', 'Nickname')
+       test_existing_attribute(@datastream, 'nickname', 'GRRAH')
      end
-     it "should have active" do
-       test_existing_attribute(@datastream, 'active', 'Active')
-     end
-     it "should have wins" do
-       test_existing_attribute(@datastream, 'wins', 'wins')
-     end
-     it "should have losses" do
-       test_existing_attribute(@datastream, 'losses', 'losses')
-     end
+     #it "should have wins" do
+     #  test_existing_attribute(@datastream, 'wins', 'wins')
+     #end
+     #it "should have losses" do
+     #  test_existing_attribute(@datastream, 'losses', 'losses')
+     #end
      it "should have weapon" do
-       test_existing_attribute(@datastream, 'weapon', 'weapon')
+       test_existing_attribute(@datastream, 'weapon', 'Chainsaw')
      end
      it "should have date_of_birth" do
-       test_existing_attribute(@datastream, 'date_of_birth', 'date_of_birth')
+       test_existing_attribute(@datastream, 'date_of_birth', '1742-11-12')
      end
      it "should have date_of_death" do
-       test_existing_attribute(@datastream, 'date_of_death', 'date_of_death')
+       test_existing_attribute(@datastream, 'date_of_death', '1802-12-27')
      end
      it "should have date_of_undeath" do
-       test_existing_attribute(@datastream, 'date_of_undeath', 'date_of_undeath')
+       test_existing_attribute(@datastream, 'date_of_undeath', '1802-12-31')
      end
    end
 end

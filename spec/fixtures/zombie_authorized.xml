@@ -47,6 +47,11 @@
        <abstract>Biographic info from Undeath...</abstract>    
       </biogHist>
     </description>
+    <relations>
+      <resourceRelation resourceRelationType="wielderOf">
+        <relationEntry>Chainsaw</relationEntry>
+      </resourceRelation>
+    </relations>
   </cpfDescription>
 
 </eac-cpf>

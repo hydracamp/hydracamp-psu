@@ -9,6 +9,8 @@ class ZombieEacCpf < ActiveFedora::NokogiriDatastream
     t.description_of_life(path: "cpfDescription/description/biogHist[localType='life']/abstract")
     t.description_of_undeath(path: "cpfDescription/description/biogHist[localType='undeath']/abstract")
     t.graveyard(path: "cpfDescription/places/place[localType='graveyard']/placeEntry")
+    t.graveyard(path: "cpfDescription/oxns:relations/oxns:resourceRelation[@resourceRelationType='wielderOf]/oxns:relationEntry")
+
     t.date_of_birth(:path=>"cpfDescription/description/existDates/dateRange[localType='life']/fromDate")
     t.date_of_death(:path=>"cpfDescription/description/existDates/dateRange[localType='life']/toDate")
     t.date_of_undeath(:path=>"cpfDescription/description/existDates/dateRange[localType='undeath']/fromDate")

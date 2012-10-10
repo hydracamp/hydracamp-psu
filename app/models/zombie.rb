@@ -50,6 +50,9 @@ class Zombie < ActiveFedora::Base
   def init
     self.hit_points ||= 100.to_s
     self.level ||= 1.to_s
+    self.wins ||= 0.to_s
+    self.losses ||= 0.to_s
+    self.active ||= true.to_s
   end
 end
 

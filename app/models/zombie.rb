@@ -35,19 +35,8 @@ class Zombie < ActiveFedora::Base
 
   delegate_to 'EAC-CPF', [:name, :nickname, :graveyard, :description, :active, :wins, :losses, :weapon, :level, :hit_points, :date_of_birth, :date_of_death, :date_of_undeath], :unique => true
 
-  def cast_to_integer_unless_blank_from_om(dsid,field_name)
-    v=self.datastreams[dsid].send(field_name).first
-    unless v.blank?
-      return v.to_i
-    end
-  end
+  include Casting 
 
-  def cast_to_boolean_unless_blank_from_om(dsid,field_name)
-    v=self.datastreams[dsid].send(field_name).first
-    unless v.blank?
-      return v=="true"
-    end
-  end
   def active
   	 cast_to_boolean_unless_blank_from_om('EAC-CPF',:active)
   end
@@ -55,13 +44,18 @@ class Zombie < ActiveFedora::Base
   	active
   end
 
-  def cast_to_date_from_om(dsid,field_name)
-    v=self.datastreams[dsid].send(field_name).first
-  	   puts "v is #{v.inspect}"
-    return v.nil? ? Date.today : Date.parse(v)
+  def to_solr(doc = {} )
+    doc = super(doc)
+    doc['name_sort'] = doc['name_t'].first
+    doc
+    
   end
+
   def date_of_death
   	 cast_to_date_from_om('EAC-CPF',:date_of_death)
+  end
+  def date_of_death=(date)
+  	 serialize_to_om('EAC-CPF',:date_of_death, date)
   end
   def date_of_birth
   	 cast_to_date_from_om('EAC-CPF',:date_of_birth)

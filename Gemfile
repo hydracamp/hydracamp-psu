@@ -26,6 +26,7 @@ end
 
 # Visual design tools
 gem 'twitter-bootstrap-rails'
+gem 'twitter_bootstrap_form_for'
 
 # Gems used only for assets and not required
 # in production environments by default.

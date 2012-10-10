@@ -7,10 +7,6 @@ class NicknameValidator < ActiveModel::Validator
 end
 
 class Zombie < ActiveFedora::Base
-  # attr_accessible :graveyard, :name, :nickname, :level, :date_of_birth, :date_of_death, :date_of_undeath,
-  # 		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon, :avatar
-  # audited
-
   delegate_to :eac_cpf, [:name, :nickname,  :date_of_birth, :date_of_death, :date_of_undeath], :unique=>true
   delegate_to :simple, [:graveyard, :hit_points, :description, :active, :level, :wins, :losses, :weapon], :unique=>true
 
@@ -40,12 +36,15 @@ class Zombie < ActiveFedora::Base
   validates :weapon, :presence=>true
 
   has_many :tweets, :dependent => :destroy, :property=> :created_by
- # belongs_to :creator, :class_name=>'Zombie', :property=> :child_of
+  #belongs_to :creator, :class_name=>'Zombie', :property=> :child_of
 
   after_initialize :init
 
   # Add zombie avatar (via paperclip library)
-  # has_attached_file :avatar, :styles => { medium: "300x300>", thumb: "100x100>" }, :default_url => '/assets/missing_:style.png'
+  #has_attached_file :avatar, :styles => { 
+  #  medium: "300x300>", 
+  #  thumb: "100x100>" },  
+  #:default_url => '/assets/missing_:style.png'
 
   def init
     self.hit_points ||= 100.to_s

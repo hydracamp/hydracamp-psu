@@ -227,7 +227,9 @@ describe "Zombies" do
 
   describe "adding tweet for zombie" do
     before do
-      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe' )
+      @zombie = Zombie.create(:name=>"Ash", 
+        :graveyard=>"Duke Memorial",
+        :weapon => 'axe' )
     end
 
     it "should add a tweet for a zombie" do

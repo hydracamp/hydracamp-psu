@@ -1,6 +1,6 @@
 <div id="preview" class="span12">
   <div id="avatar" class="span4">
-    <%= image_tag @zombie.avatar.url(:medium) %>
+    <%# image_tag @zombie.avatar.url(:medium) %>
   </div>
   <div id="overview" class="offset1 span6">
     <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
@@ -17,19 +17,6 @@
     </p>
   </div>
 </div>
-
-<!--
-  <dt>Date of Death:</dt>
-  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <% if @zombie.date_of_undeath != nil%>
-  <dt>Date of Undeath:</dt>
-  <dd><%= @zombie.date_of_undeath.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <dt>Active:</dt>
-  <dd><%= @zombie.active.to_s %></dd>
-</dl>
--->
 
 <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
 <table class="table table-striped" id="zombie_details">
@@ -48,11 +35,15 @@
     </tr>
     <tr>
       <td>Date of death</td>
-      <td><%= @zombie.date_of_death.blank? ? '-' : @zombie.date_of_death.strftime("%B %e, %Y") %></td>
+      <td><%= @zombie.date_of_death.blank? ? '-' : @zombie.date_of_death %></td>
+    </tr>
+    <tr>
+      <td>Date of undeath</td>
+      <td><%= @zombie.date_of_undeath.blank? ? '-' : @zombie.date_of_undeath %></td>
     </tr>
     <tr>
       <td>Active</td>
-      <td><%= @zombie.active.== 'true' ? 'Yes' : 'No' %></td>
+      <td><%= @zombie.active == true ? 'Yes' : 'No' %></td>
     </tr>
   </tbody>
 </table>
@@ -75,7 +66,7 @@
   <tbody>
   <% @zombie.tweets.each do |tweet| %>
     <tr id="tweet_<%= tweet.id %>">
-      <td class="message"><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
+      <td class="message"><%= tweet.message %> (<%# tweet.created_on.strftime("%B %e, %Y") %>)</td>
       <td class="like_count"><%= tweet.rating %></td>
       <td class="like_update">
         <%= form_for tweet do |f| %>

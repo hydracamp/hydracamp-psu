@@ -41,3 +41,6 @@ Gemfile.lock
 
 # Test coverage
 coverage
+
+# Ignore git submods, since most of us are pointing at local dirs
+.gitmodules

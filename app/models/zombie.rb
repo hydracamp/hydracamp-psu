@@ -7,51 +7,16 @@ class NicknameValidator < ActiveModel::Validator
 end
 
 class Zombie < ActiveFedora::Base
-  delegate_to :eac_cpf, [:name, :nickname,  :date_of_birth, :date_of_death, :date_of_undeath], :unique=>true
-  delegate_to :simple, [:graveyard, :hit_points, :description, :active, :level, :wins, :losses, :weapon], :unique=>true
+  delegate_to :eac_cpf, [:full_name, :nickname, :creature_type, :creator, :birth, :death, :date_of_undeath, :description_of_life, :description_of_undeath, :graveyard], :unique=>true
+  delegate_to :eac_cpf, [:weapon]
 
-  has_metadata :name=>'simple', :type=>ActiveFedora::SimpleDatastream do |m|
-    m.field 'graveyard', :string
-    m.field 'hit_points', :string
-    m.field 'description', :string
-    m.field 'active', :string
-    m.field 'level', :string
-    m.field 'wins', :string
-    m.field 'losses', :string
-    m.field 'weapon', :string
-  end
-  has_metadata :name=>'eac_cpf', :type=>ActiveFedora::SimpleDatastream do |m| # Change to Eaccpf ds
-    m.field 'name', :string
-    m.field 'nickname', :string
-    m.field 'date_of_birth', :string
-    m.field 'date_of_death', :string
-    m.field 'date_of_undeath', :string
-  end
+  has_metadata :name => "eac_cpf", :type => ZombieEaccpfRdfDatastream
 
-  validates :name, :presence=>true #, :uniqueness=>true
-  validates_with NicknameValidator
-  validates :active, :presence=>true
-  validates :wins, :presence=>true
-  validates :losses, :presence=>true
+  validates :full_name, :presence=>true #, :uniqueness=>true
   validates :weapon, :presence=>true
+  validates_with NicknameValidator
 
   has_many :tweets, :dependent => :destroy, :property=> :created_by
   belongs_to :creator, :class_name=>'Zombie', :property=> :child_of
-
-  after_initialize :init
-
-  # Add zombie avatar (via paperclip library)
-  #has_attached_file :avatar, :styles => { 
-  #  medium: "300x300>", 
-  #  thumb: "100x100>" },  
-  #:default_url => '/assets/missing_:style.png'
-
-  def init
-    self.hit_points ||= 100.to_s
-    self.level ||= 1.to_s
-    self.wins ||= 0.to_s
-    self.losses ||= 0.to_s
-    self.active ||= true.to_s
-  end
 end
 

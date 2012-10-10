@@ -1,0 +1,7 @@
+<info:fedora/changeme:2> <RDFtype> "http://rdfs.org/sioc/ns#Post" .
+<info:fedora/changeme:2> <http://rdfs.org/sioc/ns#content> "I followed Bon Jovi! #smh" .
+<info:fedora/changeme:2> <http://purl.org/dc/terms/creator> "changeme:1" .
+<info:fedora/changeme:2> <http://purl.org/dc/terms/created> "2012-10-10 13:37:15 -0400" .
+<info:fedora/changeme:2> <http://purl.org/stuff/rev#rating> "1" .
+<info:fedora/changeme:2> <http://purl.org/stuff/rev#reviewer> "Thing One" .
+<info:fedora/changeme:2> <http://purl.org/stuff/rev#reviewer> "Thing Two" .

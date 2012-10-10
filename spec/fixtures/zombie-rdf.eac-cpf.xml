@@ -1,0 +1,10 @@
+<info:fedora/changeme:1> <http://undead.example.org/vocab/ns#type> "Zombie, shambling" .
+<info:fedora/changeme:1> <http://xmlns.com/foaf/0.1/name> "Zebulon Atreides" .
+<info:fedora/changeme:1> <http://vocab.org/bio/0.1/birth> "2012-10-10 13:25:56 -0400" .
+<info:fedora/changeme:1> <http://vocab.org/bio/0.1/death> "2012-10-10 13:25:59 -0400" .
+<info:fedora/changeme:1> <http://purl.org/dc/terms/created> "2012-10-10 13:26:02 -0400" .
+<info:fedora/changeme:1> <http://vocab.org/bio/0.1/biography> "He was the best of men; he was the worst of men." .
+<info:fedora/changeme:1> <http://undead.example.org/vocab/ns#unbiography> "Finest zombie ever made." .
+<info:fedora/changeme:1> <http://rdf.muninn-project.org/ontologies/graves#site_name> "Ghoulish Grotto" .
+<info:fedora/changeme:1> <http://undead.example.org/vocab/ns#weapon> "Warhammer" .
+<info:fedora/changeme:1> <http://xmlns.com/foaf/0.1/nick> "RunHagRun" .

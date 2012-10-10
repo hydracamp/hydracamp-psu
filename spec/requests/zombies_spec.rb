@@ -23,11 +23,12 @@ describe "Zombies" do
       fill_in "Graveyard", :with => 'Creepy Hollow'
 
       fill_in "Nickname", :with => 'Hruuungh'
-      fill_in "zombie_date_of_death", 'October 9, 2012'
-      #select('2012', :from => 'zombie_date_of_death_1i')
-      #select('October', :from => 'zombie_date_of_death_2i')
-      #select('9', :from => 'zombie_date_of_death_3i')
+      # select('2012', :from => 'zombie_date_of_death_1i')
+      # select('October', :from => 'zombie_date_of_death_2i')
+      # select('9', :from => 'zombie_date_of_death_3i')
+      fill_in "Date of death", :with=>'2012-10-9'
       fill_in "Description", :with => 'The zombie smells pretty bad'
+
       # Disabled until Active Fedora is hooked up
       #attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
@@ -41,6 +42,7 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
+      Zombie.find_each({}, :rows=>1000) { |c| c.delete }
       #@ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'))
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>'August 9, 2012')
       @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
@@ -141,16 +143,16 @@ describe "Zombies" do
       end
 
       it "should increment the rating after clicking like button" do
-        @t.rating.should == '0'
+        @t.rating.should == "0"
         t_id = @t.id
         visit zombie_path(@ash)
-        within "#tweet_#{@t.id}" do
+        within "#tweet_#{@t.id.gsub(':', '_')}" do
           click_button "Like"
         end
 
         page.current_path.should == zombie_path(@ash)
         t = Tweet.find(t_id)
-        t.rating.should == 1
+        t.rating.should == "1"
       end
     end
   end
@@ -184,7 +186,7 @@ describe "Zombies" do
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
       page.should have_selector "input[value='The zombie smells bad']"
-      page.should have_selector "img[alt='Zombie']"
+      #page.should have_selector "img[alt='Zombie']"
 
       # And I should see a message that says "page saved at <current time>"
       page.body.should match /Zombie saved at \d\d:\d\d/

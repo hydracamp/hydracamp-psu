@@ -65,8 +65,8 @@
   </thead>
   <tbody>
   <% @zombie.tweets.each do |tweet| %>
-    <tr id="tweet_<%= tweet.id %>">
-      <td class="message"><%= tweet.message %> (<%# tweet.created_on.strftime("%B %e, %Y") %>)</td>
+    <tr id="tweet_<%= tweet.id.gsub(':', '_') %>">
+      <td class="message"><%= tweet.message %> (<%= tweet.created_at %>)</td>
       <td class="like_count"><%= tweet.rating %></td>
       <td class="like_update">
         <%= form_for tweet do |f| %>

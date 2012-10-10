@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
   
   def update
     tweet = Tweet.find(params[:id])
-    tweet.rating += 1
+    tweet.rating = (tweet.rating.to_i + 1).to_s
     tweet.save!
     redirect_to zombie_path(tweet.zombie), :notice=>"Tweet Liked"
   end

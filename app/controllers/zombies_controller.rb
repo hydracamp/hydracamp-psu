@@ -9,8 +9,9 @@ class ZombiesController < ApplicationController
   end
 
   def create
+    params[:zombie].delete(:avatar)
     @zombie = Zombie.create(params[:zombie])
-    @zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
+    #@zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
     @zombie.save!
     redirect_to zombies_path, :notice=>"Added Zombie"
   end

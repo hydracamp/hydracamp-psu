@@ -59,7 +59,6 @@ describe ZombiesController do
     
     it "should display a list of the zombie's tweets" do
       visit zombie_path(@ash)
-        save_and_open_page
       within "#zombie_tweets" do
         page.should have_content @tweet1.message 
         page.should have_content @tweet2.message

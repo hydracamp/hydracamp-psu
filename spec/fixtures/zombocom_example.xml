@@ -21,25 +21,30 @@
     <nameEntryParallel>GRRAH</nameEntryParallel>
   </identity>
   <description>
-    <place>Creepy Hollow</place>
-    <bioghist>
-      <chronlist>
-        <chronitem>
+    <place>
+      <placeEntry>Creepy Hollow</placeEntry>
+      <placeRole>Graveyard</placeRole>
+    </place>
+    <biogHist>
+      <chronList>
+        <chronItem>
           <date>1742-11-12</date>
           <event>birth</event>
-        </chronitem>
-        <chronitem>
+        </chronItem>
+        <chronItem>
           <date>1802-12-27</date>
           <event>death</event>
-        </chronitem>
-        <chronitem>
+        </chronItem>
+        <chronItem>
           <date>1802-12-31</date>
           <event>undeath</event>
-        </chronitem>
-      </chronlist>
+        </chronItem>
+      </chronList>
       <abstract>Biogapthic info from Life, Death, and Undeath ...</abstract>
-      <localdescription localtype="weapon">
+      <localDescription localtype="weapon">
         <term>Chainsaw</term>
+      </localDescription>
+    </biogHist>
   </description>
 </cpfdescriptions>
 </eac-cpf>

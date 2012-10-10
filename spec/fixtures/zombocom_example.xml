@@ -1,13 +1,13 @@
 <eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
 <control>
-  <recordid>zombie:1 </recordid>
-  <otherRecordId localType="url">http://localhost:8080/show/1</otherRecordId>
-  <maintenanceagency>Rails App </maintenanceagency>
-  <maintenancestatus>new </maintenancestatus>
+  <recordid>archzom:303</recordid>
+  <maintenanceagency>Archive of Zombie Activites (ARCH+ZOM)</maintenanceagency>
+  <maintenancestatus>new</maintenancestatus>
   <maintenancehistory>
-    <eventType>derived</eventType>
-    <eventDateTime standardDateTime="2009-06-30T09:37:17.029-04:00"></eventDateTime>
-    <agentType>machine</agentType>
+    <eventType>created</eventType>
+    <eventDateTime standardDateTime="2012-05-24"></eventDateTime>
+    <agentType>person</agentType>
+    <agent>williambutler@yeats.com</agent>
   </maintenancehistory>
   <languagedeclaration>
     <language languageCode="eng">English</language>
@@ -17,41 +17,29 @@
 <cpfdescriptions>
   <identity>
     <entityType>person</entityType>
-    <nameEntry scriptCode="Latn" xml:lang="eng">
-      <part localType="100a">Pottle, Frederick A.</part>
-      <part localType="100q">(Frederick Albert),</part>
-      <part localType="100d">1897-1987</part>
-      <authorizedForm>lcnaf</authorizedForm>
-    </nameEntry>
-    <nameEntry scriptCode="Latn" xml:lang="eng">
-      <part localType="400a">Pottle, Frederick Albert,</part>
-      <part localType="400d">1897-</part>
-      <alternativeForm>lcnaf</alternativeForm>
-    </nameEntry>
-    <nameEntry scriptCode="Latn" xml:lang="eng" localType="directOrder">
-      <part>Frederick Pottle</part>
-    </nameEntry>
-  </indentity>
+    <nameEntry xml:lang="eng">Thomas Cadell</nameEntry>
+    <nameEntryParallel>GRRAH</nameEntryParallel>
+  </identity>
   <description>
-    <place>Graveyard </place>
+    <place>Creepy Hollow</place>
     <bioghist>
       <chronlist>
         <chronitem>
-          <date> </date>
-          <event>Date of Birth </event>
+          <date>1742-11-12</date>
+          <event>birth</event>
         </chronitem>
         <chronitem>
-          <date> </date>
-          <event>Date of Death </event>
+          <date>1802-12-27</date>
+          <event>death</event>
         </chronitem>
         <chronitem>
-          <date> </date>
-          <event>Date of Undead </event>
+          <date>1802-12-31</date>
+          <event>undeath</event>
         </chronitem>
       </chronlist>
-      <abstract>Description </abstract>
+      <abstract>Biogapthic info from Life, Death, and Undeath ...</abstract>
       <localdescription localtype="weapon">
-        <term>Weapon </term>
+        <term>Chainsaw</term>
   </description>
 </cpfdescriptions>
 </eac-cpf>

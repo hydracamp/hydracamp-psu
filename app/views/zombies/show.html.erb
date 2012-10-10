@@ -1,5 +1,7 @@
 <div id="preview" class="span12">
-  <div id="avatar" class="span4">[ AVATAR ]</div>
+  <div id="avatar" class="span4">
+    <%= image_tag @zombie.avatar.url(:medium) %>
+  </div>
   <div id="overview" class="offset1 span6">
     <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
     <div class="btn-group">
@@ -15,12 +17,23 @@
     </p>
   </div>
 </div>
+
+<!--
+  <dt>Date of Death:</dt>
+  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
+  <% end %>
+  <% if @zombie.date_of_undeath != nil%>
+  <dt>Date of Undeath:</dt>
+  <dd><%= @zombie.date_of_undeath.strftime("%B %e, %Y") %></dd>
+  <% end %>
+  <dt>Active:</dt>
+  <dd><%= @zombie.active.to_s %></dd>
+</dl>
+-->
+
+<h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
 <table class="table table-striped" id="zombie_details">
   <tbody>
-    <tr>
-      <td>Avatar</td>
-      <td><%#= image_tag @zombie.avatar.url(:medium) %></td>
-    </tr>
     <tr>
       <td>Level</td>
       <td><%= @zombie.level %></td>

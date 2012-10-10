@@ -12,7 +12,7 @@
                 <eventType>created</eventType>
                 <eventDateTime>2012-05-24</eventDateTime>
                 <agentType>human</agentType>
-                <agent>W.B. Yeats</agent>
+                <agent>williambutler@yeats.com</agent>
                 <eventDescription>Record Created</eventDescription>
             </maintenanceEvent>
         </maintenanceHistory>

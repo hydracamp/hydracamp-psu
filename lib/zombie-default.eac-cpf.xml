@@ -1,0 +1,45 @@
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">  
+   <control>
+    <recordId>DO_NOT_USE</recordId>
+    <otherRecordId localType="url"></otherRecordId>
+    <mainteanceHistory>
+      <maintenanceEvent>
+        <agent></agent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime=""></eventDateTime>
+        <eventDescription>Record created</eventDescription>
+      </maintenanceEvent>
+    </mainteanceHistory>
+    <maintenanceAgency>
+      <agencyCode>SZAA</agencyCode>
+      <agencyName>Society of Zombie Achivists America</agencyName>
+    </maintenanceAgency>
+  </control>
+  <cpfDescription>
+    <places>
+      <place localType="graveyard">
+        <placeEntry></placeEntry>
+      </place>
+    </places>
+    <identity>
+      <nameEntry>
+        <part></part>
+      </nameEntry>
+      <nameEntryParallel>
+	<part></part>
+      </nameEntryParallel>
+    </identity>
+    <description>
+      <existDates>
+        <dateRange localType="life">
+          <fromDate></fromDate>
+          <toDate></toDate>
+        </dateRange>
+        <dateRange localType="undeath">
+          <fromDate></fromDate>
+          <toDate></toDate>
+        </dateRange>
+      </existDates>
+    </description>
+  </cpfDescription>
+</eac-cpf>

@@ -11,6 +11,7 @@ end
 describe "Zombies" do
   describe "indexing" do
      before do
+      Zombie.find_each{|z| z.delete}
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon => 'axe')
     end
 
@@ -53,7 +54,8 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'))
+      Zombie.find_each{|z| z.delete}
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>"8-9-2012")
       @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
     end
     it "should display a list of zombies with links to the show page" do
@@ -67,6 +69,7 @@ describe "Zombies" do
 
     it "should show the details for a specific zombie" do
       visit zombies_path
+
       click_link @ash.name
 
       current_path.should == zombie_path(@ash)
@@ -107,6 +110,7 @@ describe "Zombies" do
 
   describe "showing" do
     before do
+      Zombie.find_each{|z| z.delete}
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe')
       @ash.tweets.new(:message=>'test tweet 1')
     end

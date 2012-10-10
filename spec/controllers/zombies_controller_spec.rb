@@ -4,6 +4,7 @@ describe ZombiesController do
   before do
     @archivist = Archivist.create!(email: "ar@eu.edu", password: "123456")
     sign_in @archivist
+    Zombie.find_each{|z| z.delete}
   end
   
   render_views
@@ -45,8 +46,8 @@ describe ZombiesController do
   describe "#show" do
     before do
       @ash = Zombie.create(:name=>'Ash',:weapon=>"hatchet")
-      @tweet1 = @ash.tweets.create(:message => "blah blah blah")
-      @tweet2 = @ash.tweets.create(:message => "I brake for brains!")
+      @tweet1 = Tweet.create(:message => "blah blah blah", :zombie => @ash)
+      @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie => @ash)
     end
 
     it "should be successful" do
@@ -96,7 +97,8 @@ describe ZombiesController do
     it "should update the zombie" do
       put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge", :nickname=>"Hruuungh"}
       response.should redirect_to edit_zombie_path(@ash)
-      @ash.reload.name.should == 'David'
+      @ash=Zombie.find(@ash.pid)
+      @ash.name.should == 'David'
       @ash.graveyard.should == "River's Edge"
       @ash.nickname.should == "Hruuungh"
       flash[:notice].should match /Zombie saved at \d\d:\d\d/

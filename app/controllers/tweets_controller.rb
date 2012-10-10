@@ -16,7 +16,7 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.where("").order(:created_at).reverse_order
   end
   
   def destroy

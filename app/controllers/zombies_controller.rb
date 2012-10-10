@@ -17,7 +17,7 @@ class ZombiesController < ApplicationController
   end
 
   def index
-    @zombies = Zombie.order(:name)
+    @zombies = Zombie.find(:all,:sort=>"name_sort desc")
   end
 
   def show
@@ -34,6 +34,7 @@ class ZombiesController < ApplicationController
 
   def edit
     @zombie = Zombie.find(params[:id])
+    @zombies = Zombie.find(:all,:sort=>"name_sort desc").reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}
   end
 
   def update

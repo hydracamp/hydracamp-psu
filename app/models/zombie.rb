@@ -6,29 +6,35 @@ class NicknameValidator < ActiveModel::Validator
   end
 end
 
-class Zombie < ActiveRecord::Base
-  attr_accessible :graveyard, :name, :nickname, :level, :date_of_birth, :date_of_death, :date_of_undeath,
-  		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon, :avatar
-  audited
+class Zombie < ActiveFedora::Base
+  has_metadata :name => 'EAC-CPF', :type => ActiveFedora::SimpleDatastream do |c|
+    c.field :name, :string
+    c.field :nickname, :string
+    c.field :active, :string
+    c.field :wins, :string
+    c.field :losses, :string
+    c.field :weapon, :string
+    c.field :level, :string
+    c.field :hit_points, :string
+  end
 
-  validates :name, :presence=>true, :uniqueness=>true
+  delegate_to 'EAC-CPF', [:name, :nickname, :active, :wins, :losses, :weapon, :level, :hit_points], :unique => true
+
+  validates :name, :presence=>true
   validates_with NicknameValidator
   validates :active, :presence=>true
   validates :wins, :presence=>true
   validates :losses, :presence=>true
   validates :weapon, :presence=>true
 
-  has_many :tweets, :dependent => :destroy
-  belongs_to :creator, :class_name=>'Zombie'
+  has_many :tweets, :dependent => :destroy, :property => :created_by
+  belongs_to :creator, :class_name=>'Zombie', :property => :child_of
 
   after_initialize :init
 
-  # Add zombie avatar (via paperclip library)
-  has_attached_file :avatar, :styles => { medium: "300x300>", thumb: "100x100>" }, :default_url => '/assets/missing_:style.png'
-
   def init
-    self.hit_points ||= 100
-    self.level ||= 1
+    self.hit_points ||= "100"
+    self.level ||= "1"
   end
 end
 

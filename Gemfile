@@ -8,7 +8,7 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'devise'
 gem 'therubyracer'
-
+gem 'active-fedora'
 gem 'execjs'
 
 gem 'paperclip', '3.3.0'
@@ -19,6 +19,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem 'jettywrapper'
 end
 
 # Visual design tools

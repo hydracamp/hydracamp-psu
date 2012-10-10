@@ -227,7 +227,9 @@ describe "Zombies" do
 
   describe "adding tweet for zombie" do
     before do
-      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe' )
+      @zombie = Zombie.create(:name=>"Ash", 
+        :graveyard=>"Duke Memorial",
+        :weapon => 'axe' )
     end
 
     it "should add a tweet for a zombie" do
@@ -253,7 +255,11 @@ describe "Zombies" do
 
   describe "searching for a zombie" do
     before do
-      @zombie = Zombie.create(:name => 'Rob Zombie', :weapon => 'rubber chicken', :nickname => 'Hrr', :graveyard => "Some graveyard", :description => 'A musical zombie.')
+      @zombie = Zombie.create(:name => 'Rob Zombie', 
+        :weapon => 'rubber chicken', 
+        :nickname => 'Hrr', 
+        :graveyard => "Some graveyard", 
+        :description => 'A musical zombie.')
     end
 
     it "should find results for the search 'Rob'" do
@@ -274,12 +280,12 @@ describe "Zombies" do
 
     it "should find NO results for the search 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'" do
       pending "Search should use solr, not sql"
+      
       visit zombies_path
       fill_in "q", :with=>"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
       click_button "Search Zombies"
       page.should have_content "No zombies found"
     end
-
   end
 
   describe "history" do

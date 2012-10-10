@@ -57,7 +57,6 @@ class Zombie < ActiveFedora::Base
 
   def cast_to_date_from_om(dsid,field_name)
     v=self.datastreams[dsid].send(field_name).first
-  	   puts "v is #{v.inspect}"
     return v.nil? ? Date.today : Date.parse(v)
   end
   def date_of_death

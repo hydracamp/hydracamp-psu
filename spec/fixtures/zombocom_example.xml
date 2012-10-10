@@ -1,0 +1,50 @@
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+<control>
+  <recordId>archzom:303</recordId>
+  <maintenanceAgency>Archive of Zombie Activites (ARCH+ZOM)</maintenanceAgency>
+  <maintenanceStatus>new</maintenanceStatus>
+  <maintenanceHistory>
+    <eventType>created</eventType>
+    <eventDateTime standardDateTime="2012-05-24"></eventDateTime>
+    <agentType>person</agentType>
+    <agent>williambutler@yeats.com</agent>
+  </maintenanceHistory>
+  <languageDeclaration>
+    <language languageCode="eng">English</language>
+  </languageDeclaration>
+  <sources></sources>
+</control>
+<cpfDescriptions>
+  <identity>
+    <entityType>person</entityType>
+    <nameEntry xml:lang="eng">Thomas Cadell</nameEntry>
+    <nameEntryParallel>GRRAH</nameEntryParallel>
+  </identity>
+  <description>
+    <place>
+      <placeEntry>Creepy Hollow</placeEntry>
+      <placeRole>Graveyard</placeRole>
+    </place>
+    <biogHist>
+      <chronList>
+        <chronItem>
+          <date>1742-11-12</date>
+          <event>birth</event>
+        </chronItem>
+        <chronItem>
+          <date>1802-12-27</date>
+          <event>death</event>
+        </chronItem>
+        <chronItem>
+          <date>1802-12-31</date>
+          <event>undeath</event>
+        </chronItem>
+      </chronList>
+      <abstract>Biogapthic info from Life, Death, and Undeath ...</abstract>
+      <localDescription localtype="weapon">
+        <term>Chainsaw</term>
+      </localDescription>
+    </biogHist>
+  </description>
+</cpfDescriptions>
+</eac-cpf>

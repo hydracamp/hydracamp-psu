@@ -29,8 +29,20 @@
                 <alternativeForm>local</alternativeForm>
             </nameEntry>
         </identity>
-        
         <description>
+            <existDates>
+                <dateSet>
+                    <date localType="undeath">2012-10-16</date>
+                    <dateRange>
+                        <fromDate>1938-10-08</fromDate>
+                        <toDate>2007-10-06</toDate>
+                    </dateRange>
+                </dateSet>
+            </existDates>
+            <generalContext><p>Only mostly dead</p></generalContext>
+            <place localType="graveyard">
+                <placeEntry>Shady Hills</placeEntry>
+            </place>
             <biogHist>
                 <chronList>
                     <chronItem>
@@ -43,24 +55,9 @@
                     </chronItem>
                 </chronList>
             </biogHist>
-            <existDates>
-                <date localType="undeath">2012-10-16</date>
-                <descriptiveNote>
-                    <p>WTF</p>
-                </descriptiveNote>
-                <dateRange>
-                    <fromDate>1938-10-08</fromDate>
-                    <toDate>2007-10-06</toDate>
-                </dateRange>
-            </existDates>
-            <place localType="graveyard">
-                <placeEntry>Shady Hills</placeEntry>
-            </place>
-            <localDescription localType="general">Only mostly dead</localDescription>
         </description>
         <relations>
             <resourceRelation xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://localhost:3000/system/zombies/avatars/000/000/001/medium/zombies-wallpapers.thumb.png?1349882203"/>
-            
         </relations>
     </cpfDescription>
 </eac-cpf>

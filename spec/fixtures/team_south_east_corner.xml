@@ -1,0 +1,46 @@
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <cpfDescription>
+    <places>
+      <place localType="graveyard">
+        <placeEntry>Creepy Hallow</placeEntry>
+      </place>
+    </places>
+    <identity>
+      <nameEntry>
+        <part>Thomas Cadell</part>
+        <alternateForm>GRRAH</alternateForm>
+      </nameEntry>
+    </identity>
+    <description>
+      <generalContext>Biographic info from Undeath...</generalContext>
+      <existDates>
+        <dateRange localType="Life">
+          <fromDate>1742-11-12</fromDate>
+          <toDate>1802-12-27</toDate>
+        </dateRange>
+        <dateRange localType="Undeath">
+          <fromDate>1802-12-31</fromDate>
+          <toDate></toDate>
+        </dateRange>
+      </existDates>
+    </description>
+  </cpfDescription>
+  <control>
+    <recordId>archzom:303</recordId>
+    <sources>
+      <source xmlns:href="http://archivingzombies.org/archzom:303" />
+    </sources>
+    <localControl localType="weapon">
+      <term>Chainsaw</term>
+    </localControl>
+    <mainteanceHistory>
+      <maintenanceEvent>
+        <agency>Archive of Zombie Activities  (ARCH+ZOM)</agency>
+        <agent>W.B. Yeats</agent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2012-05-24">2012-05-24</eventDateTime>
+        <eventDescription>Record Created</eventDescription>
+      </maintenanceEvent>
+    </mainteanceHistory>
+  </control>
+</eac-cpf>

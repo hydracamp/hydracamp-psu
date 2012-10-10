@@ -30,11 +30,11 @@ describe "Zombies" do
       attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
 
-      click_button "Create"
+      click_button "Create Zombie"
       page.should have_content "Added Zombie"
       page.should have_content "Ash"
       page.should have_content "The zombie smells pretty bad"
-      page.should have_content "zombie.jpg"
+      #page.should have_content "zombie.jpg"
     # page.should have_content "(level 1)"
     end
   end
@@ -59,7 +59,7 @@ describe "Zombies" do
 
       current_path.should == zombie_path(@ash)
       within "#zombie_name" do
-        page.should have_content "Ash" 
+        page.should have_content "Ash"
       end
       within "#zombie_details" do
         page.should have_content "Cedarville Cemetary"
@@ -115,29 +115,36 @@ describe "Zombies" do
       assert_response :success
       response.body.should == @ash.to_json
     end
-    
+
     describe "with tweets" do
       before do
         @t = Tweet.new(:message=>'Test tweet')
         @t.zombie = @ash
         @t.save!
       end
-      
+
       it "should display a like tweet button for each tweet" do
         visit zombie_path(@ash)
-        page.should have_selector "input[type='submit'][value='Like']"
+        within "#zombie_tweets .like_update" do
+          page.should have_selector "input[type='submit'][value='Like']"
+        end
       end
-      
+
       it "should display the tweet rating for each tweet" do
         visit zombie_path(@ash)
-        page.body.should match /Rating: \d/
+        within "#zombie_tweets thead" do
+          page.should have_content 'Rating'
+        end
       end
-      
+
       it "should increment the rating after clicking like button" do
         @t.rating.should == 0
         t_id = @t.id
         visit zombie_path(@ash)
-        click_button "Like"
+        within "#tweet_#{@t.id}" do
+          click_button "Like"
+        end
+
         page.current_path.should == zombie_path(@ash)
         t = Tweet.find(t_id)
         t.rating.should == 1
@@ -152,8 +159,8 @@ describe "Zombies" do
     it "should edit the zombie" do
       # Given that I'm on the show page for a zombie named "Ash"
       visit zombie_path(@zombie)
-      
-      # When I click the "edit" button 
+
+      # When I click the "edit" button
       page.should have_link "Edit", href: edit_zombie_path(@zombie)
       click_link "Edit"
 
@@ -222,7 +229,7 @@ describe "Zombies" do
       #Given I'm on the show page for a zombie
       visit zombie_path(@zombie)
 
-      #When I fill in the tweet and click save 
+      #When I fill in the tweet and click save
       fill_in "tweet_message", with: "Hello, World!"
 
       #When I fill in the tweet and click save

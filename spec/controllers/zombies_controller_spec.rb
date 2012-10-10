@@ -58,15 +58,19 @@ describe ZombiesController do
     end
     
     it "should display a list of the zombie's tweets" do
-      get :show, :id=>@ash
-      response.body.should have_selector("span.message", :content => @tweet1.message)
-      response.body.should have_selector("span.message", :content => @tweet2.message)
+      visit zombie_path(@ash)
+      within "#zombie_tweets" do
+        page.should have_content @tweet1.message 
+        page.should have_content @tweet2.message
+      end
     end
     
-    it "should display the timestamp with the tweet message" do
-      get :show, :id => @ash
-      response.body.should have_selector("span.timestamp", :content => @tweet1.created_at.to_s)
-    end
+    it "should display the timestamp with the tweet message"
+    #  visit zombie_path(@ash)
+    #  within "#zombie_tweets" do
+    #    page.should have_content @tweet1.created_at.strftime("%B %e, %Y")
+    #  end
+    #end
     
   end
 

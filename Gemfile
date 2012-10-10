@@ -8,7 +8,7 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'devise'
 gem 'therubyracer'
-gem 'hydra-head', '5.0.0.pre4'
+gem 'active-fedora'
 gem 'jettywrapper'
 
 gem 'execjs'

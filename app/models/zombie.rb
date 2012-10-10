@@ -11,8 +11,8 @@ class Zombie < ActiveFedora::Base
   # 		:hit_points, :description, :active, :wins, :losses, :creator_id, :weapon, :avatar
   # audited
 
-  delegate_to :eac_cpf, [:name, :nickname,  :date_of_birth, :date_of_death, :date_of_undeath]
-  delegate_to :simple, [:graveyard, :hit_points, :description, :active, :level, :wins, :losses, :weapon]
+  delegate_to :eac_cpf, [:name, :nickname,  :date_of_birth, :date_of_death, :date_of_undeath], :unique=>true
+  delegate_to :simple, [:graveyard, :hit_points, :description, :active, :level, :wins, :losses, :weapon], :unique=>true
 
   has_metadata :name=>'simple', :type=>ActiveFedora::SimpleDatastream do |m|
     m.field 'graveyard', :string
@@ -48,8 +48,8 @@ class Zombie < ActiveFedora::Base
   # has_attached_file :avatar, :styles => { medium: "300x300>", thumb: "100x100>" }, :default_url => '/assets/missing_:style.png'
 
   def init
-    self.hit_points ||= 100
-    self.level ||= 1
+    self.hit_points ||= 100.to_s
+    self.level ||= 1.to_s
   end
 end
 

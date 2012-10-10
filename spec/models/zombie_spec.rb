@@ -79,6 +79,7 @@ describe Zombie do
     subject.level.should == 1
   end
   it "should validate that the name is unique" do
+    pending "No way to validate uniqueness in AF"
     subject.weapon = 'axe'
     subject.name = 'Ash'
     subject.save!

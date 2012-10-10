@@ -16,7 +16,8 @@ class ZombiesController < ApplicationController
   end
 
   def index
-    @zombies = Zombie.order(:name)
+    #@zombies = Zombie.order(:name)
+    @zombies = Zombie.all(:sort=>'name_sort asc')
   end
 
   def show

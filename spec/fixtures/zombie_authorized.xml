@@ -1,0 +1,53 @@
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">  
+   <control>
+    <recordId>archzom:303</recordId>
+    <otherRecordId localType="url">http://archivingzombies.org/hydracamp:303</otherRecordId>
+    <mainteanceHistory>
+      <maintenanceEvent>
+        <agent>williambutler@yeats.com</agent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2012-05-24">2012-05-24</eventDateTime>
+        <eventDescription>Record Created</eventDescription>
+      </maintenanceEvent>
+    </mainteanceHistory>
+    <maintenanceAgency>
+      <agencyCode>ARCH+ZOM</agencyCode>
+      <agencyName>Archive of Zombie Activities</agencyName>
+    </maintenanceAgency>
+  </control>
+  <cpfDescription>
+    <places>
+      <place localType="graveyard">
+        <placeEntry>Creepy Hallow</placeEntry>
+      </place>
+    </places>
+    <identity>
+      <nameEntry>
+        <part>Cadell, Thomas</part>
+      </nameEntry>
+      <nameEntryParallel>
+	<part>GRRAH</part>
+      </nameEntryParallel>
+    </identity>
+    <description>
+      <existDates>
+        <dateRange localType="life">
+          <fromDate>1742-11-12</fromDate>
+          <toDate>1802-12-27</toDate>
+        </dateRange>
+        <dateRange localType="undeath">
+          <fromDate>1802-12-31</fromDate>
+          <toDate></toDate>
+        </dateRange>
+      </existDates>
+      <biogHist localType="life">
+       <abstract>Biographic info from Life...</abstract>    
+      </biogHist>
+      <biogHist localType="undeath">
+       <abstract>Biographic info from Undeath...</abstract>    
+      </biogHist>
+    </description>
+  </cpfDescription>
+
+</eac-cpf>
+

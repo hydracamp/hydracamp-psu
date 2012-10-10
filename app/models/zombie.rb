@@ -39,8 +39,8 @@ class Zombie < ActiveFedora::Base
   validates :losses, :presence=>true
   validates :weapon, :presence=>true
 
-  has_many :tweets, :dependent => :destroy, :property=> 'created_by'
-  belongs_to :creator, :class_name=>'Zombie', :property=> 'child_of'
+  has_many :tweets, :dependent => :destroy, :property=> :created_by
+ # belongs_to :creator, :class_name=>'Zombie', :property=> :child_of
 
   after_initialize :init
 

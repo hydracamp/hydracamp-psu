@@ -41,8 +41,8 @@ describe ZombiesController do
   describe "#show" do
     before do
       @ash = Zombie.create(:name=>'Ash',:weapon=>"hatchet")
-      @tweet1 = Tweet.create(:message => "blah blah blah", :zombie=>@ash)
-      @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie=>@ash)
+      @tweet1 = Tweet.create(:message => "blah blah blah", :zombie_id=>@ash.pid)
+      @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie_id=>@ash.pid)
     end
 
     it "should be successful" do
@@ -59,6 +59,7 @@ describe ZombiesController do
     
     it "should display a list of the zombie's tweets" do
       visit zombie_path(@ash)
+        save_and_open_page
       within "#zombie_tweets" do
         page.should have_content @tweet1.message 
         page.should have_content @tweet2.message

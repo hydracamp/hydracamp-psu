@@ -49,14 +49,14 @@
 </p>
 
     <div class="zombieCreateRow">
-      <%= f.label :avatar %>
-      <div class="field">
-        <% if @zombie.avatar? %>
-            <%= image_tag @zombie.avatar.url(:thumb) %>
-        <% end %>
-        <%= f.file_field :avatar %>
-        <span class="label label-important">JPG, GIF, or PNG (less than 2MB)</span>
-      </div>
+      <%# <%= f.label :avatar 
+      <%# <div class="field">
+      <%#   <% if @zombie.avatar? 
+      <%#       <%= image_tag @zombie.avatar.url(:thumb) 
+      <%#   <% end 
+      <%#   <%= f.file_field :avatar 
+      <%#   <span class="label label-important">JPG, GIF, or PNG (less than 2MB)</span>
+      <%# </div>
     </div>
 
   <p><%=f.submit %></p>

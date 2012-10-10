@@ -34,15 +34,15 @@ describe ZombiesController do
     it "should display a list of all the zombies" do
       get :index
       response.should be_successful
-      assigns[:zombies].should == [@zombie1, @zombie2]
+      assigns[:zombies].should include(@zombie1, @zombie2)
     end
   end
 
   describe "#show" do
     before do
       @ash = Zombie.create(:name=>'Ash',:weapon=>"hatchet")
-      @tweet1 = @ash.tweets.create(:message => "blah blah blah")
-      @tweet2 = @ash.tweets.create(:message => "I brake for brains!")
+      @tweet1 = Tweet.create(:message => "blah blah blah", :zombie_id=>@ash.pid)
+      @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie_id=>@ash.pid)
     end
 
     it "should be successful" do
@@ -59,6 +59,7 @@ describe ZombiesController do
     
     it "should display a list of the zombie's tweets" do
       visit zombie_path(@ash)
+        save_and_open_page
       within "#zombie_tweets" do
         page.should have_content @tweet1.message 
         page.should have_content @tweet2.message
@@ -92,7 +93,8 @@ describe ZombiesController do
     it "should update the zombie" do
       put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge", :nickname=>"Hruuungh"}
       response.should redirect_to edit_zombie_path(@ash)
-      @ash.reload.name.should == 'David'
+      @ash = Zombie.find(@ash.pid)
+      @ash.name.should == 'David'
       @ash.graveyard.should == "River's Edge"
       @ash.nickname.should == "Hruuungh"
       flash[:notice].should match /Zombie saved at \d\d:\d\d/

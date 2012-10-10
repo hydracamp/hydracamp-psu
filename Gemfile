@@ -8,6 +8,8 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'devise'
 gem 'therubyracer'
+gem 'active-fedora'
+gem 'jettywrapper'
 
 gem 'execjs'
 
@@ -19,6 +21,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem "equivalent-xml"
 end
 
 # Visual design tools

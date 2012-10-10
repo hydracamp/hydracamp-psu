@@ -15,7 +15,7 @@
   <tbody>
     <tr>
       <td>Avatar</td>
-      <td><%= image_tag @zombie.avatar.url(:medium) %></td>
+      <td><%#= image_tag @zombie.avatar.url(:medium) %></td>
     </tr>
     <tr>
       <td>Level</td>
@@ -35,7 +35,7 @@
     </tr>
     <tr>
       <td>Active</td>
-      <td><%= @zombie.active? ? 'Yes' : 'No' %></td>
+      <td><%= @zombie.active.== 'true' ? 'Yes' : 'No' %></td>
     </tr>
     <tr>
       <td>Description</td>

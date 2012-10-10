@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td>Date of death</td>
-      <td><%= @zombie.date_of_death.blank? ? '-' : @zombie.date_of_death.strftime("%B %e, %Y") %></td>
+      <td><%= @zombie.date_of_death.blank? ? '-' : @zombie.date_of_death %></td>
     </tr>
     <tr>
       <td>Active</td>
@@ -54,7 +54,7 @@
   <tbody>
   <% @zombie.tweets.each do |tweet| %>
     <tr id="tweet_<%= tweet.id %>">
-      <td class="message"><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
+      <td class="message"><%= tweet.message %> (<%= tweet.created_at %>)</td>
       <td class="like_count"><%= tweet.rating %></td>
       <td class="like_update">
         <%= form_for tweet do |f| %>

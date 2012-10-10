@@ -41,6 +41,7 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
+      Zombie.find_each({}, :rows=>1000) { |c| c.delete }
       #@ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'))
       @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>'August 9, 2012')
       @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
@@ -141,7 +142,7 @@ describe "Zombies" do
       end
 
       it "should increment the rating after clicking like button" do
-        @t.rating.should == 0
+        @t.rating.should == "0"
         t_id = @t.id
         visit zombie_path(@ash)
         within "#tweet_#{@t.id}" do
@@ -150,7 +151,7 @@ describe "Zombies" do
 
         page.current_path.should == zombie_path(@ash)
         t = Tweet.find(t_id)
-        t.rating.should == 1
+        t.rating.should == "1"
       end
     end
   end
@@ -172,7 +173,7 @@ describe "Zombies" do
       fill_in "Graveyard", :with=>"Cedarville Cemetary"
       fill_in "Nickname", :with=>"Hruuungh"
       fill_in "Description", :with=>"The zombie smells bad"
-      attach_file "Avatar", 'test/fixtures/zombie.jpg'
+      #attach_file "Avatar", 'test/fixtures/zombie.jpg'
       fill_in "Weapon", :with => 'Axe'
 
       # When I click "Update Zombie"

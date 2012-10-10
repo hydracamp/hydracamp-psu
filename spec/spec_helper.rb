@@ -35,4 +35,17 @@ RSpec.configure do |config|
   
   # Devise helper
   config.include Devise::TestHelpers, :type => :controller
+
+    config.before(:suite) do
+    ## Clean out the repository
+      begin
+        Tweet.find_each({}, :rows=>1000) { |c| c.delete }
+        Zombie.find_each({}, :rows=>1000) { |c| c.delete }
+      rescue ActiveFedora::ObjectNotFoundError => e
+        puts "Index is out of synch with repository. #{e.message}"
+        puts "Aborting repository cleanup"
+        #nop - index is out of synch with repository. Try solrizing
+      end
+  end
+
 end

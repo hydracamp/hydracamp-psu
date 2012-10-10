@@ -2,6 +2,10 @@
   <div id="avatar" class="span4">[ AVATAR ]</div>
   <div id="overview" class="offset1 span6">
     <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
+    <div class="btn-group">
+      <button class="btn"><%= link_to 'Edit', edit_zombie_path(@zombie) %></button>
+      <button class="btn"><%= link_to 'History', zombie_history_path(@zombie) %></button>
+    </div>
     <p>
     <% if @zombie.description.present? %>
       <%= @zombie.description %>
@@ -37,15 +41,8 @@
       <td>Active</td>
       <td><%= @zombie.active.== 'true' ? 'Yes' : 'No' %></td>
     </tr>
-    <tr>
-      <td>Description</td>
-      <td><%= @zombie.description %></td>
-    </tr>
   </tbody>
 </table>
-<%= link_to "edit", edit_zombie_path(@zombie) %>
-<%= link_to "history", zombie_history_path(@zombie) %>
-
 
 <h2 id="tweets">Tweets (<%= @zombie.tweets.count %>)</h2>
 <%= form_for @tweet do |f| %>

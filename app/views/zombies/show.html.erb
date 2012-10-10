@@ -1,5 +1,16 @@
-
-<h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
+<div id="preview" class="span12">
+  <div id="avatar" class="span4">[ AVATAR ]</div>
+  <div id="overview" class="offset1 span6">
+    <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
+    <p>
+    <% if @zombie.description.present? %>
+      <%= @zombie.description %>
+    <% else %>
+      <em>No description provided</em>
+    <% end %>
+    </p>
+  </div>
+</div>
 <table class="table table-striped" id="zombie_details">
   <tbody>
     <tr>

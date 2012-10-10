@@ -41,5 +41,10 @@
         </dateRange>
       </existDates>
     </description>
+    <relations>
+      <resourceRelation resourceRelationType="wielderOf">
+        <relationEntry></relationEntry>
+      </resourceRelation>
+    </relations>
   </cpfDescription>
 </eac-cpf>

@@ -1,3 +1,32 @@
+<h1>Show Zombie</h1>
+<dl id="zombie_details">
+  <dt>Name:</dt>
+  <dd><%= @zombie.name %></dd>
+  <dt>Level:</dd>
+  <dd>level <%= @zombie.level %></dd>
+  <dt>Graveyard:</dt>
+  <dd><%= @zombie.graveyard %></dd>
+  <dt>Description:</dt>
+  <dd><%= @zombie.description %></dd>
+  <dt>Nickname:</dt>
+  <dd><%= @zombie.nickname %></dd>
+  <% if @zombie.date_of_birth != nil%>
+  <dt>Date of Birth:</dt>
+  <dd><%= @zombie.date_of_birth.strftime("%B %e, %Y") %></dd>
+  <% end %>
+  <% if @zombie.date_of_death != nil%>
+  <dt>Date of Death:</dt>
+  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
+  <% end %>
+  <% if @zombie.date_of_undeath != nil%>
+  <dt>Date of Undeath:</dt>
+  <dd><%= @zombie.date_of_undeath.strftime("%B %e, %Y") %></dd>
+  <% end %>
+  <dt>Active:</dt>
+  <dd><%= @zombie.active.to_s %></dd>
+  <dt>Number of Tweets:</dt>
+  <dd><%= @zombie.tweets.count %></dd>
+</dl>
 
 <h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
 <table class="table table-striped" id="zombie_details">
@@ -43,12 +72,27 @@
   <%= f.submit "Add Tweet" %>
 <% end %>
 
-<table class="table table-striped">
-  <% @zombie.tweets.each do |tweet| %>
+<table class="table table-striped" id="zombie_tweets">
+  <thead>
     <tr>
-      <td><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
+      <td>&nbsp;</td>
+      <td>Rating</td>
+      <td>&nbsp;</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @zombie.tweets.each do |tweet| %>
+    <tr id="tweet_<%= tweet.id %>">
+      <td class="message"><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
+      <td class="like_count"><%= tweet.rating %></td>
+      <td class="like_update">
+        <%= form_for tweet do |f| %>
+          <%= hidden_field_tag 'id', tweet.id %>
+          <%= f.submit 'Like' %>
+        <% end %>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 

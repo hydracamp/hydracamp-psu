@@ -1,0 +1,56 @@
+<eac-cpf xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+    <control>
+        <recordId>archzom:303</recordId>
+        <otherRecordId>http://archivingzombies.org/archzom:303</otherRecordId>
+        <maintenanceHistory>
+            <maintenanceEvent>
+                <eventType>created</eventType>
+                <eventDateTime>2012-05-24</eventDateTime>
+                <agentType>archivist</agentType>
+                <agent>W.B. Yeats</agent>
+            </maintenanceEvent>
+        </maintenanceHistory>
+        <maintenanceAgency>
+            <agencyCode>ARCH+ZOM</agencyCode>
+            <agencyName>Archive of Zombie Activities</agencyName>
+        </maintenanceAgency>
+    </control>
+    <cpfDescription>
+        <identity>
+            <entityType>zombie</entityType>
+            <nameEntry>
+                <part>Thomas Cadell</part>
+            </nameEntry>
+            <nameEntry>
+                <part>GRRAH</part>
+            </nameEntry>
+        </identity>
+        <description>
+            <existDates>
+                <dateRange>
+                    <fromDate>1742-11-12</fromDate>
+                    <toDate>1802-12-27</toDate>
+                </dateRange>
+            </existDates>
+            <places>
+                <place>
+                    <placeRole>graveyard</placeRole>
+                    <placeEntry>Creepy Hollow</placeEntry>
+                    <dateRange>
+                        <fromDate>1802-12-27</fromDate>
+                        <toDate>1802-12-31</toDate>
+                    </dateRange>
+                </place>
+            </places>
+            <localDescription localType="weapon">
+                <term>Chainsaw</term>
+            </localDescription>
+            <biogHist>
+                <abstract>Biographic info from life</abstract>
+            </biogHist>
+            <biogHist>
+                <abstract>Biographic info from undeath</abstract>
+            </biogHist>
+        </description>
+    </cpfDescription>
+</eac-cpf>

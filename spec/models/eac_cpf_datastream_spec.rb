@@ -6,13 +6,13 @@ describe ZombieEacCpf do
        @datastream = ZombieEacCpf.new(nil,'EAC-CPF')
      end
      it "should have name" do
-       test_attribute_xpath(@datastream, 'name', 'cpfDescription/oxns:identity/oxns:nameEntry/oxns:part')
+       test_attribute_xpath(@datastream, 'name', '//oxns:cpfDescription/oxns:identity/oxns:nameEntry/oxns:part')
      end
      it "should have graveyard" do
-       test_attribute_xpath(@datastream, 'graveyard', "cpfDescription/places/place[localType='graveyard']/placeEntry")
+       test_attribute_xpath(@datastream, 'graveyard', "//oxns:cpfDescription/oxns:places/oxns:place[@localType='graveyard']/oxns:placeEntry")
      end
      it "should have nickname" do
-       test_attribute_xpath(@datastream, 'nickname', 'cpfDescription/identity/nameEntryParallel')
+       test_attribute_xpath(@datastream, 'nickname', "//oxns:cpfDescription/oxns:identity/oxns:nameEntryParallel/oxns:part")
      end
      #it "should have wins" do
      #  test_attribute_xpath(@datastream, 'wins', '/eac-cpf/cpfDescription/wins')
@@ -21,16 +21,16 @@ describe ZombieEacCpf do
      #  test_attribute_xpath(@datastream, 'losses', '/eac-cpf/cpfDescription/losses')
      #end
      it "should have weapon" do
-       test_attribute_xpath(@datastream, 'weapon', '/eac-cpf/cpfDescription/weapon')
+       test_attribute_xpath(@datastream, 'weapon', '//oxns:cpfDescription/oxns:relations/oxns:resourceRelation[@resourceRelationType="wielderOf"]/oxns:relationEntry')
      end
      it "should have date_of_birth" do
-       test_attribute_xpath(@datastream, 'date_of_birth', '/eac-cpf/cpfDescription/date_of_birth')
+       test_attribute_xpath(@datastream, 'date_of_birth', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:fromDate")
      end
      it "should have date_of_death" do
-       test_attribute_xpath(@datastream, 'date_of_death', '/eac-cpf/cpfDescription/date_of_death')
+       test_attribute_xpath(@datastream, 'date_of_death', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:toDate")
      end
      it "should have date_of_undeath" do
-       test_attribute_xpath(@datastream, 'date_of_undeath', '/eac-cpf/cpfDescription/date_of_undeath')
+       test_attribute_xpath(@datastream, 'date_of_undeath', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='undeath']/oxns:fromDate")
      end
    end
    describe "with existing datastream" do

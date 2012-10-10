@@ -16,6 +16,7 @@
 :predicate_mapping:
   info:zombies#: 
     :created_by: createdBy
+    :child_of: childOf
   info:fedora/fedora-system:def/relations-external#: 
     :conforms_to: conformsTo
     :has_annotation: hasAnnotation

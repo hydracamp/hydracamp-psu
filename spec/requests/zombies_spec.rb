@@ -185,7 +185,7 @@ describe "Zombies" do
       page.should have_selector "input[value='David']"
       page.should have_selector "input[value='Cedarville Cemetary']"
       page.should have_selector "input[value='Hruuungh']"
-      page.should have_selector "input[value='The zombie smells bad']"
+      page.should have_selector "textarea", text: "The zombie smells bad"
       #page.should have_selector "img[alt='Zombie']"
 
       # And I should see a message that says "page saved at <current time>"
@@ -220,7 +220,7 @@ describe "Zombies" do
         #Given that I am on the edit page for a zombie named "Ash"
         visit edit_zombie_path(@zombie)
         # Then I should be able to edit the zombies creator
-        #select 'Sarah', :from => 'Creator'
+        select 'Sarah', :from => 'Creator'
         click_button "Update Zombie"
         page.has_select?('zombie_creator_id', :selected => "Sarah").should == true
         #page.should have_css  'div.creator :option, :value => 'Sarah'
@@ -303,4 +303,5 @@ describe "Zombies" do
       page.should have_content "create"
     end
   end
+end
 end

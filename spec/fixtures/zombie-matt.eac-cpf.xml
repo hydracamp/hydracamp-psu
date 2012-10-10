@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+  <control>
+    <!-- BEGIN auto-generate from pid -->
+    <recordId>archzom:303</recordId>
+    <otherRecordId localType="url">http://archivingzombies.org/hydracamp:303</otherRecordId>
+    <!-- END auto-generate from pid -->
+    <!-- BEGIN auto-generate from template -->
+    <maintenanceStatus>new</maintenanceStatus>
+    <maintenanceAgency>
+      <agencyCode>ARCH+ZOM</agencyCode>
+      <agencyName>Archive of Zombie Activities</agencyName>
+    </maintenanceAgency>
+    <languageDeclaration>
+      <language languageCode="eng">English</language>
+      <script scriptCode="Latn">Latin</script>
+    </languageDeclaration>
+    <!-- END auto-generate from template -->
+    <maintenanceHistory>
+      <maintenanceEvent>
+        <eventType>created</eventType>
+        <eventDateTime standardDateTime="2012-05-24"> 2012 May 24</eventDateTime>
+        <agentType>human</agentType>
+        <agent>W.B. Yeats</agent>
+      </maintenanceEvent>
+    </maintenanceHistory>
+    <sources>
+      <!-- no sources supported -->
+    </sources>
+  </control>
+  <cpfDescription>
+    <identity>
+      <entityType>person</entityType>
+      <nameEntry scriptCode="Latn" xml:lang="eng" localType="directOrder">
+        <part>Thomas Cadell</part>
+      </nameEntry>
+      <!-- how do do nicknames? -->
+    </identity>
+    <description>
+      <existDates>
+        <!-- dateRange of Life -->
+        <dateRange localType="living">
+          <fromDate standardDate="1742-11-12">1742 November 12</fromDate>
+          <toDate standardDate="1802-12-27">1802 December 27</toDate>
+        </dateRange>
+        <!-- Date of undeath -->
+        <dateRange localType="undead">
+          <fromDate standardDate="1802-12-31">1802 December 31</fromDate>
+        </dateRange>
+      </existDates>
+      <places>
+        <place>
+          <placeRole>birth</placeRole>
+          <placeEntry vocabularySource="lcsh">Bristol (England)</placeEntry>
+          <date standardDate="1742">1742</date>
+        </place>
+        <place>
+          <placeRole>interrment</placeRole>
+          <placeEntry vocabularySource="lcsh">Creepy Hollow</placeEntry>
+        </place>
+      </places>
+      <localDescription localType="sex">
+        <term>male</term>
+      </localDescription>
+      <languageUsed>
+        <language languageCode="eng">English</language>
+        <script scriptCode="Latn">Latin</script>
+      </languageUsed>
+      <occupations>
+        <!-- no occupations supported -->
+      </occupations>
+      <biogHist localType="living">
+        <p>Highlights of Life:</p>
+        <abstract>Biographic info from Life...</abstract>
+        <chronList>
+          <chronItem>
+            <date standardDate="1742-11-12">1742 November 12</date>
+            <event>Born.</event>
+          </chronItem>
+          <chronItem>
+            <date standardDate="1802-12-27">1802 December 27</date>
+            <event>Died.</event>
+          </chronItem>
+        </chronList>
+      </biogHist>
+      <biogHist localType="undead">
+        <p>Highlights of Cadell's undeath:</p>
+        <abstract>Biographic info from Undeath...</abstract>
+        <chronList>
+          <chronItem>
+            <date standardDate="1802-12-31">1802 December 31</date>
+            <event>Became a zombie.</event>
+          </chronItem>
+        </chronList>
+      </biogHist>
+    </description>
+    <relations>
+      <resourceRelation resourceRelationType="wielderOf">
+        <relationEntry>Chainsaw</relationEntry>
+      </resourceRelation>
+      <!-- no other relations supported -->
+      <!-- COULD represent tweets as resourceRelations, but would be a hassle to uniquely identify them.  Better to have separate objects with RELS-EXT relationships. -->
+    </relations>
+  </cpfDescription>
+</eac-cpf>

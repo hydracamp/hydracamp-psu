@@ -52,7 +52,7 @@ class CatalogController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the 
     # facet bar
     config.add_facet_field 'date_of_death_t', :label => 'Date of Death'
-    config.add_facet_field 'eac-cpf_0_graveyard_t', :label => 'Grave Yard'
+    config.add_facet_field 'graveyard_facet', :label => 'Grave Yard'
     config.add_facet_field 'subject_topic_facet', :label => 'Topic', :limit => 20 
     config.add_facet_field 'language_facet', :label => 'Language', :limit => true 
     config.add_facet_field 'lc_1letter_facet', :label => 'Call Number' 

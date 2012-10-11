@@ -10,6 +10,7 @@ gem 'devise'
 gem 'therubyracer'
 gem 'active-fedora'
 gem 'execjs'
+gem 'blacklight', '3.7.1'
 
 gem 'paperclip', '3.3.0'
 gem "audited-activerecord", "~> 3.0"
@@ -52,6 +53,9 @@ gem 'unicorn'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
 
 gem 'paranoia'
+
+gem "compass-rails", "~> 1.0.0", :group => :assets
+gem "compass-susy-plugin", "~> 0.9.0", :group => :assets

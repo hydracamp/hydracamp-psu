@@ -3,9 +3,6 @@
 	  <li><%= link_to 'Tweets', tweets_path %>
   <li><%= link_to 'Instructional Video', 'http://www.youtube.com/watch?v=0UqEhUm2B_8', {:target => "_blank" } %>
   <li class="pull-right">
-    <%= form_tag(search_zombies_path, :method => "get", :class => 'form-inline') do %>
-    <%= text_field_tag(:q, nil, :placeholder => 'Find a zombie...') %>
-    <%= submit_tag("Search Zombies", :class => 'btn') %>
+  <%= render :partial => '/catalog/search_form' %>
   </li>
-  <% end %>
 </ul>

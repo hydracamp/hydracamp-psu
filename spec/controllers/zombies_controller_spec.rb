@@ -18,17 +18,22 @@ describe ZombiesController do
   end
 
   describe "#create" do
+
     before do
       @count = Zombie.count
     end
+
     it "should create a zombie" do
-
       post :create, :zombie=>{:name=>"Ash", :graveyard=>"Sleepy Hollow", :nickname=>"Hruuungh", :weapon=>"axe"}
-
       response.should redirect_to zombies_path
       Zombie.count.should == @count + 1
       flash[:notice].should == "Added Zombie"
     end
+
+    it "should render edit page with flash notice if validations fail" do
+      pending "TODO"
+    end
+
   end
 
   describe "#index" do
@@ -102,6 +107,10 @@ describe ZombiesController do
       @ash.graveyard.should == "River's Edge"
       @ash.nickname.should == "Hruuungh"
       flash[:notice].should match /Zombie saved at \d\d:\d\d/
+    end
+
+    it "should render edit page with flash notice if validations fail" do
+      pending "TODO"
     end
 
   end

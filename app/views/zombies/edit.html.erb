@@ -11,7 +11,7 @@
   <%=f.date_select :date_of_death %>
   <%=f.date_select :date_of_undeath %>
     
-  <%= f.select(:creator_id, 'Creator', options_for_select(["",""]+ @zombies, @zombie.creator_id)) %>
+  <%= f.select(:creator_id, 'Creator', options_for_select(["",""]+ @zombie.creator_candidates, @zombie.creator_id)) %>
 
   <%=f.text_field :weapon %>
   <%= f.submit %>

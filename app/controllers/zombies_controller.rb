@@ -1,4 +1,5 @@
 class ZombiesController < ApplicationController
+
   def new
     @zombie = Zombie.new
   end
@@ -12,9 +13,13 @@ class ZombiesController < ApplicationController
     params[:zombie].delete(:avatar)
     @zombie = Zombie.create(params[:zombie])
     #@zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
-    @zombie.save!
-    current_archivist.inc_points 50
-    redirect_to zombies_path, :notice=>"Added Zombie"
+    if @zombie.save
+      current_archivist.inc_points 50
+      redirect_to zombies_path, :notice=>"Added Zombie"
+    else
+      flash[:notice] = @zombie.errors.full_messages.join(".<br/>").html_safe
+      render :new
+    end
   end
 
   def index
@@ -35,15 +40,19 @@ class ZombiesController < ApplicationController
 
   def edit
     @zombie = Zombie.find(params[:id])
-    @zombies = Zombie.find(:all,:sort=>"name_sort desc").reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}
   end
 
   def update
     @zombie = Zombie.find(params[:id])
     @zombie.update_attributes(params[:zombie])
     @zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
-    @zombie.save!
-    redirect_to edit_zombie_path(@zombie), :notice=>"Zombie saved at #{Time.now.strftime("%H:%M")}"
+    if @zombie.save
+      msg = "Zombie saved at #{Time.now.strftime("%H:%M")}"
+      redirect_to edit_zombie_path(@zombie), :notice => msg
+    else
+      flash[:notice] = @zombie.errors.full_messages.join(".<br/>").html_safe
+      render :edit
+    end
   end
 
   # def search

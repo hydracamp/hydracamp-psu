@@ -76,6 +76,11 @@ class Zombie < ActiveFedora::Base
   	 cast_to_integer_unless_blank_from_om('ZombieCrap',:level)
   end
 
+  def creator_candidates
+    zs = Zombie.find(:all, :sort=>"name_sort desc")
+    return zs.reject{ |z| z == self}.map{ |z| [ z.name, z.id ]}
+  end
+
   validates :name, :presence=>true
   validates_with NicknameValidator
   #validates_with UniquenessValidator

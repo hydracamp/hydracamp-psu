@@ -1,0 +1,5 @@
+<p>
+  <%= link_to @tweet.zombie.name, zombie_path(@tweet.zombie.id) %>:
+  <%= @tweet.message %>
+  (<%= link_to "delete", tweet_path(@tweet), :method => :delete %>)
+</p>

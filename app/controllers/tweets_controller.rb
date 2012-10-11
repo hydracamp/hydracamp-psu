@@ -32,5 +32,17 @@ class TweetsController < ApplicationController
     end
     redirect_to tweets_path, :notice=>"The Tweet is gone, or is it..."
   end
+
+  def show
+    @tweet = Tweet.find(params[:id])
+    @zombie = @tweet.zombie
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @tweet }
+      format.xml  { render xml: @tweet }
+    end
+  end
+
   
 end

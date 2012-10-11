@@ -24,7 +24,7 @@ class CatalogController < ApplicationController
     #}
 
     # solr field configuration for search results/index views
-    config.index.show_link = 'title_display'
+    config.index.show_link = 'name_t'
     config.index.record_display_type = 'format'
 
     # solr field configuration for document/show views

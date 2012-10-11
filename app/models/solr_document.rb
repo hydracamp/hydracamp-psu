@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class SolrDocument 
-
+  include Rails.application.routes.url_helpers
   include Blacklight::Solr::Document
 
   # self.unique_key = 'id'
@@ -30,4 +30,15 @@ class SolrDocument
                          :language => "language_facet",
                          :format => "format"
                          )
+
+  def path
+    case get('active_fedora_model_s')
+    when 'Zombie' 
+      zombie_path get('id')
+    when 'Tweet' 
+      tweet_path get('id')
+    else
+      "#"
+    end
+  end
 end

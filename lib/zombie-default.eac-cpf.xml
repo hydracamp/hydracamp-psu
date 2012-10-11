@@ -2,14 +2,14 @@
    <control>
     <recordId>DO_NOT_USE</recordId>
     <otherRecordId localType="url"></otherRecordId>
-    <mainteanceHistory>
+    <maintenanceHistory>
       <maintenanceEvent>
         <agent></agent>
         <eventType>created</eventType>
         <eventDateTime standardDateTime=""></eventDateTime>
         <eventDescription>Record created</eventDescription>
       </maintenanceEvent>
-    </mainteanceHistory>
+    </maintenanceHistory>
     <maintenanceAgency>
       <agencyCode>SZAA</agencyCode>
       <agencyName>Society of Zombie Achivists America</agencyName>
@@ -40,6 +40,12 @@
           <toDate></toDate>
         </dateRange>
       </existDates>
+      <biogHist localType="life">
+       <abstract></abstract>    
+      </biogHist>
+      <biogHist localType="undeath">
+       <abstract></abstract>    
+      </biogHist>
     </description>
     <relations>
       <resourceRelation resourceRelationType="wielderOf">

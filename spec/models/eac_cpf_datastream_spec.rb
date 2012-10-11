@@ -8,6 +8,9 @@ describe ZombieEacCpf do
      it "should have name" do
        test_attribute_xpath(@datastream, 'name', '//oxns:cpfDescription/oxns:identity/oxns:nameEntry/oxns:part')
      end
+     it "should have creator" do
+       test_attribute_xpath(@datastream, 'creator', '//oxns:control/oxns:maintenanceHistory/oxns:maintenanceEvent/oxns:agent')
+     end
      it "should have graveyard" do
        test_attribute_xpath(@datastream, 'graveyard', "//oxns:cpfDescription/oxns:places/oxns:place[@localType='graveyard']/oxns:placeEntry")
      end
@@ -20,6 +23,12 @@ describe ZombieEacCpf do
      #it "should have losses" do
      #  test_attribute_xpath(@datastream, 'losses', '/eac-cpf/cpfDescription/losses')
      #end
+     it "should have description_of_life" do
+       test_attribute_xpath(@datastream, 'description_of_life', "//oxns:cpfDescription/oxns:description/oxns:biogHist[@localType='life']/oxns:abstract")
+     end
+     it "should have description_of_undeath" do
+       test_attribute_xpath(@datastream, 'description_of_undeath', "//oxns:cpfDescription/oxns:description/oxns:biogHist[@localType='undeath']/oxns:abstract")
+     end
      it "should have weapon" do
        test_attribute_xpath(@datastream, 'weapon', '//oxns:cpfDescription/oxns:relations/oxns:resourceRelation[@resourceRelationType="wielderOf"]/oxns:relationEntry')
      end
@@ -41,6 +50,9 @@ describe ZombieEacCpf do
      it "should have name" do
        test_existing_attribute(@datastream, 'name', 'Cadell, Thomas')
      end
+     it "should have creator" do
+       test_existing_attribute(@datastream, 'creator', 'williambutler@yeats.com')
+     end
      it "should have graveyard" do
        test_existing_attribute(@datastream, 'graveyard', 'Creepy Hallow')
      end
@@ -53,6 +65,12 @@ describe ZombieEacCpf do
      #it "should have losses" do
      #  test_existing_attribute(@datastream, 'losses', 'losses')
      #end
+     it "should have description_of_life" do
+       test_existing_attribute(@datastream, 'description_of_life', 'Biographic info from Life...')
+     end
+     it "should have description_of_undeath" do
+       test_existing_attribute(@datastream, 'description_of_undeath', 'Biographic info from Undeath...')
+     end
      it "should have weapon" do
        test_existing_attribute(@datastream, 'weapon', 'Chainsaw')
      end

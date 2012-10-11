@@ -2,14 +2,14 @@
    <control>
     <recordId>archzom:303</recordId>
     <otherRecordId localType="url">http://archivingzombies.org/hydracamp:303</otherRecordId>
-    <mainteanceHistory>
+    <maintenanceHistory>
       <maintenanceEvent>
         <agent>williambutler@yeats.com</agent>
         <eventType>created</eventType>
         <eventDateTime standardDateTime="2012-05-24">2012-05-24</eventDateTime>
         <eventDescription>Record Created</eventDescription>
       </maintenanceEvent>
-    </mainteanceHistory>
+    </maintenanceHistory>
     <maintenanceAgency>
       <agencyCode>ARCH+ZOM</agencyCode>
       <agencyName>Archive of Zombie Activities</agencyName>

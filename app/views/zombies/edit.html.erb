@@ -1,51 +1,20 @@
 <h1>Edit Zombie</h1>
 
-<%= form_for @zombie do |f| %>
-  <p>
-    <%=f.label :name %>
+<%= twitter_bootstrap_form_for @zombie do |f| %>
     <%=f.text_field :name %>
-  </p>
-  <p>
-    <%=f.label :graveyard %>
     <%=f.text_field :graveyard %>
-  </p>
-  <p>
-    <%=f.label :nickname %>
     <%=f.text_field :nickname %>
     <span id="nickname_error" class="error">Nicknames can only contain these characters: a g h n r o u !</span>
-  </p>
-  <p>
-    <%=f.label :description %>
+
     <%=f.text_field :description %>
-  </p>
-<p>
-  <%=f.label :date_of_birth %>
   <%=f.date_select :date_of_birth, :start_year => 1500 %>
-</p>
-<p>
-  <%=f.label :date_of_death %>
   <%=f.date_select :date_of_death %>
-</p>
-<p>
-  <%=f.label :date_of_undeath %>
   <%=f.date_select :date_of_undeath %>
-</p>
+    
+  <%= f.select(:creator_id, 'Creator', options_for_select(["",""]+ @zombies, @zombie.creator_id)) %>
 
-  <p>
-    <%=f.label :creator_id %>
-    <%=f.select(:creator_id, options_for_select(["",""]+ @zombies, @zombie.creator_id)) %>
-  </p>
-
-
-
- <p>
-
-  <%=f.label :weapon %>
   <%=f.text_field :weapon %>
-</p>
-
-  <p><%=f.submit %></p>
-
+  <%= f.submit %>
 <% end %>
 
 <p><%=link_to "View Zombie", zombie_path(@zombie)%></p>

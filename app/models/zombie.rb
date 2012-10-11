@@ -27,7 +27,7 @@ class Zombie < ActiveFedora::Base
   end
 
   delegate_to 'EAC-CPF', [:name, :nickname, :graveyard, :weapon, :date_of_birth, :date_of_death, :date_of_undeath], :unique => true
-  delegate :description, :to => :EAC_CPF, :at => :description_of_life
+  delegate :description, :to => "EAC-CPF", :at => [:description_of_life]
   delegate_to 'ZombieCrap', [:active, :hit_points, :level, :wins, :losses], :unique => true
 
   include Casting 

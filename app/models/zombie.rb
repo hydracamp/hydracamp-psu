@@ -17,28 +17,23 @@ class UniquenessValidator < ActiveModel::Validator
 end
 
 class Zombie < ActiveFedora::Base
-  has_metadata :name => 'EAC-CPF', :type => ActiveFedora::SimpleDatastream do |c|
-    c.field :name, :string
-    c.field :nickname, :string
-    c.field :graveyard, :string
-    c.field :description, :string
-    c.field :active, :string
-    c.field :wins, :string
-    c.field :losses, :string
-    c.field :weapon, :string
-    c.field :level, :string
-    c.field :hit_points, :string
-    c.field :date_of_birth, :string
-    c.field :date_of_death, :string
-    c.field :date_of_undeath, :string
+  has_metadata :name => 'EAC-CPF', :type => ZombieEacCpf
+  has_metadata :name => 'ZombieCrap', :type => ActiveFedora::SimpleDatastream do |d|
+    d.field :active, :string
+    d.field :hit_points, :string
+    d.field :level, :string
+    d.field :wins, :string
+    d.field :losses, :string
   end
 
-  delegate_to 'EAC-CPF', [:name, :nickname, :graveyard, :description, :active, :wins, :losses, :weapon, :level, :hit_points, :date_of_birth, :date_of_death, :date_of_undeath], :unique => true
+  delegate_to 'EAC-CPF', [:name, :nickname, :graveyard, :weapon, :date_of_birth, :date_of_death, :date_of_undeath], :unique => true
+  delegate :description, :to => :EAC_CPF, :at => :description_of_life
+  delegate_to 'ZombieCrap', [:active, :hit_points, :level, :wins, :losses], :unique => true
 
   include Casting 
 
   def active
-  	 cast_to_boolean_unless_blank_from_om('EAC-CPF',:active)
+  	 cast_to_boolean_unless_blank_from_om('ZombieCrap',:active)
   end
   def active?
   	active
@@ -65,19 +60,19 @@ class Zombie < ActiveFedora::Base
   end
 
   def hit_points
-  	 cast_to_integer_unless_blank_from_om('EAC-CPF',:hit_points)
+  	 cast_to_integer_unless_blank_from_om('ZombieCrap',:hit_points)
   end
 
   def wins
-  	 cast_to_integer_unless_blank_from_om('EAC-CPF',:wins)
+  	 cast_to_integer_unless_blank_from_om('ZombieCrap',:wins)
   end
 
   def losses
-  	 cast_to_integer_unless_blank_from_om('EAC-CPF',:losses)
+  	 cast_to_integer_unless_blank_from_om('ZombieCrap',:losses)
   end
 
   def level
-  	 cast_to_integer_unless_blank_from_om('EAC-CPF',:level)
+  	 cast_to_integer_unless_blank_from_om('ZombieCrap',:level)
   end
 
   validates :name, :presence=>true

@@ -4,7 +4,6 @@
  *
  * This is the default theme. You can modify many of the settings 
  * by editing your local app/assets/stylesheets/blacklight_themes/standard.css
- *= require 'blacklight_themes/standard'         
  *
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -18,8 +17,3 @@
  *= require_self
  *= require_tree .
  */
-
-.zombieCreateRow {
-    padding-top:10px;
-    padding-bottom:10px;
-}

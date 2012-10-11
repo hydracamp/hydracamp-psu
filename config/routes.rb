@@ -1,5 +1,9 @@
 Hydracamp::Application.routes.draw do
 
+  root :to => "catalog#index"
+
+  Blacklight.add_routes(self)
+
   devise_for :archivists
 
   match "zombies/search" => "zombies#search", :as => 'search_zombies'

@@ -16,7 +16,7 @@ module Casting
 
   def cast_to_date_from_om(dsid,field_name)
     v=self.datastreams[dsid].send(field_name).first
-    val = v.nil? ? Date.today : Date.parse(v)
+    val = v.blank? ? Date.today : Date.parse(v)
     #puts "val is #{val.inspect}"
     return val
   end

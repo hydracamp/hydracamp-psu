@@ -4,6 +4,10 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+#
+#
+#
+gem 'blacklight', '3.7.1'
 
 gem 'sqlite3'
 gem 'devise'
@@ -55,3 +59,6 @@ gem 'unicorn'
 # gem 'debugger'
 
 gem 'paranoia'
+
+gem "compass-rails", "~> 1.0.0", :group => :assets
+gem "compass-susy-plugin", "~> 0.9.0", :group => :assets

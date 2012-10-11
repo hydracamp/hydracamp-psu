@@ -13,27 +13,29 @@
 <!-- HEADER -->
 <div class="row span12">
   <div class="span2 pull-left"><%= image_tag 'zombie_logo.gif' %></div>
-  <div class="span8"><h1 class="pull-left"> Twitter ... for Zombie Archivists</h1></div>
+  <div class="span7"><h1 class="pull-left"> Twitter for Zombie Archivists</h1></div>
   <div class="span2 pull-right"><%= image_tag 'zombie_logo.gif' %>
 </div>
 
 <!-- MAIN BODY -->
 <div class="row span12">
-  <%= render partial: 'globals/navigation' %>
-  <!-- User navigation -->
-  <%= render partial: 'globals/user_management' %>
+  <div class="span3" id="sidebar"><%= sidebar_items.join('').html_safe %></div>
 
-  <!-- Page heading -->
-  <div class="span12">
-    <h2><%= yield :title || 'Twitter ... for Zombie Archivists' %></h2>
-  </div>
+  <div class="offset1 span7">
+    <%= render partial: 'globals/navigation' %>
+    <!-- User navigation -->
+    <%= render partial: 'globals/user_management' %>
 
-  <div id="sidebar"><%= sidebar_items.join('').html_safe %></div>
+    <!-- Page heading -->
+    <div class="span7">
+      <h2><%= yield :title || 'Twitter ... for Zombie Archivists' %></h2>
+    </div>
 
-  <!-- Content container -->
-  <div class="span12" id="content_body">
-    <%= render partial: 'globals/flash_messages' %>
-    <%= yield %>
+    <!-- Content container -->
+    <div class="span7" id="content_body">
+      <%= render partial: 'globals/flash_messages' %>
+      <%= yield %>
+    </div>
   </div>
 </div>
 

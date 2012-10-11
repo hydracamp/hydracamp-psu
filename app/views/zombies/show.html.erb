@@ -1,34 +1,14 @@
 <h1>Show Zombie</h1>
-<dl id="zombie_details">
-  <dt>Name:</dt>
-  <dd><%= @zombie.name %></dd>
-  <dt>Level:</dd>
-  <dd>level <%= @zombie.level %></dd>
-  <dt>Graveyard:</dt>
-  <dd><%= @zombie.graveyard %></dd>
-  <dt>Description:</dt>
-  <dd><%= @zombie.description %></dd>
-  <dt>Nickname:</dt>
-  <dd><%= @zombie.nickname %></dd>
-  <% if @zombie.date_of_birth != nil%>
-  <dt>Date of Birth:</dt>
-  <dd><%= @zombie.date_of_birth.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <% if @zombie.date_of_death != nil%>
-  <dt>Date of Death:</dt>
-  <dd><%= @zombie.date_of_death.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <% if @zombie.date_of_undeath != nil%>
-  <dt>Date of Undeath:</dt>
-  <dd><%= @zombie.date_of_undeath.strftime("%B %e, %Y") %></dd>
-  <% end %>
-  <dt>Active:</dt>
-  <dd><%= @zombie.active.to_s %></dd>
-  <dt>Number of Tweets:</dt>
-  <dd><%= @zombie.tweets.count %></dd>
-</dl>
 
-<h2 id="zombie_name"><%= @zombie.name %> <%= link_to 'Edit', edit_zombie_path(@zombie) %></h2>
+<h2 id="zombie_name"><%= @zombie.name %></h2>
+<p class="lead">
+  <% if @zombie.description.present? %>
+    <%= @zombie.description %>
+  <% else %>
+    No description provided
+  <% end %>
+</p>
+
 <table class="table table-striped" id="zombie_details">
   <tbody>
     <tr>
@@ -51,15 +31,13 @@
       <td>Active</td>
       <td><%= @zombie.active? ? 'Yes' : 'No' %></td>
     </tr>
-    <tr>
-      <td>Description</td>
-      <td><%= @zombie.description %></td>
-    </tr>
   </tbody>
 </table>
-<%= link_to "edit", edit_zombie_path(@zombie) %>
-<%= link_to "history", zombie_history_path(@zombie) %>
 
+<ul class="nav nav-pills">
+  <li><%= link_to "Edit zombie", edit_zombie_path(@zombie), class: 'btn' %>
+  <li><%= link_to "History", zombie_history_path(@zombie), class: 'btn' %>
+</ul>
 
 <h2 id="tweets">Tweets (<%= @zombie.tweets.count %>)</h2>
 <%= form_for @tweet do |f| %>

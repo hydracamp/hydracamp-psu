@@ -118,7 +118,6 @@ describe "Zombies" do
     it "should display a description of a zombie" do
       visit zombie_path(@ash)
       page.should have_content "The zombie smells bad"
-      page.should have_content "Description"
 
     end
 

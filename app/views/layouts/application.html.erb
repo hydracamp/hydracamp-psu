@@ -25,6 +25,8 @@
     <h2><%= yield :title || 'Twitter ... for Zombie Archivists' %></h2>
   </div>
 
+  <div id="sidebar"><%= sidebar_items.join('').html_safe %></div>
+
   <!-- Content container -->
   <div class="span12" id="content_body">
     <%= render partial: 'globals/flash_messages' %>

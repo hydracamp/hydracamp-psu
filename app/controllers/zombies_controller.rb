@@ -9,15 +9,16 @@ class ZombiesController < ApplicationController
   end
 
   def create
+    params[:zombie].delete(:avatar)
     @zombie = Zombie.create(params[:zombie])
-    @zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
+    #@zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
     @zombie.save!
     current_archivist.inc_points 50
     redirect_to zombies_path, :notice=>"Added Zombie"
   end
 
   def index
-    @zombies = Zombie.order(:name)
+    @zombies = Zombie.find(:all,:sort=>"name_sort asc")
   end
 
   def show
@@ -34,6 +35,7 @@ class ZombiesController < ApplicationController
 
   def edit
     @zombie = Zombie.find(params[:id])
+    @zombies = Zombie.find(:all,:sort=>"name_sort desc").reject{|z| z==@zombie}.map{|z| [ z.name, z.id ]}
   end
 
   def update
@@ -44,23 +46,23 @@ class ZombiesController < ApplicationController
     redirect_to edit_zombie_path(@zombie), :notice=>"Zombie saved at #{Time.now.strftime("%H:%M")}"
   end
 
-  def search
-    @q = params[:q]
+  # def search
+  #   @q = params[:q]
 
-    q_delimited_by_space = @q.split(' ')
+  #   q_delimited_by_space = @q.split(' ')
 
-    generated_like_clause = []
-    args = []
-    q_delimited_by_space.each do |word|
-      generated_like_clause << "name LIKE ? OR nickname LIKE ? OR description LIKE ? OR graveyard LIKE ?"
-      args << "%#{word}%" << "%#{word}%" << "%#{word}%" << "%#{word}%"
-    end
+  #   generated_like_clause = []
+  #   args = []
+  #   q_delimited_by_space.each do |word|
+  #     generated_like_clause << "name LIKE ? OR nickname LIKE ? OR description LIKE ? OR graveyard LIKE ?"
+  #     args << "%#{word}%" << "%#{word}%" << "%#{word}%" << "%#{word}%"
+  #   end
 
-    #Convert generated_like_clause from array to string, using ' OR ' delimiter
-    generated_like_clause = generated_like_clause.join(' OR ')
+  #   #Convert generated_like_clause from array to string, using ' OR ' delimiter
+  #   generated_like_clause = generated_like_clause.join(' OR ')
 
-    @zombies = Zombie.where(generated_like_clause, *args )
-  end
+  #   @zombies = Zombie.where(generated_like_clause, *args )
+  # end
 
   def history
     @zombie = Zombie.find(params[:id])

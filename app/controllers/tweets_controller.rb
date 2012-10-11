@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  before_filter :authenticate_archivist!, :only=>[:create]
+
   # create
   def create
     zombie_id = params[:tweet].delete(:zombie_id)
@@ -17,7 +19,7 @@ class TweetsController < ApplicationController
   end
 
   def index
-    @tweets = Tweet.where("").order(:created_at).reverse_order
+    @tweets = Tweet.find(:all, :sort=>'created_at_sort desc')
   end
   
   def destroy

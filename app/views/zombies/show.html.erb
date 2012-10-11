@@ -32,10 +32,6 @@
 <table class="table table-striped" id="zombie_details">
   <tbody>
     <tr>
-      <td>Avatar</td>
-      <td><%= image_tag @zombie.avatar.url(:medium) %></td>
-    </tr>
-    <tr>
       <td>Level</td>
       <td><%= @zombie.level %></td>
     </tr>
@@ -82,7 +78,7 @@
   </thead>
   <tbody>
   <% @zombie.tweets.each do |tweet| %>
-    <tr id="tweet_<%= tweet.id %>">
+    <tr id="tweet_<%= tweet.id.gsub(':', '_') %>">
       <td class="message"><%= tweet.message %> (<%= tweet.created_at.strftime("%B %e, %Y") %>)</td>
       <td class="like_count"><%= tweet.rating %></td>
       <td class="like_update">

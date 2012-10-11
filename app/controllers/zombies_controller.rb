@@ -1,4 +1,5 @@
 class ZombiesController < ApplicationController
+  before_filter :authenticate_archivist!, :only=>[:create]
   def new
     @zombie = Zombie.new
   end

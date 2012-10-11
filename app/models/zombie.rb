@@ -42,6 +42,7 @@ class Zombie < ActiveFedora::Base
   def to_solr(doc = {} )
     doc = super(doc)
     doc['name_sort'] = doc['name_t'].first
+    doc['graveyard_facet'] = doc['graveyard_t']
     doc
     
   end

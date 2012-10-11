@@ -7,7 +7,8 @@ gem 'rails', '3.2.8'
 #
 #
 #
-gem 'blacklight', '3.7.1'
+#gem 'blacklight', '3.7.1'
+gem 'blacklight', :git => 'git://github.com/projectblacklight/blacklight.git', :branch => 'bootstrap'
 
 gem 'sqlite3'
 gem 'devise'
@@ -62,3 +63,5 @@ gem 'paranoia'
 
 gem "compass-rails", "~> 1.0.0", :group => :assets
 gem "compass-susy-plugin", "~> 0.9.0", :group => :assets
+
+gem "bootstrap-sass", "~> 2.1.0.0"

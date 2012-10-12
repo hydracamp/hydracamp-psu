@@ -3,6 +3,7 @@ Hydracamp::Application.routes.draw do
   root :to => "catalog#index"
 
   Blacklight.add_routes(self)
+  HydraHead.add_routes(self)
 
   devise_for :archivists
 

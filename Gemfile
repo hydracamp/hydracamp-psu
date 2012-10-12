@@ -9,6 +9,7 @@ gem 'rails', '3.2.8'
 #
 #gem 'blacklight', '3.7.1'
 gem 'blacklight', :git => 'git://github.com/projectblacklight/blacklight.git', :branch => 'bootstrap'
+gem 'hydra-head', '5.0.0.pre7'
 
 gem 'sqlite3'
 gem 'devise'

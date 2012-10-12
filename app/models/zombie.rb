@@ -17,6 +17,9 @@ class UniquenessValidator < ActiveModel::Validator
 end
 
 class Zombie < ActiveFedora::Base
+  include Hydra::ModelMixins::CommonMetadata
+  include Hydra::ModelMixins::RightsMetadata
+
   has_metadata :name => 'EAC-CPF', :type => ZombieEacCpf
   has_metadata :name => 'ZombieCrap', :type => ActiveFedora::SimpleDatastream do |d|
     d.field :active, :string

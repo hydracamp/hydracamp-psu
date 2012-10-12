@@ -7,7 +7,11 @@
   <% # main title container for doc partial view -%>
   <h5 class="index_title"><%= t('blacklight.search.documents.counter', :counter => (document_counter + 1 + @response.params[:start].to_i)) %>
    <%#=link_to document.get('name_t'), document.path %>
-   <%= link_to_document document, :label=>document.get('name_t') %>
+   <% if can?(:read, document) %>
+     <%= link_to_document document, :label=>document.get('name_t') %>
+   <% else %>
+      <%= document.get('name_t') %>
+   <% end %>
   </h5>
 </div>
 

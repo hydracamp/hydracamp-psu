@@ -90,6 +90,7 @@ describe "Zombies" do
       page.should have_link "Home", href: zombies_path
     end
 
+
     it "should display a link to an instructional video" do
       visit zombie_path(@ash)
       page.should have_link "Instructional Video", :href=>"http://www.youtube.com/watch?v=0UqEhUm2B_8"
@@ -137,6 +138,14 @@ describe "Zombies" do
         @t = Tweet.new(:message=>'Test tweet')
         @t.zombie = @ash
         @t.save!
+      end
+
+      it "should display a list of the zombie's tweets" do
+        visit zombie_path(@ash)
+        within "#zombie_tweets" do
+          page.should have_content @tweet1.message 
+          page.should have_content @tweet2.message
+        end
       end
 
       it "should display a like tweet button for each tweet" do

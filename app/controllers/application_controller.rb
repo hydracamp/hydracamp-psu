@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   # Please be sure to impelement current_user and user_session. Blacklight depends on 
   # these methods in order to perform user specific actions. 
 
+  rescue_from CanCan::AccessDenied do 
+    redirect_to root_path, :alert =>"You do not have sufficient access permissions."
+  end
+
+
   include Blacklight::Configurable
 
   configure_blacklight do |config|

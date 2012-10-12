@@ -44,44 +44,44 @@ describe ZombiesController do
   end
 
   describe "#show" do
-    before do
-      @ash = Zombie.create(:name=>'Ash',:weapon=>"hatchet")
-      @tweet1 = Tweet.create(:message => "blah blah blah", :zombie => @ash)
-      @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie => @ash)
-    end
 
-    it "should be successful" do
-      get :show, :id=>@ash
-      response.should be_successful
-      assigns[:zombie].should == @ash
-      assigns[:tweet].should be_kind_of Tweet
-    end
-    
-    it "should be successful" do
-      get :show, :id=>@ash
-      
-    end
-    
-    it "should display a list of the zombie's tweets" do
-      visit zombie_path(@ash)
-      within "#zombie_tweets" do
-        page.should have_content @tweet1.message 
-        page.should have_content @tweet2.message
+    describe "when we don't have access to the zombie" do
+      before do
+        @ash = Zombie.create(:name=>'Ash',:weapon=>"hatchet")
+      end
+      it "should be redirect to the main page" do
+        get :show, :id=>@ash
+        response.should redirect_to root_path
+        flash[:alert].should == "You do not have sufficient access permissions."
       end
     end
+
+    describe "when we have read access to the zombie" do
+      before do
+        @ash = Zombie.new(:name=>'Ash',:weapon=>"hatchet")
+        @ash.read_users = [@archivist.user_key]
+        @ash.save
+
+        @tweet1 = Tweet.create(:message => "blah blah blah", :zombie => @ash)
+        @tweet2 = Tweet.create(:message => "I brake for brains!", :zombie => @ash)
+      end
+      it "should be successful" do
+        get :show, :id=>@ash
+        response.should be_successful
+        assigns[:zombie].should == @ash
+        assigns[:tweet].should be_kind_of Tweet
+      end
     
-    it "should display the timestamp with the tweet message"
-    #  visit zombie_path(@ash)
-    #  within "#zombie_tweets" do
-    #    page.should have_content @tweet1.created_at.strftime("%B %e, %Y")
-    #  end
-    #end
+    end
+    
     
   end
 
   describe "#edit" do
     before do
-      @ash = Zombie.create(:name=>'Ash', :weapon=>"hatchet")
+      @ash = Zombie.new(:name=>'Ash', :weapon=>"hatchet")
+      @ash.edit_users = [@archivist.user_key]
+      @ash.save
     end
     it "should be successful" do
       get :edit, :id=>@ash
@@ -92,7 +92,9 @@ describe ZombiesController do
 
   describe "#update" do
     before do
-      @ash = Zombie.create(:name=>"Ash", :weapon=>"hatchet")
+      @ash = Zombie.new(:name=>"Ash", :weapon=>"hatchet")
+      @ash.edit_users = [@archivist.user_key]
+      @ash.save
     end
     it "should update the zombie" do
       put :update, :id=>@ash, :zombie=> { :name=>"David", :graveyard=>"River's Edge", :nickname=>"Hruuungh"}

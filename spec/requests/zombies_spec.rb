@@ -2,8 +2,8 @@ require 'spec_helper'
 
 def logmein
   visit new_archivist_session_path
-  @ash = Archivist.create!(:email=>'Ash@grave.edu', :password=>'ashinthewind')
-  fill_in "Email", with: @ash.email
+  @archivist  = Archivist.create!(:email=>'Ash@grave.edu', :password=>'ashinthewind')
+  fill_in "Email", with: @archivist.email
   fill_in "Password", with: "ashinthewind"
   click_button 'Sign in'
 end
@@ -54,9 +54,11 @@ describe "Zombies" do
 
   describe "viewing" do
     before do
+      logmein
       Zombie.find_each { |z| z.delete}
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'))
-      @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet')
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :nickname=>'Hruuungh', :weapon=>'hatchet', :date_of_death=>Date.parse('August 9, 2012'), :read_users=>[@archivist.user_key ] )
+      @sarah = Zombie.create(:name=>"Sarah", :weapon=>'hatchet', :read_users=>[@archivist.user_key ] )
+
     end
     it "should display a list of zombies with links to the show page" do
       visit zombies_path
@@ -111,9 +113,9 @@ describe "Zombies" do
 
   describe "showing" do
     before do
+      logmein
       Zombie.find_each{|z| z.delete}
-      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe')
-      Tweet.new(:message=>'test tweet 1', :zombie=>@ash)
+      @ash = Zombie.create(:name=>'Ash', :graveyard=>'Cedarville Cemetary', :description=> "The zombie smells bad", :weapon => 'axe', :read_users=>[@archivist.user_key])
     end
 
     it "should display a description of a zombie" do
@@ -135,16 +137,14 @@ describe "Zombies" do
 
     describe "with tweets" do
       before do
-        @t = Tweet.new(:message=>'Test tweet')
-        @t.zombie = @ash
-        @t.save!
+        @t = Tweet.create(:message=>'Test tweet', :zombie=>@ash)
+        Tweet.create(:message=>'test tweet 1', :zombie=>@ash)
       end
 
       it "should display a list of the zombie's tweets" do
         visit zombie_path(@ash)
         within "#zombie_tweets" do
-          page.should have_content @tweet1.message 
-          page.should have_content @tweet2.message
+          page.should have_content "Test tweet" 
         end
       end
 
@@ -179,7 +179,8 @@ describe "Zombies" do
 
   describe "editing" do
     before do
-      @zombie = Zombie.create(:name=>"Ash", :weapon=>'axe')
+      logmein
+      @zombie = Zombie.create(:name=>"Ash", :weapon=>'axe', :edit_users=>[@archivist.user_key])
     end
     it "should edit the zombie" do
       # Given that I'm on the show page for a zombie named "Ash"
@@ -229,10 +230,10 @@ describe "Zombies" do
     end
 
     describe "creator" do
-    before do
-       @roy = Zombie.create(:name=>'Roy', :weapon => 'axe')
-       @sarah = Zombie.create(:name=>'Sarah', :weapon => 'axe')
-    end
+      before do
+         @roy = Zombie.create(:name=>'Roy', :weapon => 'axe')
+         @sarah = Zombie.create(:name=>'Sarah', :weapon => 'axe')
+      end
       it "should edit the zombie creator" do
         #Given that I am on the edit page for a zombie named "Ash"
         visit edit_zombie_path(@zombie)
@@ -249,7 +250,7 @@ describe "Zombies" do
   describe "adding tweet for zombie" do
     before do
       logmein
-      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe' )
+      @zombie = Zombie.create(:name=>"Ash", :graveyard=>"Duke Memorial",:weapon => 'axe', :read_users=>[@archivist.user_key] )
     end
     it "should add a tweet for a zombie" do
       #Given I'm on the show page for a zombie

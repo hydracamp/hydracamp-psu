@@ -28,6 +28,7 @@ describe ZombiesController do
       response.should redirect_to zombies_path
       Zombie.count.should == @count + 1
       flash[:notice].should == "Added Zombie"
+      assigns[:zombie].edit_users.should == [@archivist.user_key]
     end
   end
 

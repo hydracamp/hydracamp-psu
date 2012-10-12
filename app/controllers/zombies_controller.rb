@@ -12,7 +12,7 @@ class ZombiesController < ApplicationController
 
   def create
     params[:zombie].delete(:avatar)
-    @zombie = Zombie.create(params[:zombie])
+    @zombie = Zombie.new(params[:zombie].merge(:edit_users => [current_archivist.user_key ] ))
     #@zombie.avatar = params[:zombie][:avatar] if params[:zombie][:avatar].present? rescue nil
     @zombie.save!
     current_archivist.inc_points 50

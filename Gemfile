@@ -4,21 +4,14 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-#
-#
-#
-#gem 'blacklight', '3.7.1'
+
 gem 'blacklight', :git => 'git://github.com/projectblacklight/blacklight.git', :branch => 'bootstrap'
-gem 'hydra-head', '5.0.0.pre8'
+gem 'hydra-head', '5.0.0.pre9'
+gem 'active-fedora', '4.6.0.rc3'
 
 gem 'sqlite3'
 gem 'devise'
-gem 'therubyracer'
-gem 'active-fedora'
-gem 'execjs'
 
-gem 'paperclip', '3.3.0'
-gem "audited-activerecord", "~> 3.0"
 
 group :development, :test do
   gem 'rspec-rails'
@@ -26,11 +19,11 @@ group :development, :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'jettywrapper'
+  # Use unicorn as the app server
+  gem 'unicorn'
+
 end
 
-# Visual design tools
-gem 'twitter-bootstrap-rails'
-gem "twitter_bootstrap_form_for"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -42,28 +35,15 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'therubyracer'
+  # Visual design tools
+  gem 'twitter-bootstrap-rails'
+  gem "twitter_bootstrap_form_for"
+  gem 'jquery-rails'
+
+  gem "compass-rails", "~> 1.0.0"
+  gem "compass-susy-plugin", "~> 0.9.0"
+
+  gem "bootstrap-sass", "~> 2.1.0.0"
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
-gem 'paranoia'
-
-gem "compass-rails", "~> 1.0.0", :group => :assets
-gem "compass-susy-plugin", "~> 0.9.0", :group => :assets
-
-gem "bootstrap-sass", "~> 2.1.0.0"

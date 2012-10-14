@@ -47,20 +47,6 @@ class Zombie < ActiveFedora::Base
     doc['name_sort'] = doc['name_t'].first
     doc['graveyard_facet'] = doc['graveyard_t']
     doc
-    
-  end
-
-  def date_of_death
-  	 cast_to_date_from_om('EAC-CPF',:date_of_death)
-  end
-  def date_of_death=(date)
-  	 serialize_to_om('EAC-CPF',:date_of_death, date)
-  end
-  def date_of_birth
-  	 cast_to_date_from_om('EAC-CPF',:date_of_birth)
-  end
-  def date_of_undeath
-  	 cast_to_date_from_om('EAC-CPF',:date_of_undeath)
   end
 
   def hit_points
@@ -98,6 +84,7 @@ class Zombie < ActiveFedora::Base
     self.losses ||= "0"
     self.wins ||= "0"
     self.active ||="true"
+    self.date_of_death ||= Date.today
   end
 end
 

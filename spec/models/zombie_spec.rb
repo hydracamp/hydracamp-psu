@@ -42,7 +42,7 @@ describe Zombie do
   end
 
   it "should have a date of death" do
-    subject.date_of_death = "10/05/2012"
+    subject.date_of_death = Date.parse("10/05/2012")
     subject.date_of_death.should == Date.parse("10/05/2012")
   end
 
@@ -51,12 +51,12 @@ describe Zombie do
   end
   
   it "should have a date of birth" do
-    subject.date_of_birth = "11/07/1921"
+    subject.date_of_birth = Date.parse("11/07/1921")
     subject.date_of_birth.should == Date.parse("11/07/1921")
   end
 
   it "should have a date of undeath" do
-    subject.date_of_undeath = "10/07/2012"
+    subject.date_of_undeath = Date.parse("10/07/2012")
     subject.date_of_undeath.should == Date.parse("10/07/2012")
   end
 

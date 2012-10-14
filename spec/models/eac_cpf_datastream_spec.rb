@@ -33,13 +33,13 @@ describe ZombieEacCpf do
        test_attribute_xpath(@datastream, 'weapon', '//oxns:cpfDescription/oxns:relations/oxns:resourceRelation[@resourceRelationType="wielderOf"]/oxns:relationEntry')
      end
      it "should have date_of_birth" do
-       test_attribute_xpath(@datastream, 'date_of_birth', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:fromDate")
+       test_attribute_xpath(@datastream, 'date_of_birth', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:fromDate", Date.parse('2011-11-20'))
      end
      it "should have date_of_death" do
-       test_attribute_xpath(@datastream, 'date_of_death', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:toDate")
+       test_attribute_xpath(@datastream, 'date_of_death', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:toDate", Date.parse('2011-11-20'))
      end
      it "should have date_of_undeath" do
-       test_attribute_xpath(@datastream, 'date_of_undeath', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='undeath']/oxns:fromDate")
+       test_attribute_xpath(@datastream, 'date_of_undeath', "//oxns:cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='undeath']/oxns:fromDate", Date.parse('2011-11-20'))
      end
    end
    describe "with existing datastream" do
@@ -75,13 +75,13 @@ describe ZombieEacCpf do
        test_existing_attribute(@datastream, 'weapon', 'Chainsaw')
      end
      it "should have date_of_birth" do
-       test_existing_attribute(@datastream, 'date_of_birth', '1742-11-12')
+       test_existing_attribute(@datastream, 'date_of_birth', Date.parse('1742-11-12'))
      end
      it "should have date_of_death" do
-       test_existing_attribute(@datastream, 'date_of_death', '1802-12-27')
+       test_existing_attribute(@datastream, 'date_of_death', Date.parse('1802-12-27'))
      end
      it "should have date_of_undeath" do
-       test_existing_attribute(@datastream, 'date_of_undeath', '1802-12-31')
+       test_existing_attribute(@datastream, 'date_of_undeath', Date.parse('1802-12-31'))
      end
    end
 end

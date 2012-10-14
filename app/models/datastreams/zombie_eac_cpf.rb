@@ -11,9 +11,9 @@ class ZombieEacCpf < ActiveFedora::NokogiriDatastream
     t.graveyard(path: "cpfDescription/oxns:places/oxns:place[@localType='graveyard']/oxns:placeEntry")
     t.weapon(path: 'cpfDescription/oxns:relations/oxns:resourceRelation[@resourceRelationType="wielderOf"]/oxns:relationEntry')
 
-    t.date_of_birth(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:fromDate")
-    t.date_of_death(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:toDate")
-    t.date_of_undeath(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='undeath']/oxns:fromDate")
+    t.date_of_birth(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:fromDate", :type=>:date)
+    t.date_of_death(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='life']/oxns:toDate", :type=>:date)
+    t.date_of_undeath(:path=>"cpfDescription/oxns:description/oxns:existDates/oxns:dateRange[@localType='undeath']/oxns:fromDate", :type=>:date)
   end
   
   # Template is loaded from lib/zombie-default.eac-cpf.xml
